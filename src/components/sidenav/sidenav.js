@@ -19,9 +19,6 @@ render() {
     return (
       <Router>
         <MDBContainer>
-          <MDBBtn onClick={this.sidenavToggle("Left")}>
-            <MDBIcon size="lg" icon="bars" />
-          </MDBBtn>
           <MDBSideNav slim fixed mask="rgba-blue-strong" triggerOpening={this.state.sideNavLeft} breakWidth={1300}
             className="sn-bg-1">
             <li>
