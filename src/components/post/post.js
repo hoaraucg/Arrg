@@ -32,7 +32,7 @@ const ProjectsPage = () => {
                         </div>
                     </MDBCard>
                 </MDBCol>
-                <MDBCol md="6" className="md-0 mb-4">
+                <MDBCol md="4" className="md-0 mb-4">
                     <MDBCard
                         className="card-image"
                         style={{
@@ -59,7 +59,34 @@ const ProjectsPage = () => {
                         </div>
                     </MDBCard>
                 </MDBCol>
-                <MDBCol md="6" className="md-0 mb-4">
+                <MDBCol md="4" className="md-0 mb-4">
+                    <MDBCard
+                        className="card-image"
+                        style={{
+                            backgroundImage:
+                                "url(https://mdbootstrap.com/img/Photos/Horizontal/Nature/6-col/img%20%2873%29.jpg)"
+                        }}
+                    >
+                        <div className="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
+                            <div>
+                                <h6 className="pink-text">
+                                    <MDBIcon icon="eye" />
+                                    <strong> Alex's Side of the Story</strong>
+                                </h6>
+                                <h3 className="py-3 font-weight-bold">
+                                    <strong>It looks so good!</strong>
+                                </h3>
+                                <p className="pb-3">
+                                  All of these components are well defined and look like a ton of work has been put into them.
+              </p>
+                                <MDBBtn color="pink" rounded size="md">
+                                    <MDBIcon far icon="clone" className="left" /> MDBView project
+              </MDBBtn>
+                            </div>
+                        </div>
+                    </MDBCard>
+                </MDBCol>
+                <MDBCol md="4" className="md-0 mb-4">
                     <MDBCard
                         className="card-image"
                         style={{
