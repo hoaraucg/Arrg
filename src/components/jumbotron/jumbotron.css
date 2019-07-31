@@ -1,0 +1,8 @@
+@font-face {
+font-family: "BlackPearl";
+src: url("./assets/fonts/BlackPearl.ttf");
+}
+
+#arrg {
+font-family: BlackPearl, sans-serif; 
+}
