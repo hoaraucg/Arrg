@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
-import FormPage from "../login/login"
+import FormPage from "./login"
 import SignupPage from '../signup/signup';
 
 class LoginModal extends Component {
