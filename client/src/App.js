@@ -11,6 +11,7 @@ import ModalPage from "./components/modal/modal"
 import SignupPage from "./components/signup/signup"
 import SignUpModal from "./components/signup/signupmodal";
 import LoginModal from "./components/login/modal";
+import RegisterPage from "./components/registration/register";
 
 class App extends Component {
   render() {
@@ -22,6 +23,7 @@ class App extends Component {
         <FooterPage />
         <SignUpModal />
         <LoginModal />
+        <RegisterPage />
       </MDBContainer>
     );
   }
