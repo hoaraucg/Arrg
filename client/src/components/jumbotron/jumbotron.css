@@ -6,3 +6,7 @@ src: url("./assets/fonts/BlackPearl.ttf");
 #arrg {
 font-family: BlackPearl, sans-serif; 
 }
+
+.splashscreen {
+    background-color: black;
+}
