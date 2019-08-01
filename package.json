@@ -5,6 +5,7 @@
   "// If You want to install mdbreact from our GitLab repository, please replace '4.18.1' with gitURL provided here ->": "git+https://oauth2:T3jVZjPs4xsyUN4GnoqG@git.mdbootstrap.com/mdb/react/re-pro.git",
   "dependencies": {
     "mdbreact": "git+https://oauth2:T3jVZjPs4xsyUN4GnoqG@git.mdbootstrap.com/mdb/react/re-pro.git",
+    "mongoose": "^5.6.7",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.1",
@@ -14,6 +15,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "seed": "node scripts/seeduserDB.js",
     "eject": "react-scripts eject",
     "rename": "renamer --find App-clear.js --replace App.js ./src/App-clear.js && renamer --find style.css --replace index.css ./src/style.css ",
     "remove-demo": "rimraf ./src/assets ./src/components ./src/pages ./src/Routes.js ./src/App.js ./src/index.css && npm run rename"
