@@ -6,6 +6,11 @@ import MinimalisticIntro from "./components/jumbotron/jumbotron";
 import ProjectsPage from "./components/post/post";
 import FooterPage from "./components/footer/footer";
 import SideNavPage from "./components/sidenav/sidenav";
+import FormPage from "./components/login/login";
+import ModalPage from "./components/modal/modal"
+import SignupPage from "./components/signup/signup"
+import SignUpModal from "./components/signup/signupmodal";
+import LoginModal from "./components/login/modal";
 
 class App extends Component {
   render() {
@@ -15,6 +20,8 @@ class App extends Component {
         <MinimalisticIntro />
         <ProjectsPage />
         <FooterPage />
+        <SignUpModal />
+        <LoginModal />
       </MDBContainer>
     );
   }
