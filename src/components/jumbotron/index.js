@@ -32,7 +32,7 @@ class MinimalisticIntro extends Component {
                   <h1 class="display-3 mb-0 pt-md-5 pt-5 white-text font-weight-bold" id="arrg" >Arrg</h1>
                   <hr className="hr-light my-4" />
                   <h5 className="text-uppercase pt-md-5 pt-sm-2 pt-5 pb-md-5 pb-sm-3 pb-5 white-text font-weight-bold">Batten down the hatches and<br></br>post your argument to declare a winner.</h5>
-                  <MDBBtn className="white btn-light-blue" size="lg">Walk The Plank...</MDBBtn>
+                  <MDBBtn className="white btn-light-blue" size="lg" href="/getstarted">Walk The Plank...</MDBBtn>
                 </MDBCol>
               </MDBRow>
             </MDBContainer>

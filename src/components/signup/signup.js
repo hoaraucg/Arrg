@@ -50,7 +50,7 @@ const SignupPage = () => {
                   <p className="font-small grey-text mt-3">
                     Already have an account?
                     <a
-                      href="#!"
+                      href="/login"
                       className="dark-grey-text ml-1 font-weight-bold"
                     >
                       Log In
