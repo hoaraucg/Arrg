@@ -40,6 +40,7 @@ const FormPage = () => {
                       rounded
                       type="button"
                       className="z-depth-1a"
+                      href="/register"
                     >
                       Log in
                     </MDBBtn>

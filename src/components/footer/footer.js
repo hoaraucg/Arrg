@@ -5,7 +5,7 @@ const FooterPage = () => {
     return (
 
 
-        <footer class="page-footer font-small special-color-dark pt-4">
+        <footer class="page-footer fixed-bottom font-small morpheus-den-gradient pt-4">
 
 
             <div class="container">
