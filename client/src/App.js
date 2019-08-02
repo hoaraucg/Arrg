@@ -13,6 +13,7 @@ import SignupPage from "./components/signup/signup"
 import SignUpModal from "./components/signup/signupmodal";
 import LoginModal from "./components/login/modal";
 import RegisterPage from "./components/registration/register";
+import Vote from "./pages/Vote";
 
 class App extends Component {
   render() {
@@ -25,7 +26,8 @@ class App extends Component {
             <Route exact path="/login" render={props => <div><FormPage /><SideNavPage /><FooterPage /></div>} />
             <Route exact path="/register" render={props => <div><RegisterPage /><SideNavPage /><FooterPage /></div>} />
             <Route exact path="/home" render={props => <div><ProjectsPage /><SideNavPage /><FooterPage /></div>} />
-            <Route exact path="/vote" render={props => <div><ProjectsPage /><SideNavPage /><FooterPage /></div>} />
+            <Route exact path="/vote" component={Vote} />
+            {/* <Route exact path="/vote" render={props => <div><ProjectsPage /><SideNavPage /><FooterPage /></div>} /> */}
             {/* <Route component={NoMatch}/> */}
           </Switch>
         </div>

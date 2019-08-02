@@ -1,8 +1,23 @@
-import React from "react";
+import React, { Component } from "react";
 import { MDBRow, MDBCol, MDBCard, MDBIcon, MDBBtn } from "mdbreact";
+import Api from "../../utils/Api";
 
-const ProjectsPage = () => {
-    return (
+class ProjectsPage extends Component {
+
+state = {
+    argument: []
+};
+
+componentDidMount() {
+    this.loadArgument();
+};
+
+loadArgument = () => {
+    Api.getArguments().then(res => this.setState({argument: res.data}))
+    .catch(err => console.log(err));
+};
+render() {
+   return (
         <section className="text-center my-5">
             <MDBRow>
                 <MDBCol md="12" className="mb-4">
@@ -17,14 +32,12 @@ const ProjectsPage = () => {
                             <div>
                                 <h6 className="purple-text">
                                     <MDBIcon icon="plane" />
-                                    <strong>Why is MD Bootstrap so awesome?</strong>
+                                    <strong>{this.state.argument.title}</strong>
                                 </h6>
                                 <h3 className="py-3 font-weight-bold">
                                     <strong>Help us decide who's right!</strong>
                                 </h3>
-                                <p className="pb-3">
-                                    MD Bootstrap is a framework that makes all your front end design needs super simple, allowing you to spend your time doing what actually matters, Back end!
-              </p>
+                                <p className="pb-3">{this.state.argument.main}</p>
                                 <MDBBtn color="secondary" rounded size="md">
                                     <MDBIcon far icon="clone" className="left" /> MDBView project
               </MDBBtn>
@@ -71,7 +84,7 @@ const ProjectsPage = () => {
                             <div>
                                 <h6 className="green-text">
                                     <MDBIcon icon="eye" />
-                                    <strong> Chris' Side of the Story</strong>
+                                    <strong>{this.state.argument.title}</strong>
                                 </h6>
                                 <h3 className="py-3 font-weight-bold">
                                     <strong> So easy to use! </strong>
@@ -116,6 +129,7 @@ const ProjectsPage = () => {
             </MDBRow>
         </section>
     );
+}
 }
 
 export default ProjectsPage;
