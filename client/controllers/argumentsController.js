@@ -3,11 +3,11 @@ const db = require("../models");
 // Defining methods for the argumentsController
 module.exports = {
   findAll: function(req, res) {
-    db.argument
+    db.Argument
       .find(req.query)
       .sort({ date: -1 })
       .then(dbModel => {
-        console.log(dbModel);
+        console.log("Test" + dbModel);
         res.json(dbModel)})
       .catch(err => res.status(422).json(err));
   },
