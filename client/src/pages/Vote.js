@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import ProjectsPage from "../components/Post";
 import API from "../utils/Api";
-import { MDBRow, MDBCol, MDBContainer, MDBCard, MDBIcon, MDBBtn } from "mdbreact";
+import { MDBRow, MDBCol, MDBContainer } from "mdbreact";
 
 class Vote extends Component {
   state = {

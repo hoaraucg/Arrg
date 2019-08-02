@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
-import FormPage from "../login/login"
-import SignupPage from '../signup/signup';
+import { MDBContainer, MDBBtn, MDBModal } from 'mdbreact';
 
 class ModalPage extends Component {
   state = {

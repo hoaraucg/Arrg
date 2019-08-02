@@ -1,5 +1,5 @@
-import React, { Component } from "react"
-import { MDBBtn, MDBCol, MDBContainer, MDBRow } from "mdbreact";
+import React from "react"
+import { MDBCol, MDBContainer, MDBRow } from "mdbreact";
 
 const RegisterPage = () => {
     return (

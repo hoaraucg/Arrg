@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
-import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBMask, MDBRow, MDBCol,  MDBBtn, MDBView, MDBContainer, MDBFormInline } from "mdbreact";
+import { MDBMask, MDBRow, MDBCol,  MDBBtn, MDBView, MDBContainer} from "mdbreact";
 
 class MinimalisticIntro extends Component {
   state = {
