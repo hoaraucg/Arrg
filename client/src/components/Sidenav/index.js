@@ -24,7 +24,7 @@ render() {
             <li>
               <div className="logo-wrapper sn-ad-avatar-wrapper">
                 <a href="#!">
-                  <img alt="" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(10).jpg" className="rounded-circle" />
+                  <img alt="sdfas" src="https://i.imgur.com/sEitLk6.png" className="rounded-circle" />
                   <span>Anna Deynah</span>
                 </a>
               </div>

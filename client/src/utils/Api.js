@@ -3,6 +3,7 @@ import axios from "axios";
 export default {
   // Gets all arguments
   getArguments: function() {
+    console.log('yes')
     return axios.get("/api/arguments");
   },
   // Gets the argument with the given id

@@ -3,6 +3,7 @@ const db = require("../models");
 // Defining methods for the argumentsController
 module.exports = {
   findAll: function(req, res) {
+    console.log('yes back')
     db.Argument
       .find(req.query)
       .sort({ date: -1 })
