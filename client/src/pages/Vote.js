@@ -51,11 +51,7 @@ class Vote extends Component {
                     {argues.title} {argues.main} {argues.sideone} {argues.sidetwo}  
                   </div>
                 ))}
-                {this.state.argument.title}
               </h6>
-              <p>{this.state.argument.main}</p>
-              <p>{this.state.argument.sideone}</p>
-              <p>{this.state.argument.sidetwo}</p>
             </article>
           </MDBCol>
 
