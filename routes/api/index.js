@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const argumentRoutes = require("./arguments");
+const userRoutes = require("./users");
 
 //Test
 router.use(function timelog(req,res,next){
@@ -9,5 +10,6 @@ router.use(function timelog(req,res,next){
 
 // Argument routes
 router.use("/arguments", argumentRoutes);
+router.use("/users", userRoutes);
 
 module.exports = router;
