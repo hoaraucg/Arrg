@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { MDBRow, MDBCol, MDBCard, MDBIcon, MDBBtn } from "mdbreact";
-import Api from "../../utils/Api";
+import API from "../../utils/Api";
 
 class ProjectsPage extends Component {
 
@@ -13,7 +13,9 @@ componentDidMount() {
 };
 
 loadArgument = () => {
-    Api.getArguments().then(res => this.setState({argument: res.data}))
+    API.getArguments().then(res => {
+        console.log(res);
+        this.setState({argument: res.data})})
     .catch(err => console.log(err));
 };
 render() {

@@ -13,10 +13,10 @@ class Vote extends Component {
 componentDidMount(){
   API.getArguments()
   .then(res => {
-    console.log(res)
+    console.log("This is where the response should be " + res)
     this.setState({argument: res.data})
   })
-  .catch(err => console.log(err));
+  .catch(err => console.log("This should be the error " + err));
 }
 
 render(){
@@ -26,7 +26,7 @@ return (
           <MDBCol size="md-10">
             <ProjectsPage>
               <h6>
-                {this.state.argument.title} 
+                {this.state.argument} 
               </h6>
             </ProjectsPage>
           </MDBCol>
@@ -35,7 +35,10 @@ return (
           <MDBCol size="md-10 md-offset-1">
             <article>
               <h1>Argument</h1>
-              <p>{console.log(this.state.argument.main)}</p>
+              <h6>
+                {this.state.argument.title} 
+              </h6>
+              <p>{this.state.argument.main}</p>
               <p>{this.state.argument.sideone}</p>
               <p>{this.state.argument.sidetwo}</p>
             </article>
