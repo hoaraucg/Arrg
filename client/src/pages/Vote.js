@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import ProjectsPage from "../components/Post";
+// import ProjectsPage from "../components/Post";
 import API from "../utils/Api";
 import { MDBRow, MDBCol, MDBContainer } from "mdbreact";
+import { CardTitle } from "../components/Post";
+
 
 class Vote extends Component {
   state = {
@@ -24,21 +26,34 @@ class Vote extends Component {
       <MDBContainer fluid>
         <MDBRow>
           <MDBCol size="md-10">
-            <ProjectsPage>
+              
               <h2>
                 {this.state.argument.map(argue => (
+                  <CardTitle>
                   <h1>
                   <div className="import" key={argue._id}>
                   <a href={"/arguments/" + argue._id}>
-                    <strong>
-                      {argue.title}
-                    </strong>
+                    <span>
+                      <MDBRow>
+                      <MDBCol size="md-10" >{argue.title}</MDBCol>
+                      <MDBCol size="md-10">{argue.main}</MDBCol>
+                      <MDBCol size="md-5">{argue.sideone}</MDBCol>
+                      <MDBCol size="md-5">{argue.sidetwo}</MDBCol>
+
+
+                      </MDBRow>
+                      
+                    </span>
+                    
                   </a>
+                  
                   </div>
                   </h1>
+                  </CardTitle>
                 ))}
+              
               </h2>
-            </ProjectsPage>
+             
           </MDBCol>
         </MDBRow>
         <MDBRow>
@@ -57,6 +72,7 @@ class Vote extends Component {
               <p>{this.state.argument.sideone}</p>
               <p>{this.state.argument.sidetwo}</p>
             </article>
+           
           </MDBCol>
 
           {/* <Row>

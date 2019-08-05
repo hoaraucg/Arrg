@@ -20,7 +20,7 @@ class App extends Component {
             <Route exact path="/getstarted" render={props => <div><SignupPage /><SideNavPage /><FooterPage /></div>} />
             <Route exact path="/login" render={props => <div><FormPage /><SideNavPage /><FooterPage /></div>} />
             <Route exact path="/register" render={props => <div><RegisterPage /><SideNavPage /><FooterPage /></div>} />
-            <Route exact path="/home" render={props => <div><ProjectsPage /><SideNavPage /><FooterPage /></div>} />
+            <Route exact path="/home" render={props => <div><SideNavPage /><FooterPage /></div>} />
             <Route exact path="/vote" component={Vote} />
             {/* <Route exact path="/vote" render={props => <div><ProjectsPage /><SideNavPage /><FooterPage /></div>} /> */}
             {/* <Route component={NoMatch}/> */}
