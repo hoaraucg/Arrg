@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 // import ProjectsPage from "../components/Post";
 import API from "../utils/Api";
-import { MDBRow, MDBCol, MDBContainer } from "mdbreact";
+import { MDBRow, MDBCol, MDBContainer, MDBView, MDBMask } from "mdbreact";
 import { CardTitle } from "../components/Post";
 
 
@@ -35,10 +35,21 @@ class Vote extends Component {
                   <a href={"/arguments/" + argue._id}>
                     <span>
                       <MDBRow>
-                      <MDBCol size="md-10" >{argue.title}</MDBCol>
-                      <MDBCol size="md-10">{argue.main}</MDBCol>
-                      <MDBCol size="md-5">{argue.sideone}</MDBCol>
-                      <MDBCol size="md-5">{argue.sidetwo}</MDBCol>
+                      <MDBCol style={{ color: "white", fontSize: 50, border: "1px solid green" }} size="md-10" >{argue.title}</MDBCol>
+                      <MDBCol style={{ color: "white", fontSize: 30, border: "1px solid green" }} size="md-10">{argue.main}</MDBCol>
+                      <MDBCol style={{ color: "white", fontSize: 20, border: "1px solid green" }} size="md-5">{argue.sideone}</MDBCol>
+                      <MDBCol style={{ color: "white", fontSize: 20, border: "1px solid green"}} size="md-5"><MDBView hover>
+              <img
+                src="https://mdbootstrap.com/img/Others/documentation/forest-sm-mini.jpg"
+                className="img-fluid"
+                alt=""
+              />
+              <MDBMask className="flex-center" overlay="orange-strong">
+                <p className="white-text">Strong overlay</p>
+              </MDBMask>
+            </MDBView>
+            <div>{argue.sidetwo}</div>
+              </MDBCol>
 
 
                       </MDBRow>
