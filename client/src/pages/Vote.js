@@ -23,70 +23,63 @@ class Vote extends Component {
 
   render() {
     return (
-      <MDBContainer fluid>
+      <MDBContainer fluid d-flex justify-content-center>
         <MDBRow>
-          <MDBCol size="md-10">
-              
-              <h2>
-                {this.state.argument.map(argue => (
-                  <CardTitle>
+          <MDBCol size="md-12">
+
+            <h2>
+              {this.state.argument.map(argue => (
+                <CardTitle>
                   <h1>
-                  <div className="import" key={argue._id}>
-                  <a href={"/arguments/" + argue._id}>
-                    <span>
-                      <MDBRow>
-                      <MDBCol style={{ color: "white", fontSize: 50, border: "1px solid green" }} size="md-10" >{argue.title}</MDBCol>
-                      <MDBCol style={{ color: "white", fontSize: 30, border: "1px solid green" }} size="md-10">{argue.main}</MDBCol>
-                      <MDBCol style={{ color: "white", fontSize: 20, border: "1px solid green" }} size="md-5">{argue.sideone}</MDBCol>
-                      <MDBCol style={{ color: "white", fontSize: 20, border: "1px solid green"}} size="md-5"><MDBView hover>
-              <img
-                src="https://mdbootstrap.com/img/Others/documentation/forest-sm-mini.jpg"
-                className="img-fluid"
-                alt=""
-              />
-              <MDBMask className="flex-center" overlay="orange-strong">
-                <p className="white-text">Strong overlay</p>
-              </MDBMask>
-            </MDBView>
-            <div>{argue.sidetwo}</div>
-              </MDBCol>
+                    <div className="import" key={argue._id}>
+                      <a href={"/arguments/" + argue._id}>
+                        <span>
+                          <MDBRow className="d-flex justify-content-center">
+                            <MDBCol style={{ color: "white", fontSize: 50, border: "1px solid green" }} size="md-10" >{argue.title}</MDBCol>
+                            <MDBCol style={{ color: "white", fontSize: 30, border: "1px solid green" }} size="md-10">{argue.main}</MDBCol>
+                            <MDBCol style={{ color: "orange", fontSize: 20, borderRight: "1px solid green" }} size="md-5"><MDBView hover>
+                              <img
+                                src="http://pngimg.com/uploads/flags/flags_PNG14700.png"
+                                className="img-fluid"
+                                alt=""
+                                style={{opacity: 0.3}} 
+                              />
+                              <div style={{ position: 'absolute', top: 20, left: 10, right: 10, bottom: 20, justifyContent: 'center', alignItems: 'center' }}><p className="font-weight-bolder"><h2>broadSIDE 1:</h2><br></br><br></br>{argue.sideone}</p></div>
+                              <MDBMask className="flex-center" overlay="red-strong">
+                                <p className="white-text">Parley!<br></br>Click to Cast Yer Vote</p>
+                              </MDBMask>
+                            </MDBView>
+                            </MDBCol>
+                            <MDBCol style={{ color: "orange", fontSize: 20 }} size="md-5"><MDBView hover>
+                              <img
+                                src="http://pngimg.com/uploads/flags/flags_PNG14700.png"
+                                className="img-fluid"
+                                alt=""
+                                style={{opacity: 0.3}} 
+                              />
+                              <div style={{ position: 'absolute', top: 20, left: 10, right: 10, bottom: 20, justifyContent: 'center', alignItems: 'center' }}><p className="font-weight-bolder"><h2>broadSIDE 2:</h2><br></br><br></br>{argue.sidetwo}</p></div>
+                              <MDBMask className="flex-center" overlay="red-strong">
+                                <p className="white-text font-weight-bolder">Parley!<br></br>Click to Cast Yer Vote</p>
+                              </MDBMask>
+                            </MDBView>
+                            </MDBCol>
+                          </MDBRow>
 
+                        </span>
 
-                      </MDBRow>
-                      
-                    </span>
-                    
-                  </a>
-                  
-                  </div>
+                      </a>
+
+                    </div>
                   </h1>
-                  </CardTitle>
-                ))}
-              
-              </h2>
-             
+                </CardTitle>
+              ))}
+
+            </h2>
+
           </MDBCol>
         </MDBRow>
         <MDBRow>
-          <MDBCol size="md-10 md-offset-1">
-            <article>
-              <h1>Argument</h1>
-              <h6>
-                {this.state.argument.map(argues => (
-                  <div className="imports" key={argues._id}>
-                    {argues.title} {argues.main} {argues.sideone} {argues.sidetwo}  
-                  </div>
-                ))}
-              </h6>
-            </article>
-           
-          </MDBCol>
-
-          {/* <Row>
-          <Col size="md-2">
-            <Link to="/">← Back to Authors</Link>
-          </Col>
-        </Row> */}
+        
         </MDBRow>
       </MDBContainer>
     );

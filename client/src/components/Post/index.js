@@ -12,7 +12,8 @@ export function CardTitle({ children }) {
                     <MDBCard
                         className="card-image"
                         style={{
-                            backgroundColor: "black"                        }}
+                            backgroundColor: "black"
+                        }}
                     >
                         <div className="text-center d-flex align-items-center py-5 px-4 rounded">
                             <div>
@@ -22,10 +23,10 @@ export function CardTitle({ children }) {
                                 {/* <h3 className="py-3 font-weight-bold">
                                     <strong>Help us decide who's right!</strong>
                                 </h3> */}
-                                </div>
-                                </div>
-                        </MDBCard>
-                                </MDBCol>
+                            </div>
+                        </div>
+                    </MDBCard>
+                </MDBCol>
             </MDBRow>
             {/* <MDBRow>
                 <MDBCol md="12" className="mb-4">
@@ -47,6 +48,7 @@ export function CardTitle({ children }) {
 
 
         </section>
-    
-    )}
+
+    )
+}
 
