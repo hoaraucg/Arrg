@@ -1,5 +1,7 @@
 const router = require("express").Router();
 const argumentsController = require("../../controllers/argumentsController");
+const voteController = require("../../controllers/voteController");
+
 
 // Matches with "/api/arguments"
 router.route("/")
@@ -12,5 +14,7 @@ router
   .get(argumentsController.findById)
   .put(argumentsController.update)
   .delete(argumentsController.remove);
+
+  // router.route("/vote").put(voteController.update)
 
 module.exports = router;

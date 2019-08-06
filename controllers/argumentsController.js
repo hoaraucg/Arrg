@@ -25,8 +25,13 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {
+    console.log("results" + req.body.totalVotes)
     db.Argument
-      .findOneAndUpdate({ _id: req.params.id }, req.body)
+      .findOneAndUpdate({ _id: req.params.id }, {
+            sideOneVote: req.body.sideOneVote,
+            sideTwoVote: req.body.sideTwoVote,
+            totalVotes: req.body.totalVotes
+          })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
