@@ -14,6 +14,9 @@ const argumentSeed = [
     main: "Bacon ipsum dolor amet ribeye tail meatloaf biltong, kevin chicken t-bone cupim picanha pork belly pastrami. Tri-tip kevin ham hock short ribs pork loin cupim flank alcatra jowl. Sausage buffalo picanha leberkas pork chop hamburger, jowl chicken capicola strip steak kielbasa spare ribs ribeye frankfurter. Ham hock hamburger pork belly venison filet mignon strip steak picanha shankle cow meatball.",
     sideone: "Pork chop cupim cow prosciutto, pork belly rump tenderloin. Pancetta jerky shank ham pig filet mignon burgdoggen rump ribeye chicken.",
     sidetwo: "Bacon kielbasa venison, shankle t-bone pork pig sirloin chicken turkey pork chop tail jerky sausage.",
+    sideOneVote: 0,
+    sideTwoVote: 0,
+    totalVotes: 0,
     date: new Date(Date.now())
   },
   {
@@ -21,6 +24,9 @@ const argumentSeed = [
     main: "Bacon ipsum dolor amet ribeye tail meatloaf biltong, kevin chicken t-bone cupim picanha pork belly pastrami. Tri-tip kevin ham hock short ribs pork loin cupim flank alcatra jowl. Sausage buffalo picanha leberkas pork chop hamburger, jowl chicken capicola strip steak kielbasa spare ribs ribeye frankfurter. Ham hock hamburger pork belly venison filet mignon strip steak picanha shankle cow meatball.",
     sideone: "Pork chop cupim cow prosciutto, pork belly rump tenderloin. Pancetta jerky shank ham pig filet mignon burgdoggen rump ribeye chicken.",
     sidetwo: "Bacon kielbasa venison, shankle t-bone pork pig sirloin chicken turkey pork chop tail jerky sausage.",
+    sideOneVote: 0,
+    sideTwoVote: 0,
+    totalVotes: 0,
     date: new Date(Date.now())
   },
   {
@@ -28,6 +34,9 @@ const argumentSeed = [
     main: "Bacon ipsum dolor amet ribeye tail meatloaf biltong, kevin chicken t-bone cupim picanha pork belly pastrami. Tri-tip kevin ham hock short ribs pork loin cupim flank alcatra jowl. Sausage buffalo picanha leberkas pork chop hamburger, jowl chicken capicola strip steak kielbasa spare ribs ribeye frankfurter. Ham hock hamburger pork belly venison filet mignon strip steak picanha shankle cow meatball.",
     sideone: "Pork chop cupim cow prosciutto, pork belly rump tenderloin. Pancetta jerky shank ham pig filet mignon burgdoggen rump ribeye chicken.",
     sidetwo: "Bacon kielbasa venison, shankle t-bone pork pig sirloin chicken turkey pork chop tail jerky sausage.",
+    sideOneVote: 0,
+    sideTwoVote: 0,
+    totalVotes: 0,
     date: new Date(Date.now())
   },
   {
@@ -35,6 +44,9 @@ const argumentSeed = [
     main: "Bacon ipsum dolor amet ribeye tail meatloaf biltong, kevin chicken t-bone cupim picanha pork belly pastrami. Tri-tip kevin ham hock short ribs pork loin cupim flank alcatra jowl. Sausage buffalo picanha leberkas pork chop hamburger, jowl chicken capicola strip steak kielbasa spare ribs ribeye frankfurter. Ham hock hamburger pork belly venison filet mignon strip steak picanha shankle cow meatball.",
     sideone: "Pork chop cupim cow prosciutto, pork belly rump tenderloin. Pancetta jerky shank ham pig filet mignon burgdoggen rump ribeye chicken.",
     sidetwo: "Bacon kielbasa venison, shankle t-bone pork pig sirloin chicken turkey pork chop tail jerky sausage.",
+    sideOneVote: 0,
+    sideTwoVote: 0,
+    totalVotes: 0,
     date: new Date(Date.now())
   },
   {
@@ -42,6 +54,9 @@ const argumentSeed = [
     main: "Bacon ipsum dolor amet ribeye tail meatloaf biltong, kevin chicken t-bone cupim picanha pork belly pastrami. Tri-tip kevin ham hock short ribs pork loin cupim flank alcatra jowl. Sausage buffalo picanha leberkas pork chop hamburger, jowl chicken capicola strip steak kielbasa spare ribs ribeye frankfurter. Ham hock hamburger pork belly venison filet mignon strip steak picanha shankle cow meatball.",
     sideone: "Pork chop cupim cow prosciutto, pork belly rump tenderloin. Pancetta jerky shank ham pig filet mignon burgdoggen rump ribeye chicken.",
     sidetwo: "Bacon kielbasa venison, shankle t-bone pork pig sirloin chicken turkey pork chop tail jerky sausage.",
+    sideOneVote: 0,
+    sideTwoVote: 0,
+    totalVotes: 0,
     date: new Date(Date.now())
   }
 ];

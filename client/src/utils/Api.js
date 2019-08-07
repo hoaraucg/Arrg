@@ -17,5 +17,13 @@ export default {
   // Saves a book to the database
   saveArgument: function(argumentData) {
     return axios.post("/api/arguments", argumentData);
+  },
+  updateVotes: function(id, dataComing) {
+    console.log("API Yes" +JSON.stringify(dataComing))
+    return axios({
+      url: "/api/arguments/" + id,
+      method: "put",
+      data: dataComing
+    })
   }
 };
