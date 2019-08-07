@@ -1,6 +1,6 @@
 import React from "react";
 import "./style.css";
-import { MDBRow, MDBCol, MDBCard, MDBIcon } from "mdbreact";
+import { MDBRow, MDBCol, MDBCard } from "mdbreact";
 // import color from "@material-ui/core/colors/teal";
 
 
