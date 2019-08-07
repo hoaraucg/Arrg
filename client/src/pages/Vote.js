@@ -9,30 +9,30 @@ import { timingSafeEqual } from "crypto";
 class Vote extends Component {
   state = {
     argument: [],
-    totalCount: 1,
-    sideOneTotal: 1,
-    sideTwoTotal: 1
+    totalCount: 0,
+    sideOneTotal: 0,
+    sideTwoTotal: 0
   };
 
 
-handleSideOne = (id) => {
-  this.setState({ 
-    totalCount: this.state.totalCount + 1, 
-    sideOneTotal: this.state.sideOneTotal + 1,
-  });
-  this.handleIncrement(id);
+  handleSideOne = (id) => {
+    this.setState({
+      totalCount: this.state.totalCount + 1,
+      sideOneTotal: this.state.sideOneTotal + 1,
+    });
+    this.handleIncrement(id);
 
-}
+  }
 
-handleSideTwo = (id) => {
-  this.setState({ 
-    totalCount: this.state.totalCount + 1,
-    sideTwoTotal: this.state.sideTwoTotal + 1,
-  });
-  this.handleIncrement(id);
-}
+  handleSideTwo = (id) => {
+    this.setState({
+      totalCount: this.state.totalCount + 1,
+      sideTwoTotal: this.state.sideTwoTotal + 1,
+    });
+    this.handleIncrement(id);
+  }
 
-  handleIncrement = (id) => {   
+  handleIncrement = (id) => {
     var data = {
       sideOneVote: this.state.sideOneTotal,
       sideTwoVote: this.state.sideTwoTotal,
@@ -43,8 +43,14 @@ handleSideTwo = (id) => {
         console.log(res)
       })
       .catch(err => console.log("This should be the error " + err));
-      this.getArgumentList()
+    this.getArgumentList()
   };
+
+  // handleClick = () => {
+  //   this.setState({
+  //     bgColor: "red"
+  //   })
+  // }
 
   getArgumentList = () => {
     API.getArguments()
@@ -59,7 +65,7 @@ handleSideTwo = (id) => {
   // The argument id for this route can be accessed using this.props.match.params.id
   componentDidMount() {
     this.getArgumentList()
-}
+  }
 
   render() {
     return (
@@ -73,42 +79,44 @@ handleSideTwo = (id) => {
                   <h1>
                     <div className="import" key={argue._id}>
                       {/* <a href={"/arguments/" + argue._id}> */}
-                        <span>
-                          <MDBRow className="d-flex justify-content-center">
-                            <MDBCol style={{ color: "white", fontSize: 50, border: "1px solid green" }} size="md-8" >{argue.title}</MDBCol>
-                            <MDBCol style={{ color: "white", fontSize: 50, border: "1px solid green" }} size="md-2" >Total Count: {argue.totalVotes}</MDBCol>
-                            <MDBCol style={{ color: "white", fontSize: 30, border: "1px solid green" }} size="md-10">{argue.main}</MDBCol>
-                            <MDBCol style={{ color: "orange", fontSize: 20, borderRight: "1px solid green" }} size="md-5" id="one" onClick={() => this.handleSideOne(argue._id)}><MDBView hover>
+                      <span>
+                        <MDBRow className="d-flex justify-content-center">
+                          <MDBCol style={{ color: "white", fontSize: 50, border: "1px solid green" }} size="md-9" >{argue.title}</MDBCol>
+                          <MDBCol style={{ color: "white", fontSize: 18, border: "1px solid green"}} size="md-1" ><p class="text-center">Votes: <br></br> {argue.totalVotes}</p></MDBCol>
+                          <MDBCol style={{ color: "white", fontSize: 30, border: "1px solid green" }} size="md-10">{argue.main}</MDBCol>
+                          <MDBCol style={{ color: "orange", fontSize: 20, borderRight: "1px solid green" }} size="md-5" id="one" onClick={() => this.handleSideOne(argue._id)}><MDBView hover>
+                            <img
+                              src="http://pngimg.com/uploads/flags/flags_PNG14700.png"
+                              className="img-fluid"
+                              alt=""
+                              style={{ opacity: 0.3 }}
+
+                            />
+                            <div style={{ position: 'absolute', top: 20, left: 10, right: 10, bottom: 20, justifyContent: 'center', alignItems: 'center' }}><p className="font-weight-bolder"><h2>broadSIDE 1:</h2><br></br><br></br>{argue.sideone}</p></div>
+                            <MDBMask className="flex-center" overlay="red-strong">
+                              <p className="white-text">Parley!<br></br>Click to Cast Yer Vote</p>
+                            </MDBMask>
+                          </MDBView>
+                          </MDBCol>
+                          <MDBCol style={{ color: "orange", fontSize: 20 }} size="md-5" id="two"
+                            onClick={() => this.handleSideTwo(argue._id)}>
+                            <MDBView hover>
                               <img
                                 src="http://pngimg.com/uploads/flags/flags_PNG14700.png"
                                 className="img-fluid"
                                 alt=""
-                                style={{opacity: 0.3}} 
-                                
-                              />
-                              <div style={{ position: 'absolute', top: 20, left: 10, right: 10, bottom: 20, justifyContent: 'center', alignItems: 'center' }}><p className="font-weight-bolder"><h2>broadSIDE 1:</h2><br></br><br></br>{argue.sideone}</p></div>
-                              <MDBMask className="flex-center" overlay="red-strong">
-                                <p className="white-text">Parley!<br></br>Click to Cast Yer Vote</p>
-                              </MDBMask>
-                            </MDBView>
-                            </MDBCol>
-                            <MDBCol style={{ color: "orange", fontSize: 20 }} size="md-5" id="two" onClick={() => this.handleSideTwo(argue._id)}><MDBView hover>
-                              <img
-                                src="http://pngimg.com/uploads/flags/flags_PNG14700.png"
-                                className="img-fluid"
-                                alt=""
-                                style={{opacity: 0.3}} 
-                                
+                                style={{ opacity: 0.3 }}
+
                               />
                               <div style={{ position: 'absolute', top: 20, left: 10, right: 10, bottom: 20, justifyContent: 'center', alignItems: 'center' }}><p className="font-weight-bolder"><h2>broadSIDE 2:</h2><br></br><br></br>{argue.sidetwo}</p></div>
                               <MDBMask className="flex-center" overlay="red-strong">
                                 <p className="white-text font-weight-bolder">Parley!<br></br>Click to Cast Yer Vote</p>
                               </MDBMask>
                             </MDBView>
-                            </MDBCol>
-                          </MDBRow>
+                          </MDBCol>
+                        </MDBRow>
 
-                        </span>
+                      </span>
 
                       {/* </a> */}
 
@@ -122,7 +130,7 @@ handleSideTwo = (id) => {
           </MDBCol>
         </MDBRow>
         <MDBRow>
-        
+
         </MDBRow>
       </MDBContainer>
     );
