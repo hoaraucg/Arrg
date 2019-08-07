@@ -21,8 +21,8 @@ class App extends Component {
             <Route exact path="/login" render={props => <div><FormPage /><SideNavPage /><FooterPage /></div>} />
             <Route exact path="/register" render={props => <div><RegisterPage /><SideNavPage /><FooterPage /></div>} />
             <Route exact path="/home" render={props => <div><SideNavPage /><FooterPage /></div>} />
-            <Route exact path="/vote" component={Vote} />
-            <Route exact path="/create" component={Create} />
+            <Route exact path="/vote" render={props => <div><SideNavPage /><Vote /><FooterPage /></div>} />
+            <Route exact path="/create" render={props => <div><SideNavPage /><Create /><FooterPage /></div>} />
             {/* <Route exact path="/vote" render={props => <div><ProjectsPage /><SideNavPage /><FooterPage /></div>} /> */}
             {/* <Route component={NoMatch}/> */}
           </Switch>

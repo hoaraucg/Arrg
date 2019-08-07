@@ -31,7 +31,6 @@ class Create extends Component {
 render() {
 return (
     <MDBContainer>
-            <SideNavPage/>
 
         <MDBJumbotron fluid>
       <MDBContainer>
@@ -83,7 +82,6 @@ return (
       
         </MDBCol>
         </MDBRow>
-        <FooterPage/>
     </MDBContainer>
     )};
 }
