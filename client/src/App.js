@@ -9,6 +9,7 @@ import FormPage from "./components/login/login";
 import SignupPage from "./components/signup/signup"
 import RegisterPage from "./components/registration/register";
 import Vote from "./pages/Vote";
+import Create from "./pages/Create"
 
 class App extends Component {
   render() {
@@ -22,6 +23,7 @@ class App extends Component {
             <Route exact path="/register" render={props => <div><RegisterPage /><SideNavPage /><FooterPage /></div>} />
             <Route exact path="/home" render={props => <div><SideNavPage /><FooterPage /></div>} />
             <Route exact path="/vote" component={Vote} />
+            <Route exact path="/create" component={Create} />
             {/* <Route exact path="/vote" render={props => <div><ProjectsPage /><SideNavPage /><FooterPage /></div>} /> */}
             {/* <Route component={NoMatch}/> */}
           </Switch>
