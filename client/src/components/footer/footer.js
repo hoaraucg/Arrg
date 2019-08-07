@@ -1,54 +1,44 @@
 import React from "react";
+import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact";
 
 const FooterPage = () => {
-    return (
-
-
-        <footer class="page-footer fixed-bottom font-small morpheus-den-gradient pt-4">
-
-
-            <div class="container">
-
-                <ul class="list-unstyled list-inline text-center">
-                    <li class="list-inline-item">
-                        <a class="btn-floating btn-fb mx-1" href="/#">
-                            <i class="fab fa-facebook-f"> </i>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a class="btn-floating btn-tw mx-1" href="/#">
-                            <i class="fab fa-twitter"> </i>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a class="btn-floating btn-gplus mx-1" href="/#">
-                            <i class="fab fa-google-plus-g"> </i>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a class="btn-floating btn-li mx-1" href="/#">
-                            <i class="fab fa-linkedin-in"> </i>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a class="btn-floating btn-dribbble mx-1" href="/#">
-                            <i class="fab fa-dribbble"> </i>
-                        </a>
-                    </li>
-                </ul>
-
-
-            </div>
-
-
-
-            <div class="footer-copyright text-center py-3">{new Date().getFullYear()}© Copyright:
-    <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
-            </div>
-
-
-        </footer>
-    )
+  return (
+    <MDBFooter color="blue" className="font-small pt-4 mt-4">
+      <MDBContainer fluid className="text-center text-md-left">
+        <MDBRow>
+          <MDBCol md="6">
+            <h5 className="title">Footer Content</h5>
+            <p>
+              Here you can use rows and columns here to organize your footer
+              content.
+            </p>
+          </MDBCol>
+          <MDBCol md="6">
+            <h5 className="title">Links</h5>
+            <ul>
+              <li className="list-unstyled">
+                <a href="#!">Link 1</a>
+              </li>
+              <li className="list-unstyled">
+                <a href="#!">Link 2</a>
+              </li>
+              <li className="list-unstyled">
+                <a href="#!">Link 3</a>
+              </li>
+              <li className="list-unstyled">
+                <a href="#!">Link 4</a>
+              </li>
+            </ul>
+          </MDBCol>
+        </MDBRow>
+      </MDBContainer>
+      <div className="footer-copyright text-center py-3">
+        <MDBContainer fluid>
+          &copy; {new Date().getFullYear()} Copyright: <a href="https://www.MDBootstrap.com"> MDBootstrap.com </a>
+        </MDBContainer>
+      </div>
+    </MDBFooter>
+  );
 }
 
 export default FooterPage;

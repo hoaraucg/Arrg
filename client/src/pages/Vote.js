@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import API from "../utils/Api";
 import { MDBRow, MDBCol, MDBContainer, MDBView, MDBMask } from "mdbreact";
 import { CardTitle } from "../components/Post";
-import { timingSafeEqual } from "crypto";
 
 
 class Vote extends Component {
