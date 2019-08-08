@@ -2,7 +2,7 @@
 import React, { Component, Fragment } from "react";
 import { MDBInput, MDBRow, MDBCol, MDBContainer, MDBView, MDBMask, MDBSelect, MDBBtn, MDBIcon, MDBJumbotron, MDBFormInline } from "mdbreact";
 import SideNavPage from "../components/Sidenav";
-import FooterPage from "../components/footer/footer";
+import FooterPage from "../components/Footer";
 
 
 class Create extends Component {
@@ -31,9 +31,8 @@ class Create extends Component {
 render() {
 return (
     <MDBContainer>
-            <SideNavPage/>
 
-        <MDBJumbotron fluid>
+        <MDBJumbotron fluid className="mt-4">
       <MDBContainer>
         <h2 className="display-4">Ahoy!</h2>
         <p className="lead">Create yer argument and post to declare a winner.</p>
@@ -83,7 +82,6 @@ return (
       
         </MDBCol>
         </MDBRow>
-        <FooterPage/>
     </MDBContainer>
     )};
 }
