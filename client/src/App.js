@@ -4,8 +4,7 @@ import "./index.css";
 import MinimalisticIntro from "./components/jumbotron/index";
 import FooterPage from "./components/footer/footer";
 import SideNavPage from "./components/Sidenav/index";
-import FormPage from "./components/login/login";
-import SignupPage from "./components/signup/signup"
+import SignupPage from "./components/auth/login"
 import RegisterPage from "./components/auth/register";
 import Vote from "./pages/Vote";
 import Create from "./pages/Create"
@@ -18,8 +17,8 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={MinimalisticIntro} />
             <Route exact path="/getstarted" render={props => <div><SignupPage /><SideNavPage /><FooterPage /></div>} />
-            <Route exact path="/login" render={props => <div><FormPage /><SideNavPage /><FooterPage /></div>} />
-            <Route exact path="/register" render={props => <div><RegisterPage /><SideNavPage /><FooterPage /></div>} />
+            <Route exact path="/login" component={SignupPage} />
+            <Route exact path="/register" component={RegisterPage} />
             <Route exact path="/home" render={props => <div><SideNavPage /><FooterPage /></div>} />
             <Route exact path="/vote" component={Vote} />
             <Route exact path="/create" component={Create} />

@@ -31,38 +31,30 @@ class SignupPage extends Component {
                 <MDBRow>
                     <MDBCol md="12">
                         <MDBCard>
-                            <div className="header pt-3 morpheus-den-gradient">
+                            <div className="header pt-3 special-color">
                                 <MDBRow className="d-flex justify-content-center">
                                     <h3 className="white-text mb-3 pt-3 font-weight-bold">
-                                        Sign Up
+                                        Login
                 </h3>
                                 </MDBRow>
                             </div>
                             <MDBCardBody className="mx-4 mt-4">
                                 <form noValidate onSubmit={this.onSubmit}>
-                                    <MDBInput label="Your email" group type="text"
+                                    <MDBInput label="Your email" group
                                         onChange={this.onChange}
                                         value={this.state.email}
                                         error={errors.email}
                                         id="email"
                                         type="email"
                                         validate />
-                                    <MDBInput label="Your password" group type="password"
+                                    <MDBInput label="Your password" group
                                         onChange={this.onChange}
-                                        value={this.state.email}
-                                        error={errors.email}
-                                        id="email"
-                                        type="email"
+                                        value={this.state.password}
+                                        error={errors.password}
+                                        id="password"
+                                        type="password"
                                         validate />
-                                    <p className="font-small grey-text d-flex justify-content-end">
-                                        Forgot
-                <a
-                                            href="#!"
-                                            className="dark-grey-text ml-1 font-weight-bold"
-                                        >
-                                            Password?
-                </a>
-                                    </p>
+                                  
                                     <MDBRow className="d-flex align-items-center mb-4 mt-5">
                                         <MDBCol md="5" className="d-flex align-items-start">
                                             <div className="text-center">
@@ -72,18 +64,18 @@ class SignupPage extends Component {
                                                     type="button"
                                                     className="z-depth-1a"
                                                 >
-                                                    Sign Up
+                                                    Login
                     </MDBBtn>
                                             </div>
                                         </MDBCol>
                                         <MDBCol md="7" className="d-flex justify-content-end">
                                             <p className="font-small grey-text mt-3">
-                                                Already have an account?
+                                                Don't have an account?
                     <a
-                                                    href="/login"
+                                                    href="/register"
                                                     className="dark-grey-text ml-1 font-weight-bold"
                                                 >
-                                                    Log In
+                                                    Register
                     </a>
                                             </p>
                                         </MDBCol>
