@@ -8,42 +8,57 @@ import { CardTitle } from "../components/Post";
 class Vote extends Component {
   state = {
     argument: [],
-    totalCount: 0,
-    sideOneTotal: 0,
-    sideTwoTotal: 0
+    // totalCount: 0,
+    // sideOneTotal: 0,
+    // sideTwoTotal: 0
   };
 
 
   handleSideOne = (id) => {
-    this.setState({
-      totalCount: this.state.totalCount + 1,
-      sideOneTotal: this.state.sideOneTotal + 1,
-    });
-    this.handleIncrement(id);
-
+    API.getArgument(id)
+    .then(res => {
+      var data = {
+      sideOneVote: res.data.sideOneVote + 1,
+      sideTwoVote: res.data.sideTwoVote,
+      totalVotes: res.data.totalVotes + 1
+      }
+      API.updateVotes(id,data)
+      .then(res => {
+        this.getArgumentList()
+      })
+    })
+      .catch(err => console.log ("this should be the error " + err));
   }
 
   handleSideTwo = (id) => {
-    this.setState({
-      totalCount: this.state.totalCount + 1,
-      sideTwoTotal: this.state.sideTwoTotal + 1,
-    });
-    this.handleIncrement(id);
+    API.getArgument(id)
+    .then(res => {
+      var data = {
+      sideOneVote: res.data.sideOneVote,
+      sideTwoVote: res.data.sideTwoVote + 1,
+      totalVotes: res.data.totalVotes + 1
+      }
+      API.updateVotes(id,data)
+      .then(res => {
+        this.getArgumentList()
+      })
+    })
+      .catch(err => console.log ("this should be the error " + err));
   }
 
-  handleIncrement = (id) => {
-    var data = {
-      sideOneVote: this.state.sideOneTotal,
-      sideTwoVote: this.state.sideTwoTotal,
-      totalVotes: this.state.totalCount
-    }
-    API.updateVotes(id, data)
-      .then(res => {
-        console.log(res)
-      })
-      .catch(err => console.log("This should be the error " + err));
-    this.getArgumentList()
-  };
+  // handleIncrement = (id) => {
+  //   var data = {
+  //     sideOneVote: this.state.sideOneTotal,
+  //     sideTwoVote: this.state.sideTwoTotal,
+  //     totalVotes: this.state.totalCount
+  //   }
+  //   API.updateVotes(id, data)
+  //     .then(res => {
+  //       console.log(res)
+  //     })
+  //     .catch(err => console.log("This should be the error " + err));
+  //   this.getArgumentList()
+  // };
 
   // handleClick = () => {
   //   this.setState({
