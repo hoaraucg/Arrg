@@ -20,11 +20,18 @@ class RegisterPage extends Component {
             career: "",
             errors: {}
         };
+        this.onChange = this.onChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
     }
     onChange = e => {
         this.setState({ [e.target.id]: e.target.value });
+        // const { name, value } = e.target;
+        // this.setState({
+        //     [name]: value
+        // });
     };
     onSubmit = e => {
+        alert(this.state.country)
         e.preventDefault();
         const newUser = {
             name: this.state.name,
@@ -81,14 +88,18 @@ class RegisterPage extends Component {
                                     error={errors.password2}
                                     validate
                                 />
-
-                                <MDBSelect>
-                                    <MDBSelectInput selected="Country of Origin" />
-                                    <MDBSelectOptions label="Country"
-                                        onChange={this.onChange}
-                                        value={this.state.country}
-                                        error={errors.country}
+                                <MDBSelect type="text" id="country"
+                                    onChange={this.onChange}
+                                    value={this.state.country}
+                                    error={errors.country}
+                                    >
+                                    <MDBSelectInput selected="Country of Origin"/>
+                                    <MDBSelectOptions label="Country" type="text" id="country"
+                                    onChange={this.onChange}
+                                    value={this.state.country}
+                                    error={errors.country}
                                         >
+                                        <MDBSelectOption value="">Select your option</MDBSelectOption>
                                         <MDBSelectOption value="Canada">Canada</MDBSelectOption>
                                         <MDBSelectOption value="United States">United States</MDBSelectOption>
                                         <MDBSelectOption value="United Kingdom">United Kingdom</MDBSelectOption>
