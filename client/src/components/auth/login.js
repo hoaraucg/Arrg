@@ -1,6 +1,6 @@
 import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBInput, MDBBtn } from 'mdbreact';
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
@@ -99,7 +99,7 @@ class Login extends Component {
                                                 <MDBBtn
                                                     color="grey"
                                                     rounded
-                                                    type="button"
+                                                    type="submit"
                                                     className="z-depth-1a"
                                                 >
                                                     Login
@@ -142,4 +142,4 @@ const mapStateToProps = state => ({
 export default connect(
     mapStateToProps,
     { loginUser }
-)(Login);
+)(withRouter(Login));
