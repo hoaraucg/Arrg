@@ -15,6 +15,14 @@ router
   .put(argumentsController.update)
   .delete(argumentsController.remove);
 
+  //Matches with "/api/arguments/:type"
+router
+.route("/:type")
+.get(argumentsController.findByType)
+.put(argumentsController.update)
+.delete(argumentsController.remove);
+
+
   // router.route("/vote").put(voteController.update)
 
 module.exports = router;

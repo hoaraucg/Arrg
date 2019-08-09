@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./index.css";
 import MinimalisticIntro from "./components/jumbotron/index";
-import FooterPage from "./components/footer/footer";
+import FooterPage from "./components/Footer/index";
 import SideNavPage from "./components/Sidenav/index";
 import SignupPage from "./components/auth/login"
 import RegisterPage from "./components/auth/register";
