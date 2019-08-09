@@ -1,5 +1,7 @@
 import React from "react";
 import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBInput, MDBBtn } from 'mdbreact';
+import SideNavPage from "../Sidenav/index"
+import FooterPage from "../footer/footer";
 
 const FormPage = () => {
   return (
@@ -7,7 +9,7 @@ const FormPage = () => {
       <MDBRow>
         <MDBCol md="12">
           <MDBCard>
-            <div className="header pt-3 morpheus-den-gradient">
+            <div className="header pt-3 special-color">
               <MDBRow className="d-flex justify-content-center">
                 <h3 className="white-text mb-3 pt-3 font-weight-bold">
                   Log in
@@ -62,6 +64,8 @@ const FormPage = () => {
           </MDBCard>
         </MDBCol>
       </MDBRow>
+      <SideNavPage />
+      <FooterPage />
     </MDBContainer>
   );
 };
