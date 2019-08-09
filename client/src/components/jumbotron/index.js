@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { MDBMask, MDBRow, MDBCol,  MDBBtn, MDBView, MDBContainer, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter} from "mdbreact";
-import SignupPage from "../auth/login";
+import Login from "../auth/login";
 
 
   
@@ -50,7 +50,7 @@ class MinimalisticIntro extends Component {
         <MDBModal isOpen={this.state.modal} toggle={this.toggle}    >
           <MDBModalHeader toggle={this.toggle}>Login</MDBModalHeader>
           <MDBModalBody>
-            <SignupPage />
+            <Login />
           </MDBModalBody>
           <MDBModalFooter>
             <MDBBtn color="secondary" onClick={this.toggle}>Close</MDBBtn>
