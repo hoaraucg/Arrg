@@ -52,10 +52,10 @@ class MinimalisticIntro extends Component {
           <MDBModalBody>
             <Login />
           </MDBModalBody>
-          <MDBModalFooter>
-            <MDBBtn color="secondary" onClick={this.toggle}>Close</MDBBtn>
-            <MDBBtn color="primary">Save changes</MDBBtn>
-          </MDBModalFooter>
+          {/* <MDBModalFooter> */}
+            {/* <MDBBtn color="secondary" onClick={this.toggle}>Close</MDBBtn> */}
+            {/* <MDBBtn color="primary">Save changes</MDBBtn> */}
+          {/* </MDBModalFooter> */}
         </MDBModal>
       
                 </MDBCol>
