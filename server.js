@@ -15,6 +15,7 @@ app.use(express.json());
 
 // BodyParser middleware
 app.use(bodyParser.urlencoded({ extended:false}));
+app.use(bodyParser.json());
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
@@ -36,6 +37,9 @@ app.use("/api/users", users)
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
+
+// DB Config
+const db = require("./config/keys").mongoURI;
 
 // Connecting to our Database
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reactarrglist");
