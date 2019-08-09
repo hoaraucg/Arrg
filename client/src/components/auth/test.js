@@ -198,49 +198,49 @@ class RegisterPage extends Component {
                                         id='race'
                                         options={this.state.raceOptions}
                                         // getValue={e => this.onGetValue(e, 'sex')}
-                                        getTextContent={e => this.onGetValue(e, 'sex')} //or this
+                                        getTextContent={e => this.onGetValue(e, 'race')} //or this
                                         selected='Race'
                                     />
                                     <MDBSelect
                                         id='ageRange'
                                         options={this.state.ageOptions}
                                         // getValue={e => this.onGetValue(e, 'sex')}
-                                        getTextContent={e => this.onGetValue(e, 'sex')} //or this
+                                        getTextContent={e => this.onGetValue(e, 'ageRange')} //or this
                                         selected='Age Range'
                                     />
                                     <MDBSelect
                                         id='political'
-                                        options={this.state.politicalOptions}
+                                        options={this.state.politicOptions}
                                         // getValue={e => this.onGetValue(e, 'sex')}
-                                        getTextContent={e => this.onGetValue(e, 'sex')} //or this
+                                        getTextContent={e => this.onGetValue(e, 'political')} //or this
                                         selected='Political Affiliation'
                                     />
                                     <MDBSelect
                                         id='relationship'
                                         options={this.state.relationshipOptions}
                                         // getValue={e => this.onGetValue(e, 'sex')}
-                                        getTextContent={e => this.onGetValue(e, 'sex')} //or this
+                                        getTextContent={e => this.onGetValue(e, 'relationship')} //or this
                                         selected='Relationship Status'
                                     />
                                     <MDBSelect
                                         id='income'
                                         options={this.state.incomeOptions}
                                         // getValue={e => this.onGetValue(e, 'sex')}
-                                        getTextContent={e => this.onGetValue(e, 'sex')} //or this
+                                        getTextContent={e => this.onGetValue(e, 'income')} //or this
                                         selected='Income Level'
                                     />
                                     <MDBSelect
                                         id='education'
                                         options={this.state.educationOptions}
                                         // getValue={e => this.onGetValue(e, 'sex')}
-                                        getTextContent={e => this.onGetValue(e, 'sex')} //or this
+                                        getTextContent={e => this.onGetValue(e, 'education')} //or this
                                         selected='Highest level of Education'
                                     />
                                     <MDBSelect
                                         id='career'
                                         options={this.state.careerOptions}
                                         // getValue={e => this.onGetValue(e, 'sex')}
-                                        getTextContent={e => this.onGetValue(e, 'sex')} //or this
+                                        getTextContent={e => this.onGetValue(e, 'career')} //or this
                                         selected='Current Career Level'
                                     />
                                     <MDBBtn
