@@ -17,21 +17,12 @@ class App extends Component {
         <div>
           <Switch>
             <Route exact path="/" component={MinimalisticIntro} />
-<<<<<<< HEAD
-            <Route exact path="/getstarted" render={props => <div><SignupPage /><SideNavPage /><FooterPage /></div>} />
-            <Route exact path="/login" component={SignupPage} />
-            <Route exact path="/register" component={RegisterPage} />
-            <Route exact path="/home" render={props => <div><SideNavPage /><FooterPage /></div>} />
-            <Route exact path="/vote" component={Vote} />
-            <Route exact path="/create" component={Create} />
-=======
             <Route exact path="/getstarted" render={props => <div><SignupPage /><NavbarPage /><FooterPage /></div>} />
-            <Route exact path="/login" render={props => <div><FormPage /><NavbarPage /><FooterPage /></div>} />
+            <Route exact path="/login" render={props => <div><SignupPage /><NavbarPage /><FooterPage /></div>} />
             <Route exact path="/register" render={props => <div><RegisterPage /><NavbarPage /><FooterPage /></div>} />
             <Route exact path="/home" render={props => <div><NavbarPage /><FooterPage /></div>} />
             <Route exact path="/vote" render={props => <div><NavbarPage /><Vote /><FooterPage /></div>} />
             <Route exact path="/create" render={props => <div><NavbarPage /><Create /><FooterPage /></div>} />
->>>>>>> cd65a82eea64e3177cad3b46f5437feeb141cdc6
             {/* <Route exact path="/vote" render={props => <div><ProjectsPage /><SideNavPage /><FooterPage /></div>} /> */}
             {/* <Route component={NoMatch}/> */}
           </Switch>
