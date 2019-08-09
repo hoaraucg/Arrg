@@ -18,6 +18,12 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+  findByType: function (req,res) {
+    db.Argument
+    .findByType(req.params.type)
+    .then(dbModel => res.json(dbModel))
+    .catch(err => res.status(422).json(err));
+  },
   create: function(req, res) {
     db.Argument
       .create(req.body)
