@@ -176,7 +176,10 @@ return (
       
         </MDBCol>
         </MDBRow>
-    </MDBContainer>
+
+        </MDBContainer>
+
+
     )};
 }
   
