@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
 import classnames from "classnames";
 
-class SignupPage extends Component {
+class Login extends Component {
     constructor() {
         super();
         this.state = {
@@ -142,4 +142,4 @@ const mapStateToProps = state => ({
 export default connect(
     mapStateToProps,
     { loginUser }
-)(SignupPage);
+)(Login);
