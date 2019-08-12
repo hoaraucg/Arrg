@@ -10,7 +10,7 @@ import store from "./store";
 import PrivateRoute from "./components/private-route/PrivateRoute";
 
 import MinimalisticIntro from "./components/jumbotron/index";
-import FooterPage from "./components/Footer/index";
+import FooterPage from "./components/footer/index";
 import SideNavPage from "./components/Sidenav/index";
 import SignupPage from "./components/auth/login"
 import RegisterPage from "./components/auth/register";
