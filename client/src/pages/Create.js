@@ -4,6 +4,8 @@ import { MDBInput, MDBRow, MDBCol, MDBContainer, MDBView, MDBMask, MDBSelect, MD
 import SideNavPage from "../components/Sidenav";
 import FooterPage from "../components/footer/index";
 import API from "../utils/Api";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 
 class Create extends Component {
@@ -26,6 +28,7 @@ class Create extends Component {
         ],
         radio: 6
       };
+     
 
       onClick = nr => () =>{
         this.setState({
@@ -44,9 +47,9 @@ class Create extends Component {
       };
   
       handleFormSubmit = event => {
+        const { user } = this.props.auth;
         // Preventing the default behavior of the form submit (which is to refresh the page)
         event.preventDefault();
-    
 //Alert the user their argument is posted
         alert(`Hello ${this.state.title} + has been submitted`);
         this.setState({
@@ -59,7 +62,8 @@ class Create extends Component {
           main: this.state.main,
           sideone: this.state.sideone,
           sidetwo: this.state.sidetwo,
-          date: new Date(Date.now())
+          date: new Date(Date.now()),
+          user: user.name
         }
   
 
@@ -70,6 +74,8 @@ class Create extends Component {
    .catch(err => console.log("this should be the error " + err));
 
 };
+
+
 
 //  showArgument = () => {
 //    API.findAll()
@@ -86,6 +92,7 @@ class Create extends Component {
       
     
 render() {
+
 return (
     <MDBContainer>
 
@@ -182,8 +189,20 @@ return (
 
     )};
 }
+
+Create.propTypes = {
+  logoutUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
   
 
     
   
-  export default Create;
+export default connect(
+  mapStateToProps,
+  
+)(Create);

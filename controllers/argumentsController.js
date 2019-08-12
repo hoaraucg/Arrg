@@ -25,10 +25,14 @@ module.exports = {
     .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
+    //set req.params id
+
+    console.log(req.body)
     db.Argument
       .create(req.body)
       .then(dbModel => {res.json(dbModel)
-        return db.User.findOneAndUpdate({}, {$push: {arguments: dbModel._id}}, {new: true});
+        console.log(dbModel._id)
+        return db.User.findOneAndUpdate({ name: req.body.user }, {$push: {arguments: dbModel._id}}, {new: true});
       })
       .catch(err => res.status(422).json(err));
   },
