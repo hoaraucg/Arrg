@@ -10,6 +10,14 @@ const argumentSchema = new Schema({
   sideOneVote: {type: Number},
   sideTwoVote: {type: Number},
   totalVotes: {type: Number},
+  users: [
+    {
+      // Store ObjectIds in the array
+      type: Schema.Types.ObjectId,
+      // The ObjectIds will refer to the ids in the Note model
+      ref: "User"
+    }
+  ]
   // date: Date.now()
 });
 
