@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
-import {
-    MDBCol,
-    MDBContainer,
-    MDBRow,
-    MDBBtn,
-    MDBSelect,
-    MDBInput,
-    MDBCardBody,
-    MDBCard
-} from 'mdbreact';
+import { MDBCol, MDBContainer, MDBRow, MDBBtn, MDBSelect, MDBInput, MDBCardBody, MDBCard } from 'mdbreact';
+import { Link, withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { registerUser } from "../../actions/authActions";
+import classnames from "classnames";
 
-class RegisterPage extends Component {
+class Register extends Component {
     constructor() {
         super();
         this.state = {
@@ -92,15 +88,31 @@ class RegisterPage extends Component {
                 { value: 'CXO', text: 'CXO' },
             ]
         };
-        // this.onChange = this.onChange.bind(this);
-        // this.onSubmit = this.onSubmit.bind(this);
+
     }
+    componentDidMount() {
+        // If logged in and user navigates to Register page, should redirect them to dashboard
+        if (this.props.auth.isAuthenticated) {
+          this.props.history.push("/register");
+        }
+      }
+    
+      componentWillReceiveProps(nextProps) {
+        if (nextProps.errors) {
+          this.setState({
+            errors: nextProps.errors
+          });
+        }
+      }
+
     onChange = e => {
         this.setState({ [e.target.id]: e.target.value });
     };
+
     onGetValue = (value, state) => {
         this.setState({ [state]: value });
     };
+
     onSubmit = e => {
         e.preventDefault();
         const newUser = {
@@ -109,16 +121,17 @@ class RegisterPage extends Component {
             password: this.state.password,
             password2: this.state.password2,
             country: this.state.country[0],
-            sex: this.state.sex,
-            race: this.state.race,
-            ageRange: this.state.ageRange,
-            political: this.state.political,
-            relationship: this.state.relationship,
-            income: this.state.income,
-            education: this.state.education,
-            career: this.state.career
+            sex: this.state.sex[0],
+            race: this.state.race[0],
+            ageRange: this.state.ageRange[0],
+            political: this.state.political[0],
+            relationship: this.state.relationship[0],
+            income: this.state.income[0],
+            education: this.state.education[0],
+            career: this.state.career[0]
         };
         console.log(newUser);
+        this.props.registerUser(newUser, this.props.history);
     };
     render() {
         const { errors } = this.state;
@@ -138,35 +151,37 @@ class RegisterPage extends Component {
                             <MDBCardBody className='mx-4 mt-4'>
                                 <form noValidate onSubmit={this.onSubmit}>
                                     <MDBInput
-                                        label='Your name'
-                                        group
+                                        label='Your name'                                        
                                         type='text'
                                         id='name'
                                         onChange={this.onChange}
                                         value={this.state.name}
                                         error={errors.name}
-                                        validate
+                                        className={classnames("", {
+                                            invalid: errors.name
+                                          })}
                                     />
                                     <MDBInput
-                                        label='Your email'
-                                        group
+                                        label='Your email'                                        
                                         type='text'
                                         id='email'
                                         onChange={this.onChange}
                                         value={this.state.email}
                                         error={errors.email}
-                                        validate
+                                        className={classnames("", {
+                                            invalid: errors.email
+                                          })}
                                     />
                                     <MDBInput
                                         label='Your password'
-                                        group
                                         type='password'
                                         id='password'
                                         onChange={this.onChange}
                                         value={this.state.password}
                                         error={errors.password}
-                                        validate
-                                        containerClass='mb-0'
+                                        className={classnames("", {
+                                            invalid: errors.password
+                                          })}
                                     />
                                     <MDBInput
                                         label='Re-enter your password'
@@ -176,7 +191,9 @@ class RegisterPage extends Component {
                                         onChange={this.onChange}
                                         value={this.state.password2}
                                         error={errors.password2}
-                                        validate
+                                        className={classnames("", {
+                                            invalid: errors.password2
+                                          })}
                                     />
 
                                     <MDBSelect
@@ -275,4 +292,19 @@ class RegisterPage extends Component {
     }
 }
 
-export default RegisterPage;
+Register.propTypes = {
+    registerUser: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
+  };
+  
+  const mapStateToProps = state => ({
+    auth: state.auth,
+    errors: state.errors
+  });
+  
+  export default connect(
+    mapStateToProps,
+    { registerUser }
+  )(withRouter(Register));
+
