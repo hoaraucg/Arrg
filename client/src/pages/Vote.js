@@ -94,7 +94,7 @@ class Vote extends Component {
                     <div className="import" key={argue._id}>
                       {/* <a href={"/arguments/" + argue._id}> */}
                       <span>
-                        <MDBRow className="d-flex justify-content-center" background="https://i.imgur.com/HqgQAsV.jpg">
+                        <MDBRow className="d-flex justify-content-center">
                           <MDBCol style={{ color: "white", fontSize: 50, border: "1px solid grey", borderOpacity: 0.3 }} size="md-9" ><MDBCardBody className="z-depth-5">{argue.title}</MDBCardBody></MDBCol>
                           <MDBCol style={{ color: "white", fontSize: 18, border: "1px solid grey"}} size="md-1" ><p class="text-center">Votes: <br></br> {argue.totalVotes}</p></MDBCol>
                           <MDBCol style={{ color: "white", fontSize: 30, border: "1px solid grey" }} size="md-10">{argue.main}</MDBCol>
