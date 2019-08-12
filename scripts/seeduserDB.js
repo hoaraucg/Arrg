@@ -13,31 +13,76 @@ const userSeed = [
     username: "thisuser1",
     email: "thisuser1@email.com",
     password: "passworduser1",
-    date: new Date(Date.now())
+    date: new Date(Date.now()),
+    country: " ",
+    sex: " ",
+    race: " ",
+    ageRange: " ",
+    political: " ",
+    relationship: " ",
+    income: " ",
+    education: " ",
+    career: " "
   },
   {
     username: "thisuser2",
     email: "thisuser2@email.com",
     password: "passworduser2",
-    date: new Date(Date.now())
+    date: new Date(Date.now()),
+    country: " ",
+    sex: " ",
+    race: " ",
+    ageRange: " ",
+    political: " ",
+    relationship: " ",
+    income: " ",
+    education: " ",
+    career: " "
   },
   {
     username: "thisuser3",
     email: "thisuser3@email.com",
     password: "passworduser3",
-    date: new Date(Date.now())
+    date: new Date(Date.now()),
+    country: " ",
+    sex: " ",
+    race: " ",
+    ageRange: " ",
+    political: " ",
+    relationship: " ",
+    income: " ",
+    education: " ",
+    career: " "
   },
   {
     username: "thisuser3",
     email: "thisuser3@email.com",
     password: "passworduser3",
-    date: new Date(Date.now())
+    date: new Date(Date.now()),
+    country: " ",
+    sex: " ",
+    race: " ",
+    ageRange: " ",
+    political: " ",
+    relationship: " ",
+    income: " ",
+    education: " ",
+    career: " "
   },
   {
     username: "thisuser4",
     email: "thisuser4@email.com",
     password: "passworduser4",
-    date: new Date(Date.now())
+    date: new Date(Date.now()),
+    country: " ",
+    sex: " ",
+    race: " ",
+    ageRange: " ",
+    political: " ",
+    relationship: " ",
+    income: " ",
+    education: " ",
+    career: " "
   }
 ];
 

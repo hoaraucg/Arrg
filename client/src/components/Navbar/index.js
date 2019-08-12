@@ -1,18 +1,31 @@
 import React, { Component } from "react";
 import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown,
-MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon } from "mdbreact";
+MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon, MDBBtn } from "mdbreact";
 import { BrowserRouter as Router } from 'react-router-dom';
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { logoutUser } from "../../actions/authActions";
 
 class NavbarPage extends Component {
 state = {
-  isOpen: false
+  isOpen: false,
+  errors: {}
 };
 
 toggleCollapse = () => {
   this.setState({ isOpen: !this.state.isOpen });
 }
 
+onLogoutClick = e => {
+  e.preventDefault();
+  this.props.logoutUser();
+  if (this.props.auth.isAuthenticated) {
+    this.props.history.push("/");
+  }
+};
+
 render() {
+  const { user } = this.props.auth;
   return (
     <Router>
       <MDBNavbar color="elegant-color-dark" dark expand="md">
@@ -73,6 +86,17 @@ render() {
                 </MDBDropdownMenu>
               </MDBDropdown>
             </MDBNavItem>
+            <MDBNavItem>
+              <b>Hey there, </b>{user.name}.
+            </MDBNavItem>
+            <MDBNavItem>
+              <MDBBtn
+              onClick={this.onLogoutClick}
+              href="/"
+              className="btn hoverable rounded sunny-morning-gradient accent-3"
+            > Logout
+              </MDBBtn>
+            </MDBNavItem>
           </MDBNavbarNav>
         </MDBCollapse>
       </MDBNavbar>
@@ -81,4 +105,17 @@ render() {
   }
 }
 
-export default NavbarPage;
+NavbarPage.propTypes = {
+  logoutUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  { logoutUser }
+)(NavbarPage);
+

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 // import ProjectsPage from "../components/Post";
 import API from "../utils/Api";
-import { MDBRow, MDBCol, MDBContainer, MDBView, MDBMask } from "mdbreact";
+import { MDBRow, MDBCol, MDBContainer, MDBView, MDBMask, MDBCardBody } from "mdbreact";
 import { CardTitle } from "../components/Post";
 
 
@@ -94,11 +94,11 @@ class Vote extends Component {
                     <div className="import" key={argue._id}>
                       {/* <a href={"/arguments/" + argue._id}> */}
                       <span>
-                        <MDBRow className="d-flex justify-content-center">
-                          <MDBCol style={{ color: "white", fontSize: 50, border: "1px solid green" }} size="md-9" >{argue.title}</MDBCol>
-                          <MDBCol style={{ color: "white", fontSize: 18, border: "1px solid green"}} size="md-1" ><p class="text-center">Votes: <br></br> {argue.totalVotes}</p></MDBCol>
-                          <MDBCol style={{ color: "white", fontSize: 30, border: "1px solid green" }} size="md-10">{argue.main}</MDBCol>
-                          <MDBCol style={{ color: "orange", fontSize: 20, borderRight: "1px solid green" }} size="md-5" id="one" onClick={() => this.handleSideOne(argue._id)}><MDBView hover>
+                        <MDBRow className="d-flex justify-content-center" background="https://i.imgur.com/HqgQAsV.jpg">
+                          <MDBCol style={{ color: "white", fontSize: 50, border: "1px solid grey", borderOpacity: 0.3 }} size="md-9" ><MDBCardBody className="z-depth-5">{argue.title}</MDBCardBody></MDBCol>
+                          <MDBCol style={{ color: "white", fontSize: 18, border: "1px solid grey"}} size="md-1" ><p class="text-center">Votes: <br></br> {argue.totalVotes}</p></MDBCol>
+                          <MDBCol style={{ color: "white", fontSize: 30, border: "1px solid grey" }} size="md-10">{argue.main}</MDBCol>
+                          <MDBCol style={{ color: "orange", fontSize: 20 }} size="md-5" id="one" onClick={() => this.handleSideOne(argue._id)}><MDBView hover>
                             <img
                               src="http://pngimg.com/uploads/flags/flags_PNG14700.png"
                               className="img-fluid"
