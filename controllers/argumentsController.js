@@ -27,7 +27,9 @@ module.exports = {
   create: function(req, res) {
     db.Argument
       .create(req.body)
-      .then(dbModel => res.json(dbModel))
+      .then(dbModel => {res.json(dbModel)
+        return db.User.findOneAndUpdate({}, {$push: {arguments: dbModel._id}}, {new: true});
+      })
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {
@@ -48,4 +50,5 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   }
+
 };

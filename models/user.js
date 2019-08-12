@@ -14,7 +14,15 @@ const userSchema = new Schema({
   relationship: { type: String},
   income: { type: String},
   education: { type: String},
-  career: { type: String}
+  career: { type: String}, 
+  arguments: [
+    {
+      // Store ObjectIds in the array
+      type: Schema.Types.ObjectId,
+      // The ObjectIds will refer to the ids in the Note model
+      ref: "Argument"
+    }
+  ]
 });
 
 const User = mongoose.model("User", userSchema);
