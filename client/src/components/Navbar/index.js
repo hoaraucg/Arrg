@@ -5,11 +5,13 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
+import { Redirect } from "react-router-dom";
 
 class NavbarPage extends Component {
 state = {
   isOpen: false,
-  errors: {}
+  errors: {},
+  redirect: false
 };
 
 toggleCollapse = () => {
@@ -17,15 +19,18 @@ toggleCollapse = () => {
 }
 
 onLogoutClick = e => {
-  e.preventDefault();
   this.props.logoutUser();
-  if (this.props.auth.isAuthenticated) {
-    this.props.history.push("/");
-  }
-};
+  this.setState({redirect:true})
+  // console.log(this.state.redirect)
+}
 
 render() {
   const { user } = this.props.auth;
+  const { redirect } = this.state.redirect;
+  console.log(redirect)
+  if (redirect) {
+    return <Redirect to ="/" />
+  }
   return (
     <Router>
       <MDBNavbar color="elegant-color-dark" dark expand="md">
