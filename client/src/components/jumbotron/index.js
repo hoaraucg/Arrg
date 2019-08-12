@@ -36,7 +36,7 @@ class MinimalisticIntro extends Component {
     // );
     return (
     <>
-        <MDBView src={`http://images.unsplash.com/photo-1461994319301-06e2de6207c3?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjEyMDd9`}>
+        <MDBView src={"https://i.imgur.com/A5eyYcl.jpg"}>
           <MDBMask className="d-flex justify-content-center align-items-center">
             <MDBContainer>
               <MDBRow>
@@ -45,7 +45,7 @@ class MinimalisticIntro extends Component {
                   <hr className="hr-light my-4" />
                   <h5 className="text-uppercase pt-md-5 pt-sm-2 pt-5 pb-md-5 pb-sm-3 pb-5 white-text font-weight-bold">Batten down the hatches and<br></br>post your argument to declare a winner.</h5>
                  
-                  <MDBBtn className="white btn-light-blue" size="lg" onClick={this.toggle}>Walk The Plank...</MDBBtn>
+                  <MDBBtn className="white btn-light-blue btn-large sunny-morning-gradient" onClick={this.toggle}>Walk The Plank...</MDBBtn>
                   
         <MDBModal isOpen={this.state.modal} toggle={this.toggle}    >
           <MDBModalHeader toggle={this.toggle}>Login</MDBModalHeader>
