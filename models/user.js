@@ -6,15 +6,15 @@ const userSchema = new Schema({
   email: { type: String, required: true },
   password: { type: String, required: true },
   date: { type: Date, default: Date.now },
-  country: { type: String, required: true },
-  sex: { type: String, required: true },
-  race: { type: String, required: true },
-  ageRange: { type: String, required: true },
-  political: { type: String, required: true },
-  relationship: { type: String, required: true },
-  income: { type: String, required: true },
-  education: { type: String, required: true },
-  career: { type: String, required: true }
+  country: { type: String},
+  sex: { type: String},
+  race: { type: String},
+  ageRange: { type: String},
+  political: { type: String},
+  relationship: { type: String},
+  income: { type: String},
+  education: { type: String},
+  career: { type: String}
 });
 
 const User = mongoose.model("User", userSchema);

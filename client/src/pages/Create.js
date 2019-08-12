@@ -2,7 +2,7 @@
 import React, { Component, Fragment } from "react";
 import { MDBInput, MDBRow, MDBCol, MDBContainer, MDBView, MDBMask, MDBSelect, MDBBtn, MDBIcon, MDBJumbotron, MDBFormInline } from "mdbreact";
 import SideNavPage from "../components/Sidenav";
-import FooterPage from "../components/footer/index";
+import FooterPage from "../components/Footer/index";
 import API from "../utils/Api";
 
 
