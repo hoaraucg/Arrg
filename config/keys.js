@@ -1,4 +1,4 @@
 module.exports = {
     mongoURI: "mongodb://localhost/reactarrglist" ,
-    secretOrKey: "ilovescotchscotchyscotchscotch"
+    secretOrKey: process.env.SECRET || "ilovescotchscotchyscotchscotch"
   };
