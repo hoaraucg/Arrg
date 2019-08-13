@@ -1,7 +1,8 @@
 // import React from "react";
 import React, { Component, Fragment } from "react";
-import { MDBInput, MDBRow, MDBCol, MDBContainer, MDBSelect, MDBBtn, MDBIcon, MDBJumbotron, MDBFormInline } from "mdbreact";
-// import FooterPage from "../components/footer/index";
+import { MDBInput, MDBRow, MDBCol, MDBContainer, MDBView, MDBMask, MDBSelect, MDBBtn, MDBIcon, MDBJumbotron, MDBFormInline } from "mdbreact";
+import SideNavPage from "../components/Sidenav";
+import FooterPage from "../components/Footer/index";
 import API from "../utils/Api";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
