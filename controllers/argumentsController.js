@@ -3,12 +3,12 @@ const db = require("../models");
 // Defining methods for the argumentsController
 module.exports = {
   findAll: function(req, res) {
-    console.log('yes back')
+    // console.log('yes back')
     db.Argument
       .find(req.query)
       .sort({ date: -1 })
       .then(dbModel => {
-        console.log("Test" + dbModel);
+        // console.log("Test" + dbModel);
         res.json(dbModel)})
       .catch(err => res.status(422).json(err));
   },
@@ -37,16 +37,31 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {
-    console.log("results" + req.body.totalVotes)
-    db.Argument
+    // db.Argument
+    //   .findOneAndUpdate({ _id: req.params.id }, {  
+    //         totalVotes: req.body.totalVotes
+    //       })
+    //   .then(dbModel => res.json(dbModel))
+    //   .catch(err => res.status(422).json(err));
+    // console.log("side one vote controller ", req.body.sideOneVote)
+    if (req.body.sideOne){
+      db.Argument
       .findOneAndUpdate({ _id: req.params.id }, {
-            sideOneVote: req.body.sideOneVote,
-            sideTwoVote: req.body.sideTwoVote,
-            totalVotes: req.body.totalVotes
-          })
+            $push: {sideOneVote: req.body.user
+          }, $set: { totalVotes: req.body.totalVotes}  })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
-  },
+  
+  }
+else {
+  db.Argument
+      .findOneAndUpdate({ _id: req.params.id }, {
+            $push: {sideTwoVote: req.body.user
+          }, $set: { totalVotes: req.body.totalVotes}  })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+}
+},
   remove: function(req, res) {
     db.Argument
       .findById({ _id: req.params.id })
