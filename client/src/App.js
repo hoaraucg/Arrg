@@ -16,7 +16,7 @@ import SignupPage from "./components/auth/login"
 import RegisterPage from "./components/auth/register";
 import Vote from "./pages/Vote";
 import Create from "./pages/Create"
-import NavbarPage from "./components/navbar/index";
+import NavbarPage from "./components/Navbar/index";
 import testPage from "./components/auth/test"
 import Register from "./components/auth/register"
 
