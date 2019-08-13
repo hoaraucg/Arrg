@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { MDBCol, MDBContainer, MDBRow, MDBBtn, MDBSelect, MDBInput, MDBCardBody, MDBCard } from 'mdbreact';
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";

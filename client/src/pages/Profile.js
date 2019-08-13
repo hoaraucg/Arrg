@@ -1,28 +1,41 @@
 import React, { Component } from "react";
 import API from "../utils/Api";
-import { MDBRow, MDBCol, MDBCard, MDBJumbotron, MDBContainer, MDBView, MDBMask, MDBCardBody } from "mdbreact";
-import { BrowserRouter as Router } from 'react-router-dom';
+import { MDBRow, MDBCol, MDBCard, MDBJumbotron, MDBContainer, MDBCardBody } from "mdbreact";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../actions/authActions";
-import { Redirect } from "react-router-dom";
 
 class Profile extends Component {
     state = {
-
+        argumentId: {},
+        arguments: []
     };
 
     getArgumentList = (id) => {
-        API.getArguments()
+            API.getUserArgument(id)
             .then(res => {
-                this.setState({ argument: res.data })
+                this.setState({ argumentId: res.data })
+                console.log(this.state.argumentId)
+                this.loadArguments(res.data.arguments[0]);
+                console.log(res.data.arguments[0])
             })
             .catch(err => console.log("This should be the error " + err));
+
     }
 
-    componentDidMount() {
-        this.getArgumentList()
+    loadArguments = (id) => {
+        API.getArgument(id)
+        .then(res => {
+            this.setState({arguments: res.data})
+            console.log(this.state.arguments)
+        })
     }
+        
+
+    componentDidMount() {
+        const { user } = this.props.auth; 
+        this.getArgumentList(user.id)
+    };
 
     render() {
         const { user } = this.props.auth;

@@ -11,13 +11,11 @@ import PrivateRoute from "./components/private-route/PrivateRoute";
 import Profile from "./pages/Profile"
 import MinimalisticIntro from "./components/jumbotron/index";
 import FooterPage from "./components/Footer/index";
-import SideNavPage from "./components/Sidenav/index";
 import SignupPage from "./components/auth/login"
 import RegisterPage from "./components/auth/register";
 import Vote from "./pages/Vote";
 import Create from "./pages/Create"
 import NavbarPage from "./components/Navbar/index";
-import testPage from "./components/auth/test"
 import Register from "./components/auth/register"
 
 // Check for token to keep user logged in

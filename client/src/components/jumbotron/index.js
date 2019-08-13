@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { MDBMask, MDBRow, MDBCol,  MDBBtn, MDBView, MDBContainer, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter} from "mdbreact";
+import { MDBMask, MDBRow, MDBCol,  MDBBtn, MDBView, MDBContainer, MDBModal, MDBModalBody, MDBModalHeader} from "mdbreact";
 import Login from "../auth/login";
 
 
