@@ -7,33 +7,37 @@ import { logoutUser } from "../actions/authActions";
 
 class Profile extends Component {
     state = {
-        argumentId: {},
+        argumentId: [],
         arguments: []
     };
 
     getArgumentList = (id) => {
-            API.getUserArgument(id)
+        API.getUserArgument(id)
             .then(res => {
-                this.setState({ argumentId: res.data })
-                console.log(this.state.argumentId)
-                this.loadArguments(res.data.arguments[0]);
-                console.log(res.data.arguments[0])
-            })
+                this.setState({ argumentId: res.data.arguments })
+                console.log("This is the argumentID " + this.state.argumentId)
+                this.state.argumentId.map(argue => {
+                    this.loadArguments(argue)
+                    console.log(argue)
+                    return argue
+                    // console.log("This is the first argument in the array " + this.state.arguments)
+            })})
+            
             .catch(err => console.log("This should be the error " + err));
 
     }
 
     loadArguments = (id) => {
         API.getArgument(id)
-        .then(res => {
-            this.setState({arguments: res.data})
-            console.log(this.state.arguments)
-        })
+            .then(res => {
+                this.setState({ arguments: res.data })
+                console.log(this.state.arguments)
+            })
     }
-        
+
 
     componentDidMount() {
-        const { user } = this.props.auth; 
+        const { user } = this.props.auth;
         this.getArgumentList(user.id)
     };
 
@@ -41,21 +45,23 @@ class Profile extends Component {
         const { user } = this.props.auth;
         return (
             <MDBCol size="md-12">
-                <MDBRow size="md-8" className="justify-content-center mt-10">
+                <MDBRow size="md-8" className="justify-content-center">
                     <MDBJumbotron fluid>
                         <MDBContainer>
                             <h2 className="display-4">Hey there {user.name}</h2>
                         </MDBContainer>
                     </MDBJumbotron>
                 </MDBRow>
-                <MDBRow className="justify-content-center">
-                    <MDBCard size="md-5">
-                        <MDBCardBody>This is some text within a panel body.</MDBCardBody>
-                    </MDBCard>
-                    <MDBCard size="md-5">
-                        <MDBCardBody>This is some text within a panel body.</MDBCardBody>
-                    </MDBCard>
-                </MDBRow>
+                    <MDBRow className="justify-content-center">
+                        {this.state.arguments.map(argues => {
+                            return (
+                        <MDBCard size="md-5">
+                            <MDBCardBody>{argues.title}</MDBCardBody>
+                        </MDBCard>
+                        )})}
+                    </MDBRow>
+
+
             </MDBCol>
         )
     }
