@@ -18,6 +18,7 @@ export default {
   saveArgument: function(argumentData) {
     return axios.post("/api/arguments", argumentData);
   },
+  
   updateVotes: function(id, dataComing) {
     // console.log("API Yes" +JSON.stringify(dataComing))
     return axios({
@@ -25,5 +26,9 @@ export default {
       method: "put",
       data: dataComing
     })
+  },
+  getUserArgument: function(name) {
+    return axios.get("/api/users/" + name)
   }
+
 };
