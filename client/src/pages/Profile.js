@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import API from "../utils/Api";
-import { MDBRow, MDBCol, MDBJumbotron, MDBContainer, MDBView, MDBMask, MDBCardBody } from "mdbreact";
-import { BrowserRouter as Router } from 'react-router-dom';
+import { MDBRow, MDBCol, MDBJumbotron, MDBContainer } from "mdbreact";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../actions/authActions";
-import { Redirect } from "react-router-dom";
 
 class Profile extends Component {
     state = {
