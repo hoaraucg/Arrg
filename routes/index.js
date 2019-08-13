@@ -10,10 +10,10 @@ const apiRoutes = require("./api");
 
 
 //Test
-router.use(function timelog(req,res,next){
-  console.log("Time in API index", Date.now())
-  next();
-})
+// router.use(function timelog(req,res,next){
+//   console.log("Time in API index", Date.now())
+//   next();
+// })
 
 // Load input validation
 const validateRegisterInput = require("../validation/register");

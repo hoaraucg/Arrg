@@ -3,7 +3,7 @@ import axios from "axios";
 export default {
   // Gets all arguments
   getArguments: function() {
-    console.log('yes')
+    // console.log('yes')
     return axios.get("/api/arguments");
   },
   // Gets the argument with the given id
@@ -19,7 +19,7 @@ export default {
     return axios.post("/api/arguments", argumentData);
   },
   updateVotes: function(id, dataComing) {
-    console.log("API Yes" +JSON.stringify(dataComing))
+    // console.log("API Yes" +JSON.stringify(dataComing))
     return axios({
       url: "/api/arguments/" + id,
       method: "put",

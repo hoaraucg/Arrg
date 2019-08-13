@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import API from "../utils/Api";
 import { MDBRow, MDBCol, MDBContainer, MDBView, MDBMask, MDBCardBody } from "mdbreact";
 import { CardTitle } from "../components/Post";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 
 class Vote extends Component {
@@ -15,12 +17,16 @@ class Vote extends Component {
 
 
   handleSideOne = (id) => {
+    const { user } = this.props.auth;
+
     API.getArgument(id)
     .then(res => {
       var data = {
-      sideOneVote: res.data.sideOneVote + 1,
+        sideOne: 1,
+      sideOneVote: res.data.sideOneVote,
       sideTwoVote: res.data.sideTwoVote,
-      totalVotes: res.data.totalVotes + 1
+      totalVotes: res.data.sideOneVote.length + res.data.sideTwoVote.length +1 ,
+      user: user.name
       }
       API.updateVotes(id,data)
       .then(res => {
@@ -31,12 +37,15 @@ class Vote extends Component {
   }
 
   handleSideTwo = (id) => {
+    const { user } = this.props.auth;
+
     API.getArgument(id)
     .then(res => {
       var data = {
       sideOneVote: res.data.sideOneVote,
-      sideTwoVote: res.data.sideTwoVote + 1,
-      totalVotes: res.data.totalVotes + 1
+      sideTwoVote: res.data.sideTwoVote,
+      totalVotes: res.data.sideOneVote.length + res.data.sideTwoVote.length +1,
+      user: user.name
       }
       API.updateVotes(id,data)
       .then(res => {
@@ -106,7 +115,7 @@ class Vote extends Component {
                               style={{ opacity: 0.3 }}
 
                             />
-                            <div style={{ position: 'absolute', top: 20, left: 10, right: 10, bottom: 20, justifyContent: 'center', alignItems: 'center' }}><p className="font-weight-bolder"><h2>broadSIDE 1:</h2><br></br><br></br>{argue.sideone}</p></div>
+                            <div style={{ position: 'absolute', top: 20, left: 10, right: 10, bottom: 20, justifyContent: 'center', alignItems: 'center' }}><p className="font-weight-bolder">broadSIDE 1:<br></br><br></br>{argue.sideone}</p></div>
                             <MDBMask className="flex-center" overlay="red-strong">
                               <p className="white-text">Parley!<br></br>Click to Cast Yer Vote</p>
                             </MDBMask>
@@ -122,7 +131,8 @@ class Vote extends Component {
                                 style={{ opacity: 0.3 }}
 
                               />
-                              <div style={{ position: 'absolute', top: 20, left: 10, right: 10, bottom: 20, justifyContent: 'center', alignItems: 'center' }}><p className="font-weight-bolder"><h2>broadSIDE 2:</h2><br></br><br></br>{argue.sidetwo}</p></div>
+                              <div style={{ position: 'absolute', top: 20, left: 10, right: 10, bottom: 20, justifyContent: 'center', alignItems: 'center' }}>
+                                <p className="font-weight-bolder">broadSIDE 2:<br></br><br></br>{argue.sidetwo}</p></div>
                               <MDBMask className="flex-center" overlay="red-strong">
                                 <p className="white-text font-weight-bolder">Parley!<br></br>Click to Cast Yer Vote</p>
                               </MDBMask>
@@ -151,4 +161,19 @@ class Vote extends Component {
   }
 }
 
-export default Vote;
+Vote.propTypes = {
+  logoutUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+  
+
+    
+  
+export default connect(
+  mapStateToProps,
+  
+)(Vote)

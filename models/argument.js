@@ -7,9 +7,9 @@ const argumentSchema = new Schema({
   main: { type: String, required: true },
   sideone: { type: String, required: true },
   sidetwo: { type: String, required: true },
-  sideOneVote: {type: Number},
-  sideTwoVote: {type: Number},
-  totalVotes: {type: Number},
+  sideOneVote: {type: [String]},
+  sideTwoVote: {type: [String]},
+  totalVotes: { type: Number },
   users: [
     {
       // Store ObjectIds in the array
