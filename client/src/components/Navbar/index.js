@@ -28,7 +28,6 @@ onLogoutClick = e => {
 render() {
   const { user } = this.props.auth;
   const { redirect } = this.state.redirect;
-  console.log(redirect)
   if (redirect) {
     return <Redirect to ="/" />
   }

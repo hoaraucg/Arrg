@@ -15,26 +15,26 @@ class Profile extends Component {
         API.getUserArgument(id)
             .then(res => {
                 this.setState({ argumentId: res.data.arguments })
-                console.log("This is the argumentID " + this.state.argumentId)
-                this.state.argumentId.map(argue => {
-                    this.loadArguments(argue)
-                    console.log(argue)
-                    return argue
+                // console.log("This is the argumentID " + this.state.argumentId)
+                this.state.argumentId.map(ids => {
+                    // console.log(argue)
+                    this.setState({ arguments: [ids]})
+                    return ids
                     // console.log("This is the first argument in the array " + this.state.arguments)
-            })})
-            
+                })
+                this.loadArguments(this.state.arguments)
+                
+            })
             .catch(err => console.log("This should be the error " + err));
-
     }
 
     loadArguments = (id) => {
         API.getArgument(id)
-            .then(res => {
-                this.setState({ arguments: res.data })
+            .then(res => 
+                this.setState({ arguments: res.data.title }))
                 console.log(this.state.arguments)
-            })
-    }
-
+            }
+    
 
     componentDidMount() {
         const { user } = this.props.auth;
@@ -52,14 +52,14 @@ class Profile extends Component {
                         </MDBContainer>
                     </MDBJumbotron>
                 </MDBRow>
-                    <MDBRow className="justify-content-center">
-                        {this.state.arguments.map(argues => {
-                            return (
-                        <MDBCard size="md-5">
-                            <MDBCardBody>{argues.title}</MDBCardBody>
-                        </MDBCard>
-                        )})}
-                    </MDBRow>
+                <MDBRow className="justify-content-center">
+                    {/* {this.state.arguments.map(argues => {
+                            return ( */}
+                    <MDBCard size="md-5">
+                        <MDBCardBody>{this.state.arguments}</MDBCardBody>
+                    </MDBCard>
+                    {/* )})} */}
+                </MDBRow>
 
 
             </MDBCol>
