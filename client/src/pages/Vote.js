@@ -10,48 +10,56 @@ import { connect } from "react-redux";
 class Vote extends Component {
   state = {
     argument: [],
-    
+
   };
 
 
-  handleSideOne = (id) => {
+  handleSideOne = (argue) => {
+    const id = argue._id;
+    const userVotedAlready = argue.userVotedAlready;
+    if (userVotedAlready) return;
+console.log(argue)
     const { user } = this.props.auth;
 
     API.getArgument(id)
-    .then(res => {
-      var data = {
-        sideOne: 1,
-      sideOneVote: res.data.sideOneVote,
-      sideTwoVote: res.data.sideTwoVote,
-      totalVotes: res.data.sideOneVote.length + res.data.sideTwoVote.length +1 ,
-      user: user.name
-      }
-      API.updateVotes(id,data)
       .then(res => {
-        this.getArgumentList()
+        var data = {
+          sideOne: 1,
+          sideOneVote: res.data.sideOneVote,
+          sideTwoVote: res.data.sideTwoVote,
+          totalVotes: res.data.sideOneVote.length + res.data.sideTwoVote.length + 1,
+          user: user.name
+        }
+        API.updateVotes(id, data)
+          .then(res => {
+            this.getArgumentList()
+          })
       })
-    })
-      .catch(err => console.log ("this should be the error " + err));
+      .catch(err => console.log("this should be the error " + err));
   }
 
 
-  handleSideTwo = (id) => {
+  handleSideTwo = (argue) => {
+    const id = argue._id;
+    const userVotedAlready = argue.userVotedAlready;
+    if (userVotedAlready) return;
+
     const { user } = this.props.auth;
 
     API.getArgument(id)
-    .then(res => {
-      var data = {
-      sideOneVote: res.data.sideOneVote,
-      sideTwoVote: res.data.sideTwoVote,
-      totalVotes: res.data.sideOneVote.length + res.data.sideTwoVote.length +1,
-      user: user.name
-      }
-      API.updateVotes(id,data)
       .then(res => {
-        this.getArgumentList()
+        var data = {
+          sideOneVote: res.data.sideOneVote,
+          sideTwoVote: res.data.sideTwoVote,
+          totalVotes: res.data.sideOneVote.length + res.data.sideTwoVote.length + 1,
+          user: user.name
+        }
+        API.updateVotes(id, data)
+          .then(res => {
+            this.getArgumentList()
+          })
       })
-    })
-      .catch(err => console.log ("this should be the error " + err));
+      .catch(err => console.log("this should be the error " + err));
   }
 
   // hideArgument = (id) => {
@@ -87,9 +95,53 @@ class Vote extends Component {
   // }
 
   getArgumentList = () => {
+    console.log("did get argumentlist")
     API.getArguments()
       .then(res => {
         console.log("This is where the response should be " + res)
+        const argument = res.data;
+        const { user } = this.props.auth; //not getting the user here
+        const userName = user.name; 
+        // get the users from sideOne and sideTwo
+        // Loop through them and check whether any of them match our logged in user
+        // if they do, we add a property to our argument so we can use it in the UI
+        argument.map((a) => {
+          const sideOneVote = a.sideOneVote;
+          const sideTwoVote = a.sideTwoVote;
+          a.userVotedAlready = false;
+          sideOneVote.map((u) => {
+            // console.log("console log v " + v)
+            // const users = v.userList; // property where users that have voted are stored
+            // // loop through users
+            // for (var i = 0; i < users.length; i++) {
+
+            //   // run this condition inside of loop
+            //   users.map((u) => {
+            //     console.log("this is u " + u)
+                if (u === userName) a.userVotedAlready = true;
+              // })
+            // }
+          })
+
+          // do the same for sideTwo votes
+          sideTwoVote.map((u) => {
+            // const users = v.userList; // property where users that have voted are stored
+
+            // loop through users
+            // for (var i = 0; i < users.length; i++) {
+              // run this condition inside of loop
+              // users.map((u) => {
+                if (u === userName) a.userVotedAlready = true;
+              // })
+            // }
+          })
+          if (a.userVotedAlready) {
+            console.log("this user has voted")
+          }
+
+        })
+
+
         this.setState({ argument: res.data })
       })
       .catch(err => console.log("This should be the error " + err));
@@ -97,11 +149,15 @@ class Vote extends Component {
   // Add code to get the argument with an _id equal to the id in the route param
   // e.g. http://localhost:3000/arguments/:id
   // The argument id for this route can be accessed using this.props.match.params.id
+
+
+  
   componentDidMount() {
     this.getArgumentList()
   }
 
   render() {
+    console.log(this.state);
     return (
       <MDBContainer fluid d-flex justify-content-center>
         <MDBRow>
@@ -110,131 +166,143 @@ class Vote extends Component {
             <h2>
               {this.state.argument.map(argue => {
                 //ternary here 
-                return ((argue.sideTwoVote.length <= 10) || (argue.sideOneVote.length <= 10)) ?
-                <CardTitle>
-                  <h1>
-                    <div className="import" key={argue._id}>
-                      {/* <a href={"/arguments/" + argue._id}> */}
-                      <span>
-                        <MDBRow className="d-flex justify-content-center">
-                          <MDBCol style={{ color: "white", fontSize: 50, border: "1px solid grey", borderOpacity: 0.3 }} size="md-9" ><MDBCardBody className="z-depth-5">{argue.title}</MDBCardBody></MDBCol>
-                          <MDBCol style={{ color: "white", fontSize: 18, border: "1px solid grey"}} size="md-1" ><p class="text-center">Votes: <br></br> {argue.totalVotes}</p></MDBCol>
-                          <MDBCol style={{ color: "white", fontSize: 30, border: "1px solid grey" }} size="md-10">{argue.main}</MDBCol>
-                          <MDBCol style={{ color: "orange", fontSize: 20 }} size="md-5" id="one" onClick={() => this.handleSideOne(argue._id)}>
-                          {/* {this.hideArgument(argue._id)} */}
-                          <MDBView hover>
-                            <img
-                              src="http://pngimg.com/uploads/flags/flags_PNG14700.png"
-                              className="img-fluid"
-                              alt=""
-                              style={{ opacity: 0.3 }}
+                return (((argue.sideTwoVote.length <= 10)) &&
+                  ((argue.sideOneVote.length <= 10))) ?
 
-                            />
-                            <div style={{ position: 'absolute', top: 20, left: 10, right: 10, bottom: 20, justifyContent: 'center', alignItems: 'center' }}><p className="font-weight-bolder">broadSIDE 1:<br></br><br></br>{argue.sideone}</p></div>
-                            <MDBMask className="flex-center" overlay="red-strong">
-                              <p className="white-text">Parley!<br></br>Click to Cast Yer Vote</p>
-                            </MDBMask>
-                          </MDBView>
-                          </MDBCol>
-                          <MDBCol style={{ color: "orange", fontSize: 20 }} size="md-5" id="two"
-                            onClick={() => this.handleSideTwo(argue._id)}>
-                            {/* {this.hideArgument(argue._id)} */}
-                            <MDBView hover>
-                              <img
-                                src="http://pngimg.com/uploads/flags/flags_PNG14700.png"
-                                className="img-fluid"
-                                alt=""
-                                style={{ opacity: 0.3 }}
 
-                              />
-                              <div style={{ position: 'absolute', top: 20, left: 10, right: 10, bottom: 20, justifyContent: 'center', alignItems: 'center' }}>
-                                <p className="font-weight-bolder">broadSIDE 2:<br></br><br></br>{argue.sidetwo}</p></div>
-                              <MDBMask className="flex-center" overlay="red-strong">
-                                <p className="white-text font-weight-bolder">Parley!<br></br>Click to Cast Yer Vote</p>
-                              </MDBMask>
-                            </MDBView>
-                          </MDBCol>
-                        </MDBRow>
 
-                      </span>
+                  <CardTitle>
+                    <h1>
+                      <div className="import" key={argue._id}>
+                        {/* <a href={"/arguments/" + argue._id}> */}
+                        <span>
+                          <MDBRow className="d-flex justify-content-center">
+                            <MDBCol style={{ color: "white", fontSize: 50, border: "1px solid grey", borderOpacity: 0.3 }} size="md-9" ><MDBCardBody className="z-depth-5">{argue.title}</MDBCardBody></MDBCol>
+                            <MDBCol style={{ color: "white", fontSize: 18, border: "1px solid grey" }} size="md-1" ><p class="text-center">Votes: <br></br> {argue.totalVotes}</p></MDBCol>
+                            <MDBCol style={{ color: "white", fontSize: 30, border: "1px solid grey" }} size="md-10">{argue.main}</MDBCol>
+                            <MDBCol style={{ color: "orange", fontSize: 20 }} size="md-5" id="one" onClick={() => this.handleSideOne(argue)}>
+                              {/* {this.hideArgument(argue._id)} */}
+                              <MDBView hover>
+                                <img
+                                  src="https://cdn.imgbin.com/23/1/21/imgbin-jolly-roger-piracy-flag-t-shirt-skull-and-crossbones-pirate-flag-11KwCwyPiEJD90HNnfLY9dVKc.jpg"
+                                  className="img-fluid"
+                                  alt=""
+                                  style={{ opacity: 0.3 }}
 
-                      {/* </a> */}
+                                />
+                                <div style={{ position: 'absolute', top: 20, left: 10, right: 10, bottom: 20, justifyContent: 'center', alignItems: 'center' }}><p className="font-weight-bolder">broadSIDE 1:<br></br><br></br>{argue.sideone}</p></div>
+                                {(argue.userVotedAlready) ? (
+                                   <div>user has voted</div>
+                                  ) : (
+                                    <MDBMask className="flex-center" overlay="red-strong">
+                                      <p className="white-text">Parley!<br></br>Click to Cast Yer Vote</p>
+                                    </MDBMask>
+                                  )}
 
-                    </div>
-                  </h1>
-                </CardTitle>
-                :
+                                {/* <MDBMask className="flex-center" overlay="red-strong">
+                                  <p className="white-text">Parley!<br></br>Click to Cast Yer Vote</p>
+                                </MDBMask> */}
+                              </MDBView>
+                            </MDBCol>
+                            <MDBCol style={{ color: "orange", fontSize: 20 }} size="md-5" id="two"
+                              onClick={() => this.handleSideTwo(argue)}>
+                              {/* {this.hideArgument(argue._id)} */}
+                              <MDBView hover>
+                                <img
+                                  src="https://featherflagnation.com/wp-content/uploads/355-Pirate-skull-bones-3x5-flag.jpg"
+                                  className="img-fluid"
+                                  alt=""
+                                  style={{ opacity: 0.3 }}
 
-               
-      
-                <CardTitle>
-                   <MDBView hover>
-                   <img
-                                src="http://pngimg.com/uploads/flags/flags_PNG14700.png"
-                                className="position-center img-fluid"
-                                alt=""
-                                style={{ opacity: 0.3 }}
+                                />
+                                <div style={{ position: 'absolute', top: 20, left: 10, right: 10, bottom: 20, justifyContent: 'center', alignItems: 'center' }}>
+                                  <p className="font-weight-bolder">broadSIDE 2:<br></br><br></br>{argue.sidetwo}</p></div>
+                                <MDBMask className="flex-center" overlay="red-strong">
+                                  <p className="white-text font-weight-bolder">Parley!<br></br>Click to Cast Yer Vote</p>
+                                </MDBMask>
+                              </MDBView>
+                            </MDBCol>
+                          </MDBRow>
 
-                              />
-                               <div style={{ position: 'absolute', top: 20, left: 10, right: 10, bottom: 20, justifyContent: 'center', alignItems: 'center' }}></div>
-                    <MDBMask className="flex-center" overlay="green-strong">
-                              <h1 className="position-absolute display-1 white-text" style={{zIndex:1, backgroundColor: "black", opacity: 0.5}}>This Arrg-ument is settled!</h1>
-                      
-  
-                  <h1>
-                    <div className="import" key={argue._id}>
-                      {/* <a href={"/arguments/" + argue._id}> */}
-                      <span>
-                        <MDBRow className="d-flex justify-content-center">
-                          <MDBCol style={{ color: "white", fontSize: 50, border: "1px solid grey", borderOpacity: 0.3 }} size="md-9" ><MDBCardBody className="z-depth-5">{argue.title}</MDBCardBody></MDBCol>
-                          <MDBCol style={{ color: "white", fontSize: 18, border: "1px solid grey"}} size="md-1" ><p class="text-center">Votes: <br></br> {argue.totalVotes}</p></MDBCol>
-                          <MDBCol style={{ color: "white", fontSize: 30, border: "1px solid grey" }} size="md-10">{argue.main}</MDBCol>
-                          <MDBCol style={{ color: "orange", fontSize: 20 }} size="md-5" id="one" onClick={() => this.handleSideOne(argue._id)}>
-                          {/* {this.hideArgument(argue._id)} */}
-                          <MDBView hover>
-                            <img
-                              src="http://pngimg.com/uploads/flags/flags_PNG14700.png"
-                              className="img-fluid"
-                              alt=""
-                              style={{ opacity: 0.3 }}
+                        </span>
 
-                            />
-                            <div style={{ position: 'absolute', top: 20, left: 10, right: 10, bottom: 20, justifyContent: 'center', alignItems: 'center' }}><p className="font-weight-bolder">broadSIDE 1:<br></br><br></br>{argue.sideone}</p></div>
-                            {/* <MDBMask className="flex-center" overlay="red-strong">
+                        {/* </a> */}
+
+                      </div>
+                    </h1>
+                  </CardTitle>
+                  :
+
+
+
+                  <CardTitle>
+                    <MDBView hover>
+                      <img
+                        src="https://featherflagnation.com/wp-content/uploads/355-Pirate-skull-bones-3x5-flag.jpg"
+                        className="position-center img-fluid"
+                        alt=""
+                        style={{ opacity: 0.3 }}
+
+                      />
+                      <div style={{ position: 'absolute', top: 20, left: 10, right: 10, bottom: 20, justifyContent: 'center', alignItems: 'center' }}></div>
+                      <MDBMask className="flex-center" overlay="green-strong">
+                        <h1 className="position-absolute display-1 white-text" style={{ zIndex: 1, backgroundColor: "black", opacity: 0.5 }}>This Arrg-ument is settled!</h1>
+
+
+                        <h1>
+                          <div className="import" key={argue._id}>
+                            {/* <a href={"/arguments/" + argue._id}> */}
+                            <span>
+                              <MDBRow className="d-flex justify-content-center">
+                                <MDBCol style={{ color: "white", fontSize: 50, border: "1px solid grey", borderOpacity: 0.3 }} size="md-9" ><MDBCardBody className="z-depth-5">{argue.title}</MDBCardBody></MDBCol>
+                                <MDBCol style={{ color: "white", fontSize: 18, border: "1px solid grey" }} size="md-1" ><p class="text-center">Votes: <br></br> {argue.totalVotes}</p></MDBCol>
+                                <MDBCol style={{ color: "white", fontSize: 30, border: "1px solid grey" }} size="md-10">{argue.main}</MDBCol>
+                                <MDBCol style={{ color: "orange", fontSize: 20 }} size="md-5" id="one" onClick={() => this.handleSideOne(argue)}>
+                                  {/* {this.hideArgument(argue._id)} */}
+                                  <MDBView hover>
+                                    <img
+                                      src="https://featherflagnation.com/wp-content/uploads/355-Pirate-skull-bones-3x5-flag.jpg"
+                                      className="img-fluid"
+                                      alt=""
+                                      style={{ opacity: 0.3 }}
+
+                                    />
+                                    <div style={{ position: 'absolute', top: 20, left: 10, right: 10, bottom: 20, justifyContent: 'center', alignItems: 'center' }}><p className="font-weight-bolder">broadSIDE 1:<br></br><br></br>{argue.sideone}</p></div>
+                                    {/* <MDBMask className="flex-center" overlay="red-strong">
                               <p className="white-text">Parley!<br></br>Click to Cast Yer Vote</p>
                             </MDBMask> */}
-                          </MDBView>
-                          </MDBCol>
-                          <MDBCol style={{ color: "orange", fontSize: 20 }} size="md-5" id="two"
-                            onClick={() => this.handleSideTwo(argue._id)}>
-                            {/* {this.hideArgument(argue._id)} */}
-                            <MDBView hover>
-                              <img
-                                src="http://pngimg.com/uploads/flags/flags_PNG14700.png"
-                                className="img-fluid"
-                                alt=""
-                                style={{ opacity: 0.3 }}
+                                  </MDBView>
+                                </MDBCol>
+                                <MDBCol style={{ color: "orange", fontSize: 20 }} size="md-5" id="two"
+                                  onClick={() => this.handleSideTwo(argue)}>
+                                  {/* {this.hideArgument(argue._id)} */}
+                                  <MDBView hover>
+                                    <img
+                                      src="https://featherflagnation.com/wp-content/uploads/355-Pirate-skull-bones-3x5-flag.jpg"
+                                      className="img-fluid"
+                                      alt=""
+                                      style={{ opacity: 0.3 }}
 
-                              />
-                              <div style={{ position: 'absolute', top: 20, left: 10, right: 10, bottom: 20, justifyContent: 'center', alignItems: 'center' }}>
-                                <p className="font-weight-bolder">broadSIDE 2:<br></br><br></br>{argue.sidetwo}</p></div>
-                              {/* <MDBMask className="flex-center" overlay="red-strong">
+                                    />
+                                    <div style={{ position: 'absolute', top: 20, left: 10, right: 10, bottom: 20, justifyContent: 'center', alignItems: 'center' }}>
+                                      <p className="font-weight-bolder">broadSIDE 2:<br></br><br></br>{argue.sidetwo}</p></div>
+                                    {/* <MDBMask className="flex-center" overlay="red-strong">
                                 <p className="white-text font-weight-bolder">Parley!<br></br>Click to Cast Yer Vote</p>
                               </MDBMask> */}
-                            </MDBView>
-                          </MDBCol>
-                        </MDBRow>
+                                  </MDBView>
+                                </MDBCol>
+                              </MDBRow>
 
-                      </span>
+                            </span>
 
-                      {/* </a> */}
+                            {/* </a> */}
 
-                    </div>
-                  </h1>
-                  </MDBMask>
-  </MDBView>
-                </CardTitle>
-                
+                          </div>
+                        </h1>
+                      </MDBMask>
+                    </MDBView>
+                  </CardTitle>
+
               })}
 
             </h2>
@@ -257,11 +325,11 @@ Vote.propTypes = {
 const mapStateToProps = state => ({
   auth: state.auth
 });
-  
 
-    
-  
+
+
+
 export default connect(
   mapStateToProps,
-  
+
 )(Vote)

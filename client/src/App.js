@@ -48,7 +48,7 @@ class App extends Component {
               <Route exact path="/" component={MinimalisticIntro} />
               <Route exact path="/getstarted" render={props => <div><SignupPage /><NavbarPage /><FooterPage /></div>} />
               <Route exact path="/login" render={props => <div><NavbarPage /><SignupPage /><FooterPage /></div>} />
-              <Route exact path="/register" render={props => <div><RegisterPage /><NavbarPage /><FooterPage /></div>} />
+              <Route exact path="/register" render={props => <div><NavbarPage /><RegisterPage /><FooterPage /></div>} />
               <Route exact path="/home" render={props => <div><NavbarPage /><Register /><FooterPage /></div>} />
               <Route exact path="/vote" render={props => <div><NavbarPage /><Vote /><FooterPage /></div>} />
               <Route exact path="/create" render={props => <div><NavbarPage /><Create /><FooterPage /></div>} />

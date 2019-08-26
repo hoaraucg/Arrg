@@ -115,20 +115,21 @@ class Register extends Component {
 
     onSubmit = e => {
         e.preventDefault();
+        console.log(this.state);
         const newUser = {
             name: this.state.name,
             email: this.state.email,
             password: this.state.password,
             password2: this.state.password2,
             country: this.state.country[0],
-            sex: this.state.sex[0],
-            race: this.state.race[0],
-            ageRange: this.state.ageRange[0],
-            political: this.state.political[0],
-            relationship: this.state.relationship[0],
-            income: this.state.income[0],
-            education: this.state.education[0],
-            career: this.state.career[0]
+            sex: this.state.sex,
+            race: this.state.race,
+            ageRange: this.state.ageRange,
+            political: this.state.political,
+            relationship: this.state.relationship,
+            income: this.state.income,
+            education: this.state.education,
+            career: this.state.career
         };
         console.log(newUser);
         this.props.registerUser(newUser, this.props.history);
