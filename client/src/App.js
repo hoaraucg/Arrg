@@ -16,7 +16,8 @@ import RegisterPage from "./components/auth/register";
 import Vote from "./pages/Vote";
 import Create from "./pages/Create"
 import NavbarPage from "./components/Navbar/index";
-import Register from "./components/auth/register"
+import Register from "./components/auth/register";
+import ChartsPage from "./components/charts/totalvote";
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -52,7 +53,7 @@ class App extends Component {
               <Route exact path="/home" render={props => <div><NavbarPage /><Register /><FooterPage /></div>} />
               <Route exact path="/vote" render={props => <div><NavbarPage /><Vote /><FooterPage /></div>} />
               <Route exact path="/create" render={props => <div><NavbarPage /><Create /><FooterPage /></div>} />
-              <Route exact path="/profile" render={propr => <div><NavbarPage /><Profile /><FooterPage /></div>} />
+              <Route exact path="/profile" render={propr => <div><NavbarPage /><Profile /><ChartsPage/><FooterPage /></div>} />
               {/* <Route exact path="/vote" render={props => <div><ProjectsPage /><SideNavPage /><FooterPage /></div>} /> */}
               {/* <Route component={NoMatch}/> */}
               <PrivateRoute exact path="/vote" component={Vote} />

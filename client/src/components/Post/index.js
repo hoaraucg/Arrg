@@ -1,5 +1,5 @@
 import React from "react";
-import "./style.css";
+// import "./style.css";
 import { MDBRow, MDBCol, MDBCard } from "mdbreact";
 // import color from "@material-ui/core/colors/teal";
 
@@ -10,10 +10,11 @@ export function CardTitle({ children }) {
             <MDBRow>
                 <MDBCol md="12" className="mb-4">
                     <MDBCard
-                        className="card-image"
-                        style={{
-                            backgroundColor: "black"
-                        }}
+                        className="card-image elegant-color-dark" 
+                        id= "argumentviews"
+                        // style={{
+                        //     backgroundColor: "gray"
+                        // }}
                     >
                         <div className="text-center d-flex align-items-center py-5 px-4 rounded">
                             <div>
