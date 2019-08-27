@@ -177,14 +177,26 @@ console.log(argue)
                         {/* <a href={"/arguments/" + argue._id}> */}
                         <span>
                           <MDBRow className="d-flex justify-content-center">
-                            <MDBCol style={{ color: "white", fontSize: 50, border: "1px solid grey", borderOpacity: 0.3 }} size="md-9" ><MDBCardBody className="z-depth-5">{argue.title}</MDBCardBody></MDBCol>
+                            <MDBCol style={{ color: "white", fontSize: 50, border: "1px solid grey", borderOpacity: 0.3 }} size="md-9" >
+                              {(argue.userVotedAlready) ? (
+                                <MDBCardBody className="z-depth-5">
+                                  <div className="red-text">Blimey! You already voted on this Arrgument</div>
+                                  <div className="white-text">
+                                  {argue.title}
+                                    </div>
+                              </MDBCardBody> ): (
+                              <MDBCardBody className="z-depth-5">
+                            {argue.title}</MDBCardBody>
+                            )}
+                            </MDBCol>
+                            
                             <MDBCol style={{ color: "white", fontSize: 18, border: "1px solid grey" }} size="md-1" ><p class="text-center">Votes: <br></br> {argue.totalVotes}</p></MDBCol>
                             <MDBCol style={{ color: "white", fontSize: 30, border: "1px solid grey" }} size="md-10">{argue.main}</MDBCol>
                             <MDBCol style={{ color: "orange", fontSize: 20 }} size="md-5" id="one" onClick={() => this.handleSideOne(argue)}>
                               {/* {this.hideArgument(argue._id)} */}
                               <MDBView hover>
                                 <img
-                                  src="https://cdn.imgbin.com/23/1/21/imgbin-jolly-roger-piracy-flag-t-shirt-skull-and-crossbones-pirate-flag-11KwCwyPiEJD90HNnfLY9dVKc.jpg"
+                                  src="https://banner2.kisspng.com/20180816/usj/kisspng-clip-art-pirate-jolly-roger-vector-graphics-opencl--5b755ef74dc9a8.4916731315344186793186.jpg"
                                   className="img-fluid"
                                   alt=""
                                   style={{ opacity: 0.3 }}
@@ -192,7 +204,9 @@ console.log(argue)
                                 />
                                 <div style={{ position: 'absolute', top: 20, left: 10, right: 10, bottom: 20, justifyContent: 'center', alignItems: 'center' }}><p className="font-weight-bolder">broadSIDE 1:<br></br><br></br>{argue.sideone}</p></div>
                                 {(argue.userVotedAlready) ? (
-                                   <div>user has voted</div>
+                                   <MDBMask className="flex-center" overlay="blue-strong">
+                                   <p className="white-text">Blimey!<br></br>You already voted on this Arrgument</p>
+                                 </MDBMask>
                                   ) : (
                                     <MDBMask className="flex-center" overlay="red-strong">
                                       <p className="white-text">Parley!<br></br>Click to Cast Yer Vote</p>
@@ -217,9 +231,14 @@ console.log(argue)
                                 />
                                 <div style={{ position: 'absolute', top: 20, left: 10, right: 10, bottom: 20, justifyContent: 'center', alignItems: 'center' }}>
                                   <p className="font-weight-bolder">broadSIDE 2:<br></br><br></br>{argue.sidetwo}</p></div>
-                                <MDBMask className="flex-center" overlay="red-strong">
-                                  <p className="white-text font-weight-bolder">Parley!<br></br>Click to Cast Yer Vote</p>
-                                </MDBMask>
+                                  {(argue.userVotedAlready) ? (
+                                    <MDBMask className="flex-center" overlay="blue-strong">
+                                   <p className="white-text">Blimey!<br></br>You already voted on this Arrgument</p>
+                                 </MDBMask>                                  ) : (
+                                    <MDBMask className="flex-center" overlay="red-strong">
+                                      <p className="white-text">Parley!<br></br>Click to Cast Yer Vote</p>
+                                    </MDBMask>
+                                  )}
                               </MDBView>
                             </MDBCol>
                           </MDBRow>
