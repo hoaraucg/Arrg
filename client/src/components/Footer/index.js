@@ -6,35 +6,38 @@ const FooterPage = () => {
     <MDBFooter color="elegant-color-dark" className="font-small pt-4 mt-4 sticky-bottom" id="footer">
       <MDBContainer fluid className="text-center text-md-left">
         <MDBRow>
-          <MDBCol md="6">
-            <h5 className="title">Footer Content</h5>
+          <MDBCol className="center" md="4">
+            <h5 className="title">Arrg</h5>
             <p>
-              Here you can use rows and columns here to organize your footer
-              content.
+Arrg is a collaborative effort to bring solutions to your real world arguments. Backed by real-time analytics, Arrg allows you to post your argument to get real feedback from neutral third parties. 
             </p>
           </MDBCol>
-          <MDBCol md="6">
+          <MDBCol className="center" md="4">
             <h5 className="title">Links</h5>
             <ul>
               <li className="list-unstyled">
-                <a href="#!">Link 1</a>
+                <a href="/">Home</a>
               </li>
               <li className="list-unstyled">
-                <a href="#!">Link 2</a>
+                <a href="/create">Create an Arrg-ument!</a>
               </li>
               <li className="list-unstyled">
-                <a href="#!">Link 3</a>
+                <a href="/profile">View your Profile</a>
               </li>
-              <li className="list-unstyled">
-                <a href="#!">Link 4</a>
-              </li>
+            </ul>
+          </MDBCol>
+          <MDBCol className="center" md="4">
+            <h5>Find us on Linkedi!</h5>
+            <ul>
+              <li><a href="https://www.linkedin.com/in/alexandra-baer-b9351636/">Alex</a></li>
+              <li><a href="https://www.linkedin.com/in/christopher-hoarau-216051187/">Chris</a></li>
             </ul>
           </MDBCol>
         </MDBRow>
       </MDBContainer>
       <div className="footer-copyright text-center py-3">
         <MDBContainer fluid>
-          &copy; {new Date().getFullYear()} Copyright: <a href="https://www.MDBootstrap.com"> MDBootstrap.com </a>
+          &copy; {new Date().getFullYear()} Copyright: Alex Baer & Christopher Hoarau
         </MDBContainer>
       </div>
     </MDBFooter>
