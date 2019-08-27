@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 // import ProjectsPage from "../components/Post";
 import API from "../utils/Api";
-import { MDBRow, MDBCol, MDBContainer, MDBView, MDBMask, MDBCardBody } from "mdbreact";
+import { MDBRow, MDBCol, MDBContainer, MDBView, MDBMask, MDBCardBody, MDBIcon } from "mdbreact";
 import { CardTitle } from "../components/Post";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -192,7 +192,7 @@ console.log(argue)
                             <MDBCol style={{ color: "white", fontSize: 18 }} size="md-10" ><p class="text-center">Total Votes: {argue.totalVotes}</p></MDBCol>
                             <br />
                             <MDBCol style={{ color: "white", fontSize: 30}} size="md-10">{argue.main}</MDBCol>
-                            <MDBCol style={{ color: "orange", fontSize: 20 }} size="md-5" id="one" onClick={() => this.handleSideOne(argue)}>
+                            <MDBCol style={{ color: "orange", fontSize: 20 }} size="md-5" id="one" onClick={() => this.handleSideOne(argue)} className = "flex-center font-weight-bolder">
                               {/* {this.hideArgument(argue._id)} */}
                               <MDBView hover>
                                 <img
@@ -202,10 +202,10 @@ console.log(argue)
                                   style={{ opacity: 0 }}
 
                                 />
-                                <div style={{ position: 'absolute', top: 20, left: 10, right: 10, bottom: 20, justifyContent: 'center', alignItems: 'center' }}><p className="font-weight-bolder">{argue.sideone}</p></div>
+                                <div style={{ position: 'absolute', top: 10, left: 10, right: 10, bottom: 10, justifyContent: 'center', alignItems: 'center'}}><p className= "font-weight-bolder">{argue.sideone}</p></div>
                                 {(argue.userVotedAlready) ? (
                                    <MDBMask className="flex-center" overlay="red-strong">
-                                   <p className="white-text">Blimey!<br></br>You already voted on this Arrgument</p>
+                                   <p className="white-text">Blimey!<br></br>You already voted on this Arrgument <br /><MDBIcon icon="skull-crossbones" className="mr-1" /></p>
                                  </MDBMask>
                                   ) : (
                                     <MDBMask className="flex-center" overlay="blue-strong">
@@ -229,11 +229,11 @@ console.log(argue)
                                   style={{ opacity: 0 }}
 
                                 />
-                                <div style={{ position: 'absolute', top: 20, left: 10, right: 10, bottom: 20, justifyContent: 'center', alignItems: 'center' }}>
+                                <div style={{ position: 'absolute', top: 10, left: 10, right: 10, bottom: 10, justifyContent: 'center', alignItems: 'center' }}>
                                   <p className="font-weight-bolder">{argue.sidetwo}</p></div>
                                   {(argue.userVotedAlready) ? (
                                     <MDBMask className="flex-center" overlay="red-strong">
-                                   <p className="white-text">Blimey!<br></br>You already voted on this Arrgument</p>
+                                   <p className="white-text">Blimey!<br></br>You already voted on this Arrgument <br /><MDBIcon icon="skull-crossbones" className="mr-1" /></p>
                                  </MDBMask>                                  ) : (
                                     <MDBMask className="flex-center" overlay="blue-strong">
                                       <p className="white-text">Parley!<br></br>Click to Cast Yer Vote</p>
