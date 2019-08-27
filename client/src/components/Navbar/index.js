@@ -32,7 +32,6 @@ render() {
     return <Redirect to ="/" />
   }
   return (
-    <Router>
       <MDBNavbar color="elegant-color-dark" dark expand="md">
         <MDBNavbarBrand>
         <div className="logo-wrapper 20x20">
@@ -43,53 +42,23 @@ render() {
         </MDBNavbarBrand>
         <MDBNavbarToggler onClick={this.toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
-          <MDBNavbarNav left>
-            <MDBNavItem active>
-              <MDBNavLink to="/">Home</MDBNavLink>
-            </MDBNavItem>
-            <MDBNavItem>
-              <MDBNavLink to="/create">Create your Arrg-ument</MDBNavLink>
-            </MDBNavItem>
-          </MDBNavbarNav>
-          <MDBNavbarNav right>
-            <MDBNavItem>
-              <MDBNavLink className="waves-effect waves-light" to="#!">
-                <MDBIcon fab icon="twitter" />
-              </MDBNavLink>
-            </MDBNavItem>
-            <MDBNavItem>
-              <MDBNavLink className="waves-effect waves-light" to="#!">
-                <MDBIcon fab icon="google-plus-g" />
-              </MDBNavLink>
-            </MDBNavItem>
-            <MDBNavItem>
-              <MDBDropdown>
+          <MDBNavbarNav right center>
+          <MDBNavItem>
+              <MDBDropdown dropdown-menu-right>
                 <MDBDropdownToggle nav caret>
-                  <MDBIcon icon="user" />
+                  <MDBIcon icon="user" height="60px" width="60px" className="center"/>
                 </MDBDropdownToggle>
-                <MDBDropdownMenu className="dropdown-dark">
-                  <MDBDropdownItem href="#!">Action</MDBDropdownItem>
-                  <MDBDropdownItem href="#!">Another Action</MDBDropdownItem>
-                  <MDBDropdownItem href="#!">Something else here</MDBDropdownItem>
-                  <MDBDropdownItem href="#!">Something else here</MDBDropdownItem>
+                <MDBDropdownMenu dropdown-menu-right className="dropdown-dark">
+                  <MDBDropdownItem href="/">Home</MDBDropdownItem>
+                  <MDBDropdownItem href="/create">Create your Arrg-ument</MDBDropdownItem>
+                  <MDBDropdownItem href="/profile">View your Profile</MDBDropdownItem>
+                  <MDBDropdownItem onClick={this.onLogoutClick} href="/">Logout</MDBDropdownItem>
                 </MDBDropdownMenu>
               </MDBDropdown>
-            </MDBNavItem>
-            <MDBNavItem>
-              <b>Hey there, </b>{user.name}.
-            </MDBNavItem>
-            <MDBNavItem>
-              <MDBBtn
-              onClick={this.onLogoutClick}
-              href="/"
-              className="btn hoverable rounded sunny-morning-gradient accent-3"
-            > Logout
-              </MDBBtn>
             </MDBNavItem>
           </MDBNavbarNav>
         </MDBCollapse>
       </MDBNavbar>
-    </Router>
     );
   }
 }

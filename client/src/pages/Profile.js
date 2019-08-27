@@ -8,37 +8,74 @@ import { logoutUser } from "../actions/authActions";
 class Profile extends Component {
     state = {
         argumentId: [],
-        arguments: []
+        argument: []
     };
 
-    getArgumentList = (id) => {
+    handleUserArguments = (id) => {
+        const userWroteArgument = id.userWroteArgument;
+        if (userWroteArgument) return;
+        const { user } = this.props.auth;
+
         API.getUserArgument(id)
-            .then(res => {
-                this.setState({ argumentId: res.data.arguments })
-                // console.log("This is the argumentID " + this.state.argumentId)
-                this.state.argumentId.map(ids => {
-                    // console.log(argue)
-                    this.setState({ arguments: [ids]})
-                    return ids
-                    // console.log("This is the first argument in the array " + this.state.arguments)
+        .then (res => {
+            const argument = res.data;
+            const { user } = this.props.auth;
+            const userName = user.name;
+
+            argument.map((a) => {
+                const userWroteArgument = a.userWroteArgument;
+
+                userWroteArgument.map ((u)=> {
+                if (u === userName) a.userWroteArgument = true;
                 })
-                this.loadArguments(this.state.arguments)
-                
-            })
-            .catch(err => console.log("This should be the error " + err));
+            }
+            )
+           
+        })
+        .catch(err => console.log("this should be the error " + err));
     }
 
-    loadArguments = (id) => {
-        API.getArgument(id)
-            .then(res => 
-                this.setState({ arguments: res.data.title }))
-                console.log(this.state.arguments)
-            }
-    
+    // getArgumentList = (id) => {
+    //     API.getUserArgument(id)
+    //         .then(res => {
+    //             const arguments = res.data; 
+    //             const { user } = this.props.auth;
+    //             const userName = user.name;
+
+    //             arguments.map ((id) => {
+    //             })
+    //             // this.setState({ argumentId: res.data.arguments })
+    //             // console.log(res)
+    //             // console.log("This is the argumentID " + this.state.argumentId)
+    //             // this.state.argumentId.map(ids => {
+    //                 // console.log(argue)
+    //                 // this.setState({ arguments: [ids]})
+    //                 // console.log(this.state.arguments)
+    //                 // return ids
+    //             })
+                // this.loadArguments(this.state.arguments)
+                
+            // })
+            // .catch(err => console.log("This should be the error " + err));
+    // }
+
+    // loadArguments = (id) => {
+    //     API.getArgument(id)
+    //         .then(res => {
+    //             const arguments = res.data
+    //             // this.setState({ arguments: res.data.title })
+    //             console.log(arguments)
+    //             arguments.map((argue) => {
+    //                 const id = argue._id
+    //                 console.log(id)
+    //         })
+    //     })
+    // };
+
 
     componentDidMount() {
         const { user } = this.props.auth;
-        this.getArgumentList(user.id)
+        this.handleUserArguments(user.id)
     };
 
     render() {
@@ -56,6 +93,8 @@ class Profile extends Component {
                     {/* {this.state.arguments.map(argues => {
                             return ( */}
                     <MDBCard size="md-5">
+                        {console.log(this.state.argumentId)}
+                        {console.log(this.state.arguments)}
                         <MDBCardBody>{this.state.arguments}</MDBCardBody>
                     </MDBCard>
                     {/* )})} */}

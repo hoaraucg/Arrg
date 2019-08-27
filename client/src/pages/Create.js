@@ -189,7 +189,6 @@ return (
 }
 
 Create.propTypes = {
-  logoutUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 };
 
