@@ -27,7 +27,7 @@ Arrg is a collaborative effort to bring solutions to your real world arguments. 
             </ul>
           </MDBCol>
           <MDBCol className="center" md="4">
-            <h5>Find us on Linkedi!</h5>
+            <h5>Find us on Linkedin</h5>
             <ul>
               <li><a href="https://www.linkedin.com/in/alexandra-baer-b9351636/">Alex</a></li>
               <li><a href="https://www.linkedin.com/in/christopher-hoarau-216051187/">Chris</a></li>

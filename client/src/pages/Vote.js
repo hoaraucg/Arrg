@@ -177,10 +177,10 @@ console.log(argue)
                         {/* <a href={"/arguments/" + argue._id}> */}
                         <span>
                           <MDBRow className="d-flex justify-content-center">
-                            <MDBCol style={{ color: "white", fontSize: 50 }} size="md-10" >
+                            <MDBCol style={{ color: "white", fontSize: 40 }} size="md-10" >
                               {(argue.userVotedAlready) ? (
                                 <MDBCardBody>
-                                  <div className="red-text font-italic font-size-sm">Blimey! You already voted on this Arrgument</div>
+                                  <div className="red-text font-italic font-size-sm">Blimey! You've already voted on this Arrgument</div>
                                   <div className="white-text">
                                   {argue.title}
                                     </div>
@@ -202,13 +202,13 @@ console.log(argue)
                                   style={{ opacity: 0 }}
 
                                 />
-                                <div style={{ position: 'absolute', top: 10, left: 10, right: 10, bottom: 10, justifyContent: 'center', alignItems: 'center'}}><p className= "font-weight-bolder">{argue.sideone}</p></div>
+                                <div style={{ position: 'absolute', top: 20, left: 10, right: 10, bottom: 20, justifyContent: 'center', alignItems: 'center' }}><p className="flex-center font-weight-bolder">{argue.sideone}</p></div>
                                 {(argue.userVotedAlready) ? (
-                                   <MDBMask className="flex-center" overlay="red-strong">
-                                   <p className="white-text">Blimey!<br></br>You already voted on this Arrgument <br /><MDBIcon icon="skull-crossbones" className="mr-1" /></p>
+                                   <MDBMask style={{fontSize: 40, fontWeight: 'bold'}} className="flex-center" overlay="red-strong">
+                                   <p className="white-text">Blimey!<br></br>You've already voted on this Arrgument</p>
                                  </MDBMask>
                                   ) : (
-                                    <MDBMask className="flex-center" overlay="blue-strong">
+                                    <MDBMask style={{fontSize: 40, fontWeight: 'bold'}} className="flex-center" overlay="blue-strong">
                                       <p className="white-text">Parley!<br></br>Click to Cast Yer Vote</p>
                                     </MDBMask>
                                   )}
@@ -229,13 +229,13 @@ console.log(argue)
                                   style={{ opacity: 0 }}
 
                                 />
-                                <div style={{ position: 'absolute', top: 10, left: 10, right: 10, bottom: 10, justifyContent: 'center', alignItems: 'center' }}>
-                                  <p className="font-weight-bolder">{argue.sidetwo}</p></div>
+                                <div style={{ position: 'absolute', top: 20, left: 10, right: 10, bottom: 20, justifyContent: 'center', alignItems: 'center' }}>
+                                  <p className="flex-center font-weight-bolder">{argue.sidetwo}</p></div>
                                   {(argue.userVotedAlready) ? (
-                                    <MDBMask className="flex-center" overlay="red-strong">
-                                   <p className="white-text">Blimey!<br></br>You already voted on this Arrgument <br /><MDBIcon icon="skull-crossbones" className="mr-1" /></p>
+                                    <MDBMask style={{fontSize: 40, fontWeight: 'bold'}} className="flex-center" overlay="red-strong">
+                                   <p className="white-text">Blimey!<br></br>You've already voted on this Arrgument</p>
                                  </MDBMask>                                  ) : (
-                                    <MDBMask className="flex-center" overlay="blue-strong">
+                                    <MDBMask style={{fontSize: 40, fontWeight: 'bold'}} className="flex-center" overlay="blue-strong">
                                       <p className="white-text">Parley!<br></br>Click to Cast Yer Vote</p>
                                     </MDBMask>
                                   )}
@@ -286,7 +286,7 @@ console.log(argue)
                                       style={{ opacity: 0.3 }}
 
                                     />
-                                    <div style={{ position: 'absolute', top: 20, left: 10, right: 10, bottom: 20, justifyContent: 'center', alignItems: 'center' }}><p className="font-weight-bolder">{argue.sideone}</p></div>
+                                    <div style={{ position: 'absolute', top: 20, left: 10, right: 10, bottom: 20, justifyContent: 'center', alignItems: 'center' }}><p className="font-weight-bolder flex-center">{argue.sideone}</p></div>
                                     {/* <MDBMask className="flex-center" overlay="red-strong">
                               <p className="white-text">Parley!<br></br>Click to Cast Yer Vote</p>
                             </MDBMask> */}
