@@ -93,17 +93,17 @@ class Register extends Component {
     componentDidMount() {
         // If logged in and user navigates to Register page, should redirect them to dashboard
         if (this.props.auth.isAuthenticated) {
-          this.props.history.push("/register");
+            this.props.history.push("/register");
         }
-      }
-    
-      componentWillReceiveProps(nextProps) {
+    }
+
+    componentWillReceiveProps(nextProps) {
         if (nextProps.errors) {
-          this.setState({
-            errors: nextProps.errors
-          });
+            this.setState({
+                errors: nextProps.errors
+            });
         }
-      }
+    }
 
     onChange = e => {
         this.setState({ [e.target.id]: e.target.value });
@@ -141,7 +141,7 @@ class Register extends Component {
                 <MDBRow>
                     <MDBCol md='12'>
                         <MDBCard>
-                            <div className='header pt-3 morpheus-den-gradient'>
+                            <div className='header pt-3 elegant-color-dark'>
                                 <MDBRow className='d-flex justify-content-center'>
                                     <h3 className='white-text mb-3 pt-3 font-weight-bold'>
                                         Sign Up
@@ -152,7 +152,8 @@ class Register extends Component {
                             <MDBCardBody className='mx-4 mt-4'>
                                 <form noValidate onSubmit={this.onSubmit}>
                                     <MDBInput
-                                        label='Your name'                                        
+                                        outline
+                                        label='Your name'
                                         type='text'
                                         id='name'
                                         onChange={this.onChange}
@@ -160,10 +161,11 @@ class Register extends Component {
                                         error={errors.name}
                                         className={classnames("", {
                                             invalid: errors.name
-                                          })}
+                                        })}
                                     />
                                     <MDBInput
-                                        label='Your email'                                        
+                                        outline
+                                        label='Your email'
                                         type='text'
                                         id='email'
                                         onChange={this.onChange}
@@ -171,9 +173,10 @@ class Register extends Component {
                                         error={errors.email}
                                         className={classnames("", {
                                             invalid: errors.email
-                                          })}
+                                        })}
                                     />
                                     <MDBInput
+                                        outline
                                         label='Your password'
                                         type='password'
                                         id='password'
@@ -182,9 +185,10 @@ class Register extends Component {
                                         error={errors.password}
                                         className={classnames("", {
                                             invalid: errors.password
-                                          })}
+                                        })}
                                     />
                                     <MDBInput
+                                        outline
                                         label='Re-enter your password'
                                         group
                                         type='password'
@@ -194,72 +198,90 @@ class Register extends Component {
                                         error={errors.password2}
                                         className={classnames("", {
                                             invalid: errors.password2
-                                          })}
+                                        })}
                                     />
 
                                     <MDBSelect
+                                        outline
                                         id='country'
                                         options={this.state.countries}
                                         getValue={e => this.onGetValue(e, 'country')}
                                         //getTextContent={e=>this.onGetValue(e,'country')} //or this
                                         selected='Please select your Country of Origin'
+                                        label="Country"
                                     />
 
                                     <MDBSelect
+                                        outline
                                         id='sex'
                                         options={this.state.sexOptions}
                                         // getValue={e => this.onGetValue(e, 'sex')}
                                         getTextContent={e => this.onGetValue(e, 'sex')} //or this
                                         selected='Sex'
+                                        label="Sex"
                                     />
                                     <MDBSelect
+                                        outline
                                         id='race'
                                         options={this.state.raceOptions}
                                         // getValue={e => this.onGetValue(e, 'sex')}
                                         getTextContent={e => this.onGetValue(e, 'race')} //or this
                                         selected='Race'
+                                        label="Race"
                                     />
                                     <MDBSelect
+                                        outline
                                         id='ageRange'
                                         options={this.state.ageOptions}
                                         // getValue={e => this.onGetValue(e, 'sex')}
                                         getTextContent={e => this.onGetValue(e, 'ageRange')} //or this
                                         selected='Age Range'
+                                        label="Age Range"
                                     />
                                     <MDBSelect
+                                        outline
                                         id='political'
                                         options={this.state.politicOptions}
                                         // getValue={e => this.onGetValue(e, 'sex')}
                                         getTextContent={e => this.onGetValue(e, 'political')} //or this
                                         selected='Political Affiliation'
+                                        label='Political Affiliation'
                                     />
                                     <MDBSelect
+                                        outline
                                         id='relationship'
                                         options={this.state.relationshipOptions}
                                         // getValue={e => this.onGetValue(e, 'sex')}
                                         getTextContent={e => this.onGetValue(e, 'relationship')} //or this
                                         selected='Relationship Status'
+                                        label='Relationship Status'
                                     />
                                     <MDBSelect
+                                        outline
                                         id='income'
                                         options={this.state.incomeOptions}
                                         // getValue={e => this.onGetValue(e, 'sex')}
                                         getTextContent={e => this.onGetValue(e, 'income')} //or this
                                         selected='Income Level'
+                                        label='Income Level'
                                     />
                                     <MDBSelect
+                                        outline
                                         id='education'
                                         options={this.state.educationOptions}
                                         // getValue={e => this.onGetValue(e, 'sex')}
                                         getTextContent={e => this.onGetValue(e, 'education')} //or this
                                         selected='Highest level of Education'
+                                        label='Highest level of Education'
                                     />
                                     <MDBSelect
+                                        outline
                                         id='career'
                                         options={this.state.careerOptions}
                                         // getValue={e => this.onGetValue(e, 'sex')}
                                         getTextContent={e => this.onGetValue(e, 'career')} //or this
                                         selected='Current Career Level'
+                                        label='Current Career Level'
                                     />
                                     <MDBBtn
                                         className='btn btn-info btn-block my-4'
@@ -297,15 +319,15 @@ Register.propTypes = {
     registerUser: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired
-  };
-  
-  const mapStateToProps = state => ({
+};
+
+const mapStateToProps = state => ({
     auth: state.auth,
     errors: state.errors
-  });
-  
-  export default connect(
+});
+
+export default connect(
     mapStateToProps,
     { registerUser }
-  )(withRouter(Register));
+)(withRouter(Register));
 
