@@ -5,11 +5,11 @@ import API from "../../utils/Api";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-class TotalVotes extends React.Component {
+class TotalSex extends React.Component {
   state = {
 
     dataBar: {
-      labels: ["Side One", "Side Two"],
+      labels: ["Male Side One", "Female Side One", "Male Side Two", "Female Side Two"],
       datasets: [
         {
           label: "% of Votes",
@@ -66,16 +66,17 @@ class TotalVotes extends React.Component {
       const id = argue._id;
       const userPostedArgument = argue.userPostedArgument;
       if (userPostedArgument) return; 
+      const { user } = this.props.auth;
 
       API.getArgument(id)
       .then(res => {
         console.log(res);
-        // var data = {
-        //   sideOneVote: res.data.sideOneVote,
-        //   sideTwoVote: res.data.sideTwoVote,
+        var data = {
+          sideOneVote: res.data.sideOneVote,
+          sideTwoVote: res.data.sideTwoVote,
         //   totalVotes: res.data.sideOneVote.length + res.data.sideTwoVote.length + 1,
         //   user: user.name
-        // }
+        }
   })
   .catch(err => console.log("this should be the error " + err));
 }
@@ -92,7 +93,7 @@ class TotalVotes extends React.Component {
   }
 }
 
-TotalVotes.propTypes = {
+TotalSex.propTypes = {
     logoutUser: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired
   };
@@ -104,4 +105,4 @@ TotalVotes.propTypes = {
   export default connect(
     mapStateToProps,
   
-  )(TotalVotes)
+  )(TotalSex)

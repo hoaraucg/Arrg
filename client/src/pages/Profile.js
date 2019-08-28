@@ -1,9 +1,16 @@
 import React, { Component } from "react";
 import API from "../utils/Api";
-import { MDBRow, MDBCol, MDBCard, MDBCardTitle, MDBCardText, MDBMask, MDBView, MDBContainer, MDBCardBody, MDBCollapse, MDBCollapseHeader} from "mdbreact";
+
+import { MDBRow, MDBCol, MDBCard, MDBCardTitle, MDBCardText, MDBMask, MDBView, MDBContainer, MDBCardBody, MDBCollapse,
+  MDBCollapseHeader,
+  MDBIcon } from "mdbreact";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../actions/authActions";
+import { CardTitle } from "../components/Post";
+import  TotalVotes from "../components/charts/totalvote";
+import  TotalSex from "../components/charts/sexdemographic";
+
 
 class Profile extends Component {
     state = {
@@ -92,9 +99,12 @@ class Profile extends Component {
                     </MDBRow>
                 </MDBCol>
                 <MDBRow className="justify-content-center">
-                    {this.state.argument.map(argue => {
-                        return (
-                            <div className="import" key={argue}>
+
+                {this.state.argument.map(argue => {
+                    return (
+
+                            <div className="import" key={argue._id} onClick = {() => this.setState({currentArgument:argue})}>
+
                                 <MDBView hover>
                                     <MDBCard style={{ width: "22rem", marginLeft: 5, marginRight: 5, background: "#212121" }} className="shadow-box-example hoverable">
                                         {/* <a href={"/arguments/" + argue._id}> */}
@@ -116,7 +126,120 @@ class Profile extends Component {
                     }
                     )}
                 </MDBRow>
+                <MDBRow>
+                <MDBContainer>
+       { this.state.currentArgument.sideOneVote && this.state.currentArgument.sideTwoVote &&
+       (this.state.currentArgument.sideOneVote.length >= 1 || this.state.currentArgument.sideTwoVote.length >= 1) ? (  <MDBContainer
+          className='accordion md-accordion accordion-3 z-depth-1-half'
+        >
+          <div className='d-flex justify-content-center pt-5'>
+            <MDBIcon icon='anchor' className='red-text mx-3' size='2x' />
+          </div>
+          <h2 class='text-center text-uppercase red-text py-4 px-3'>
+            {this.state.currentArgument.title}
+          </h2>
+
+          <hr class='mb-0' />
+
+          <MDBCard>
+            <MDBCollapseHeader
+              onClick={this.toggleCollapse('collapse1')}
+              tag='h3'
+              tagClassName='red-text d-flex justify-content-between align-items-center'
+            >
+              This is where we should say the winner and expand for total votes 
+              <MDBIcon
+                icon={
+                  this.state.collapseID === 'collapse1'
+                    ? 'angle-up'
+                    : 'angle-down'
+                }
+                className='red-text'
+                size='2x'
+              />
+            </MDBCollapseHeader>
+            <MDBCollapse id='collapse1' isOpen={this.state.collapseID}>
+              <MDBCardBody class='pt-0'>
+                <p>
+               <TotalVotes sideOneTotal={this.state.currentArgument.sideOneVote ? this.state.currentArgument.sideOneVote.length : 0}
+               sideTwoTotal={this.state.currentArgument.sideTwoVote ? this.state.currentArgument.sideTwoVote.length : 0} />
+                </p>
+              </MDBCardBody>
+            </MDBCollapse>
+          </MDBCard>
+
+          <MDBCard>
+            <MDBCollapseHeader
+              onClick={this.toggleCollapse('collapse2')}
+              tag='h3'
+              tagClassName='red-text d-flex justify-content-between align-items-center'
+            >
+              You're the greatest accordion!
+              <MDBIcon
+                icon={
+                  this.state.collapseID === 'collapse2'
+                    ? 'angle-up'
+                    : 'angle-down'
+                }
+                className='red-text'
+                size='2x'
+              />
+            </MDBCollapseHeader>
+            <MDBCollapse id='collapse2' isOpen={this.state.collapseID}>
+              <MDBCardBody class='pt-0'>
+              <p>
+               <TotalSex totalMalesSideOne={this.state.currentArgument.sideOneVote.filter(user => user.sex === "Male").length}
+               totalFemalesSideOne={this.state.currentArgument.sideOneVote.filter(user => user.sex === "Female").length}
+               totalMalesSideTwo={this.state.currentArgument.sideTwoVote.filter(user => user.sex === "Male").length}
+               totalFemalesSideTwo={this.state.currentArgument.sideTwoVote.filter(user => user.sex === "Female").length} />
+                </p>
+              </MDBCardBody>
+            </MDBCollapse>
+          </MDBCard>
+
+          <MDBCard>
+            <MDBCollapseHeader
+              onClick={this.toggleCollapse('collapse3')}
+              tag='h3'
+              tagClassName='red-text d-flex justify-content-between align-items-center'
+            >
+              Thank you my dear!
+              <MDBIcon
+                icon={
+                  this.state.collapseID === 'collapse3'
+                    ? 'angle-up'
+                    : 'angle-down'
+                }
+                className='red-text'
+                size='2x'
+              />
+            </MDBCollapseHeader>
+            <MDBCollapse id='collapse3' isOpen={this.state.collapseID}>
+              <MDBCardBody class='pt-0'>
+                <p>
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life
+                  accusamus terry richardson ad squid. 3 wolf moon officia aute,
+                  non cupidatat skateboard dolor brunch. Food truck quinoa
+                  nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt
+                  aliqua put a bird on it squid single-origin coffee nulla
+                  assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft
+                  beer labore wes anderson cred nesciunt sapiente ea proident.
+                  Ad vegan excepteur butcher vice lomo. Leggings occaecat craft
+                  beer farm-to-table, raw denim aesthetic synth nesciunt you
+                  probably haven't heard of them accusamus labore sustainable
+                  VHS.
+                </p>
+              </MDBCardBody>
+            </MDBCollapse>
+          </MDBCard>
+       </MDBContainer>
+       ) : <div>
+         <p> "your results are still being collected" </p>
+       </div>}
+      </MDBContainer>
+                </MDBRow>
             </MDBContainer>
+            
         )
     }
 }

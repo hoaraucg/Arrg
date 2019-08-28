@@ -12,7 +12,7 @@ module.exports = {
   findById: function(req, res) {
     db.User
       .findById(req.params.id)
-      .populate("arguments")
+      .populate({path: "arguments", populate: [{path: "sideOneVote"}, {path: "sideTwoVote"}]})
       .exec()
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
