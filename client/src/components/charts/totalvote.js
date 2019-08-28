@@ -66,17 +66,16 @@ class TotalVotes extends React.Component {
       const id = argue._id;
       const userPostedArgument = argue.userPostedArgument;
       if (userPostedArgument) return; 
-      const { user } = this.props.auth;
 
       API.getArgument(id)
       .then(res => {
         console.log(res);
-        var data = {
-          sideOneVote: res.data.sideOneVote,
-          sideTwoVote: res.data.sideTwoVote,
+        // var data = {
+        //   sideOneVote: res.data.sideOneVote,
+        //   sideTwoVote: res.data.sideTwoVote,
         //   totalVotes: res.data.sideOneVote.length + res.data.sideTwoVote.length + 1,
         //   user: user.name
-        }
+        // }
   })
   .catch(err => console.log("this should be the error " + err));
 }

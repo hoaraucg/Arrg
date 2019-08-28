@@ -1,10 +1,9 @@
 // import React from "react";
-import React, { Component, Fragment } from "react";
-import { MDBInput, MDBRow, MDBCol, MDBContainer, MDBNotification, MDBSelect, MDBBtn, MDBIcon, MDBJumbotron, MDBFormInline } from "mdbreact";
+import React, { Component} from "react";
+import { MDBInput, MDBRow, MDBCol, MDBContainer, MDBPopoverHeader, MDBPopoverBody, MDBSelect, MDBBtn, MDBJumbotron, MDBFormInline, MDBPopover } from "mdbreact";
 import API from "../utils/Api";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Z_FIXED } from "zlib";
 
 
 class Create extends Component {
@@ -49,27 +48,11 @@ class Create extends Component {
     const { user } = this.props.auth;
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
-    //Alert the user their argument is posted
-    // return (
-    // <MDBContainer>
-    // <MDBNotification
-    //   show
-    //   fade
-    //   iconClassName="text-primary"
-    //   title="Arrg-ument created"
-    //   message="You have successfully submitted your argument."
-    //   style={{
-    //     position: "fixed",
-    //     top: 10,
-    //     right: 10,
-    //     zindex: 9999
-    //   }}
-    // />
-    // </MDBContainer>
-    
     this.setState({
-      title: ""
-    // )
+      title: "",
+      main: "",
+      sideone: "",
+      sidetwo: "",
     });
 
     var data = {
@@ -85,9 +68,13 @@ class Create extends Component {
 
     API.saveArgument(data)
       .then(res => {
+        //Alert the user their argument is posted
         console.log("argument added");
       })
       .catch(err => console.log("this should be the error " + err));
+
+
+
 
   };
 
@@ -159,7 +146,7 @@ class Create extends Component {
                 value={this.state.main}
                 name="main"
                 onChange={this.handleInputChange}
-                type="textarea"
+                type="text"
                 label="Main Argument"
                 outline />
             </MDBCol>
@@ -170,14 +157,14 @@ class Create extends Component {
                   value={this.state.sideone}
                   name="sideone"
                   onChange={this.handleInputChange}
-                  type="textarea" label="Side One" outline /></MDBCol>
+                  type="text" label="Side One" outline /></MDBCol>
 
               <MDBCol size="md-5">
                 <MDBInput
                   value={this.state.sidetwo}
                   name="sidetwo"
                   onChange={this.handleInputChange}
-                  type="textarea" label="Side Two" outline /></MDBCol>
+                  type="text" label="Side Two" outline /></MDBCol>
             </MDBRow>
 
             <MDBRow className="d-flex justify-content-center">
@@ -189,17 +176,22 @@ class Create extends Component {
                 />
               </MDBCol>
             </MDBRow>
-            <MDBRow className="d-flex justify-content-center" >
-              <Fragment>
-                <MDBBtn onClick={this.handleFormSubmit} color="danger">
-                  <MDBIcon icon="skull-crossbones" className="mr-1" /> Sail!
-      </MDBBtn>
-              </Fragment>
+            <MDBRow className="d-flex justify-content-center">
+              <MDBPopover
+                placement="top"
+                popover
+                clickable
+                id="popover1"
+              >
+                <MDBBtn onClick={this.handleFormSubmit} color="blue-grey">Sail!</MDBBtn>
+                <div>
+                  <MDBPopoverHeader>Post Created</MDBPopoverHeader>
+                  <MDBPopoverBody>You have successfully created your Arrg-ument. Visit the Vote page to tally your vote, or visit your Profile to see your current Results.</MDBPopoverBody>
+                </div>
+              </MDBPopover>
             </MDBRow>
-
           </MDBCol>
         </MDBRow>
-
       </MDBContainer>
 
 
