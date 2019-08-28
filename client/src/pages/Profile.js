@@ -240,6 +240,25 @@ class Profile extends Component {
                 </p>
               </MDBCardBody>
             </MDBCollapse>
+          </MDBCard>
+
+            <MDBCard>
+            <MDBCollapseHeader
+              onClick={this.toggleCollapse('collapse4')}
+              tag='h4'
+              tagClassName='red-text d-flex justify-content-between align-items-center'
+            >
+              Age demographic data!
+              <MDBIcon
+                icon={
+                  this.state.collapseID === 'collapse4'
+                    ? 'angle-up'
+                    : 'angle-down'
+                }
+                className='red-text'
+                size='2x'
+              />
+            </MDBCollapseHeader>
             <MDBCollapse id='collapse4' isOpen={this.state.collapseID}>
               <MDBCardBody class='pt-0'>
                 <p>
