@@ -32,7 +32,7 @@ render() {
     return <Redirect to ="/" />
   }
   return (
-      <MDBNavbar color="elegant-color-dark" className="sticky-top" dark expand="md">
+      <MDBNavbar color="special-color-dark" className="sticky-top" dark expand="md">
         <MDBNavbarBrand>
         <div className="logo-wrapper 20x20">
                 <a href="#!">

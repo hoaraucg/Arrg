@@ -17,7 +17,7 @@ class ModalPage extends Component {
         {/* BUTTON */}
         <MDBBtn color="info" onClick={this.toggle}>Login</MDBBtn>
         {/* MODAL */}
-        <MDBModal isOpen={this.state.modal} toggle={this.toggle}    >
+        <MDBModal isOpen={this.state.modal} toggle={this.toggle} backdrop={false}   >
         </MDBModal>
       </MDBContainer>
     );

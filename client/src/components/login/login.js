@@ -7,7 +7,7 @@ const FormPage = () => {
   return (
     <MDBContainer>
       <MDBRow>
-        <MDBCol md="12">
+        <MDBCol md="6">
           <MDBCard>
             <div className="header pt-3 special-color">
               <MDBRow className="d-flex justify-content-center">

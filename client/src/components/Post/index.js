@@ -7,9 +7,10 @@ import { MDBRow, MDBCol, MDBCard } from "mdbreact";
 export function CardTitle({ children }) {
     return (
         <section>
-            <MDBRow>
-                <MDBCol md="12" className="mb-4">
+            <MDBRow className = "d-flex justify-content-center">
+                <MDBCol md="11" className="mt-5">
                     <MDBCard
+                    style ={{opacity: 1.0}}
                         className="card-image elegant-color-dark" 
                         id= "argumentviews"
                         // style={{
