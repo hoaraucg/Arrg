@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import API from "../utils/Api";
 import { MDBRow, MDBCol, MDBCard, MDBCardTitle, MDBCardText, MDBMask, MDBView, MDBContainer, MDBCardBody } from "mdbreact";
+import { MDBRow, MDBCol, MDBCard, MDBJumbotron, MDBContainer, MDBCardBody,
+    MDBCollapse,
+    MDBCollapseHeader,
+    MDBIcon} from "mdbreact";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../actions/authActions";
@@ -9,9 +13,15 @@ import { CardTitle } from "../components/Post";
 class Profile extends Component {
     state = {
         argumentId: [],
-        argument: [],
-        currentArgument: {}
+        argument: [], 
+        currentArgument: {},
+        collapseID: 'collapse1'
     };
+
+    toggleCollapse = collapseID => () =>
+    this.setState(prevState => ({
+      collapseID: prevState.collapseID !== collapseID ? collapseID : ''
+    }));
 
     handleUserArguments = (id) => {
         const userWroteArgument = id.userWroteArgument;
