@@ -11,7 +11,7 @@ export function CardTitle({ children }) {
                 <MDBCol md="11" className="mt-5">
                     <MDBCard
                     style ={{opacity: 1.0}}
-                        className="card-image elegant-color-dark" 
+                        className="card-image special-color-dark" 
                         id= "argumentviews"
                         // style={{
                         //     backgroundColor: "gray"
