@@ -44,12 +44,13 @@ render() {
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
           <MDBNavbarNav right center>
           <MDBNavItem>
-              <MDBDropdown dropdown-menu-right>
+              <MDBDropdown>
                 <MDBDropdownToggle nav caret>
                   <MDBIcon icon="user" height="60px" width="60px" className="center"/>
                 </MDBDropdownToggle>
-                <MDBDropdownMenu dropdown-menu-right className="dropdown-dark">
+                <MDBDropdownMenu right className="dropdown-dark">
                   <MDBDropdownItem href="/">Home</MDBDropdownItem>
+                  <MDBDropdownItem href="/vote">Vote on Arrgs</MDBDropdownItem>
                   <MDBDropdownItem href="/create">Create your Arrg-ument</MDBDropdownItem>
                   <MDBDropdownItem href="/profile">View your Profile</MDBDropdownItem>
                   <MDBDropdownItem onClick={this.onLogoutClick} href="/">Logout</MDBDropdownItem>
