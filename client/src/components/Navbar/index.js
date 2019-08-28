@@ -32,7 +32,7 @@ render() {
     return <Redirect to ="/" />
   }
   return (
-      <MDBNavbar color="special-color-dark" className="sticky-top" dark expand="md">
+      <MDBNavbar color="elegant-color-dark" className="sticky-top" dark expand="md">
         <MDBNavbarBrand>
         <div className="logo-wrapper 20x20">
                 <a href="#!">
@@ -50,7 +50,7 @@ render() {
                 </MDBDropdownToggle>
                 <MDBDropdownMenu right className="dropdown-dark">
                   <MDBDropdownItem href="/">Home</MDBDropdownItem>
-                  <MDBDropdownItem href="/vote">Vote on Arrgs</MDBDropdownItem>
+                  <MDBDropdownItem href="/vote">Vote on Arrg</MDBDropdownItem>
                   <MDBDropdownItem href="/create">Create your Arrg-ument</MDBDropdownItem>
                   <MDBDropdownItem href="/profile">View your Profile</MDBDropdownItem>
                   <MDBDropdownItem onClick={this.onLogoutClick} href="/">Logout</MDBDropdownItem>

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import API from "../utils/Api";
+import { MDBRow, MDBCol, MDBCard, MDBCardTitle, MDBCardText, MDBMask, MDBView, MDBContainer, MDBCardBody } from "mdbreact";
 import { MDBRow, MDBCol, MDBCard, MDBJumbotron, MDBContainer, MDBCardBody,
     MDBCollapse,
     MDBCollapseHeader,
@@ -28,14 +29,14 @@ class Profile extends Component {
         const { user } = this.props.auth;
 
         API.getUserArgument(id)
-        .then (res => {
-            const data = res.data;
-            const { user } = this.props.auth;
-            const userName = user.name;
-            this.setState({ argument: res.data.arguments, currentArgument: res.data.arguments[0] })
-            console.log(data.arguments);
-    })
-        .catch(err => console.log("this should be the error " + err));
+            .then(res => {
+                const data = res.data;
+                const { user } = this.props.auth;
+                const userName = user.name;
+                this.setState({ argument: res.data.arguments, currentArgument: res.data.arguments[0] })
+                console.log(data.arguments);
+            })
+            .catch(err => console.log("this should be the error " + err));
     }
 
     // getArgumentList = (id) => {
@@ -47,7 +48,7 @@ class Profile extends Component {
 
     //             arguments.map ((id) => {
     //             })
-                // this.setState({ argumentId: res.data.arguments })
+    // this.setState({ argumentId: res.data.arguments })
     //             // console.log(res)
     //             // console.log("This is the argumentID " + this.state.argumentId)
     //             // this.state.argumentId.map(ids => {
@@ -56,10 +57,10 @@ class Profile extends Component {
     //                 // console.log(this.state.arguments)
     //                 // return ids
     //             })
-                // this.loadArguments(this.state.arguments)
-                
-            // })
-            // .catch(err => console.log("This should be the error " + err));
+    // this.loadArguments(this.state.arguments)
+
+    // })
+    // .catch(err => console.log("This should be the error " + err));
     // }
 
     // loadArguments = (id) => {
@@ -85,178 +86,45 @@ class Profile extends Component {
         console.log(this.state);
         const { user } = this.props.auth;
         return (
-            <MDBCol size="md-12">
-                <MDBRow size="md-8" className="justify-content-center">
-                    <MDBJumbotron fluid>
-                        <MDBContainer>
-                            <h2 className="display-4">Hey there {user.name}</h2>
-                        </MDBContainer>
-                    </MDBJumbotron>
-                </MDBRow>
-                <h2>
-                    {this.state.argument.map(argue =>{
-                        return (
-
-                        
-                <CardTitle>
+            <MDBContainer>
+                <MDBCol size="md-12">
+                    <MDBRow size="md-8" className="justify-content-center">
+                        <MDBCard text-center z-depth-5>
+                            <MDBCardBody style={{marginTop: 4, fontSize: 32}} justify-content-center text-center>Hey there, {user.name}</MDBCardBody>
+                            <MDBCardBody>Here, you can view any Arrg-uments you may have posted as well as any data that's been collected related to the user's that have voted one way or another.</MDBCardBody>
+                        </MDBCard>
+                    </MDBRow>
+                </MDBCol>
                 <MDBRow className="justify-content-center">
-                <h1>
-                      <div className="import" key={argue}>
-                        {/* <a href={"/arguments/" + argue._id}> */}
-                        <span>
-                          <MDBRow className="d-flex justify-content-center">
-                            <MDBCol style={{ color: "white", fontSize: 40 }} size="md-10" >
-                              <MDBCardBody>
-                            {argue.title}</MDBCardBody>
-                           
-                            </MDBCol>
-                            <MDBCol style={{ color: "white", fontSize: 18 }} size="md-10" ><p class="text-center">Total Votes: {argue.totalVotes}</p></MDBCol>
-                            <br />
-                            <MDBCol style={{ color: "white", fontSize: 30}} size="md-10">{argue.main}</MDBCol>
-                            <MDBCol style={{ color: "orange", fontSize: 20 }} size="md-5" id="one"> {argue.sideone}</MDBCol>
-                            <MDBCol style={{ color: "orange", fontSize: 20 }} size="md-5" id="two"> {argue.sidetwo}</MDBCol>
-                        
-                            <MDBContainer>
-        <MDBContainer
-          className='accordion md-accordion accordion-3 z-depth-1-half'
-        >
-          <div className='d-flex justify-content-center pt-5'>
-            <MDBIcon icon='anchor' className='red-text mx-3' size='2x' />
-            <MDBIcon far icon='life-ring' className='red-text mx-3' size='2x' />
-            <MDBIcon far icon='star' className='red-text mx-3' size='2x' />
-          </div>
-          <h2 class='text-center text-uppercase red-text py-4 px-3'>
-            Hello my friends, I am the nicest accordion!
-          </h2>
+                {this.state.argument.map(argue => {
+                    return (
 
-          <hr class='mb-0' />
-
-          <MDBCard>
-            <MDBCollapseHeader
-              onClick={this.toggleCollapse('collapse1')}
-              tag='h3'
-              tagClassName='red-text d-flex justify-content-between align-items-center'
-            >
-              How awesome accordion I am?
-              <MDBIcon
-                icon={
-                  this.state.collapseID === 'collapse1'
-                    ? 'angle-up'
-                    : 'angle-down'
+                            <div className="import" key={argue}>
+                                <MDBView hover>
+                                <MDBCard style={{ width: "22rem", marginLeft: 5, marginRight: 5, background: "#212121" }} className="shadow-box-example hoverable">
+                                    {/* <a href={"/arguments/" + argue._id}> */}
+                                    <MDBCardBody>
+                                        <MDBCardTitle style={{ color: "white", fontSize: 30 }} className="center">{argue.title}</MDBCardTitle>
+                                        <MDBCardText style={{ color: "white", fontSize: 14 }} className="center">Total Votes: {argue.totalVotes}</MDBCardText>
+                                        <br />
+                                        <MDBCardText style={{ color: "white", fontSize: 24 }} className="center">{argue.main}</MDBCardText>
+                                        {/* <MDBCardText style={{ color: "orange", fontSize: 20 }} id="one"> {argue.sideone}</MDBCardText>
+                                        <MDBCardText style={{ color: "orange", fontSize: 20 }} id="two"> {argue.sidetwo}</MDBCardText> */}
+                                    </MDBCardBody>
+                                </MDBCard>
+                                <MDBMask className="flex-center" overlay="stylish-strong">
+                                    {/* <p className="white-text strong">See results for this Arrg-ument</p> */}
+                                </MDBMask>
+                                </MDBView>
+                            </div>
+                    )
                 }
-                className='red-text'
-                size='2x'
-              />
-            </MDBCollapseHeader>
-            <MDBCollapse id='collapse1' isOpen={this.state.collapseID}>
-              <MDBCardBody class='pt-0'>
-                <p>
-                  Anim pariatur cliche reprehenderit, enim eiusmod high life
-                  accusamus terry richardson ad squid. 3 wolf moon officia aute,
-                  non cupidatat skateboard dolor brunch. Food truck quinoa
-                  nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt
-                  aliqua put a bird on it squid single-origin coffee nulla
-                  assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft
-                  beer labore wes anderson cred nesciunt sapiente ea proident.
-                  Ad vegan excepteur butcher vice lomo. Leggings occaecat craft
-                  beer farm-to-table, raw denim aesthetic synth nesciunt you
-                  probably haven't heard of them accusamus labore sustainable
-                  VHS.
-                </p>
-              </MDBCardBody>
-            </MDBCollapse>
-          </MDBCard>
-
-          <MDBCard>
-            <MDBCollapseHeader
-              onClick={this.toggleCollapse('collapse2')}
-              tag='h3'
-              tagClassName='red-text d-flex justify-content-between align-items-center'
-            >
-              You're the greatest accordion!
-              <MDBIcon
-                icon={
-                  this.state.collapseID === 'collapse2'
-                    ? 'angle-up'
-                    : 'angle-down'
-                }
-                className='red-text'
-                size='2x'
-              />
-            </MDBCollapseHeader>
-            <MDBCollapse id='collapse2' isOpen={this.state.collapseID}>
-              <MDBCardBody class='pt-0'>
-                <p>
-                  Anim pariatur cliche reprehenderit, enim eiusmod high life
-                  accusamus terry richardson ad squid. 3 wolf moon officia aute,
-                  non cupidatat skateboard dolor brunch. Food truck quinoa
-                  nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt
-                  aliqua put a bird on it squid single-origin coffee nulla
-                  assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft
-                  beer labore wes anderson cred nesciunt sapiente ea proident.
-                  Ad vegan excepteur butcher vice lomo. Leggings occaecat craft
-                  beer farm-to-table, raw denim aesthetic synth nesciunt you
-                  probably haven't heard of them accusamus labore sustainable
-                  VHS.
-                </p>
-              </MDBCardBody>
-            </MDBCollapse>
-          </MDBCard>
-
-          <MDBCard>
-            <MDBCollapseHeader
-              onClick={this.toggleCollapse('collapse3')}
-              tag='h3'
-              tagClassName='red-text d-flex justify-content-between align-items-center'
-            >
-              Thank you my dear!
-              <MDBIcon
-                icon={
-                  this.state.collapseID === 'collapse3'
-                    ? 'angle-up'
-                    : 'angle-down'
-                }
-                className='red-text'
-                size='2x'
-              />
-            </MDBCollapseHeader>
-            <MDBCollapse id='collapse3' isOpen={this.state.collapseID}>
-              <MDBCardBody class='pt-0'>
-                <p>
-                  Anim pariatur cliche reprehenderit, enim eiusmod high life
-                  accusamus terry richardson ad squid. 3 wolf moon officia aute,
-                  non cupidatat skateboard dolor brunch. Food truck quinoa
-                  nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt
-                  aliqua put a bird on it squid single-origin coffee nulla
-                  assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft
-                  beer labore wes anderson cred nesciunt sapiente ea proident.
-                  Ad vegan excepteur butcher vice lomo. Leggings occaecat craft
-                  beer farm-to-table, raw denim aesthetic synth nesciunt you
-                  probably haven't heard of them accusamus labore sustainable
-                  VHS.
-                </p>
-              </MDBCardBody>
-            </MDBCollapse>
-          </MDBCard>
-        </MDBContainer>
-      </MDBContainer>
-                          </MDBRow>
-
-                        </span>
-                      </div>
-                    </h1>
-
-               
-                    
+                )}
                 </MDBRow>
-                </CardTitle>
-)
-})}
-</h2>
-            </MDBCol>
+            </MDBContainer>
         )
-        }
     }
+}
 
 
 Profile.propTypes = {
@@ -275,9 +143,9 @@ export default connect(
 
 {/* {this.state.arguments.map(argues => {
                             return ( */}
-                    {/* <MDBCard size="md-5">
+{/* <MDBCard size="md-5">
                         {console.log(this.state.argumentId)}
                         {console.log(this.state.arguments)}
                         <MDBCardBody>{this.state.arguments}</MDBCardBody>
                     </MDBCard> */}
-                    {/* )})} */}
+{/* )})} */ }
