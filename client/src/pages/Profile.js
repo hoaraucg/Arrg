@@ -73,6 +73,7 @@ class Profile extends Component {
     };
 
     render() {
+        console.log(this.state);
         const { user } = this.props.auth;
         return (
             <MDBCol size="md-12">
@@ -83,23 +84,28 @@ class Profile extends Component {
                         </MDBContainer>
                     </MDBJumbotron>
                 </MDBRow>
+                <h2>
+                    {this.state.argument.map(argue =>{
+                        return (
+
+                        
                 <CardTitle>
                 <MDBRow className="justify-content-center">
                 <h1>
-                      <div className="import" key={user}>
+                      <div className="import" key={argue}>
                         {/* <a href={"/arguments/" + argue._id}> */}
                         <span>
                           <MDBRow className="d-flex justify-content-center">
                             <MDBCol style={{ color: "white", fontSize: 40 }} size="md-10" >
                               <MDBCardBody>
-                            {user.title}</MDBCardBody>
+                            {argue.title}</MDBCardBody>
                            
                             </MDBCol>
-                            <MDBCol style={{ color: "white", fontSize: 18 }} size="md-10" ><p class="text-center">Total Votes: {user.totalVotes}</p></MDBCol>
+                            <MDBCol style={{ color: "white", fontSize: 18 }} size="md-10" ><p class="text-center">Total Votes: {argue.totalVotes}</p></MDBCol>
                             <br />
-                            <MDBCol style={{ color: "white", fontSize: 30}} size="md-10">{user.main}</MDBCol>
-                            <MDBCol style={{ color: "orange", fontSize: 20 }} size="md-5" id="one"> {user.sideone}</MDBCol>
-                            <MDBCol style={{ color: "orange", fontSize: 20 }} size="md-5" id="two"> {user.sidetwo}</MDBCol>
+                            <MDBCol style={{ color: "white", fontSize: 30}} size="md-10">{argue.main}</MDBCol>
+                            <MDBCol style={{ color: "orange", fontSize: 20 }} size="md-5" id="one"> {argue.sideone}</MDBCol>
+                            <MDBCol style={{ color: "orange", fontSize: 20 }} size="md-5" id="two"> {argue.sidetwo}</MDBCol>
                             
                           </MDBRow>
 
@@ -111,7 +117,9 @@ class Profile extends Component {
                     
                 </MDBRow>
                 </CardTitle>
-
+)
+})}
+</h2>
             </MDBCol>
         )
         }
