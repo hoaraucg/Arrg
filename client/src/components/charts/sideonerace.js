@@ -7,19 +7,19 @@ import { connect } from "react-redux";
 
 
 
-class SideOneAge extends React.Component {
+class SideOneRace extends React.Component {
   state = {
 
     dataPie: {
-        labels: ["Under 18", "18-24", "25-32", "33-40", "41-50", "50 +"],
+        labels: ["American Indian or Alaska Native", "Asian", "Black or African American", "Native Hawaiian or Other Pacific Islander", "White", "Hispanic or Latino"],
         datasets: [
           {
-            data: [this.props.totalSideOneUnderEighteen,
-                this.props.totalSideOneEighteenUp,
-                this.props.totalSideOneTwentyFiveUp,
-                this.props.totalSideOneThirtyThreeUp,
-                this.props.totalSideOneFortyOneUp,
-                this.props.totalSideOneFiftyUp],
+            data: [this.props.totalSideOneAmericanIndian,
+                this.props.totalSideOneAsian,
+                this.props.totalSideOneAfricanAmerican,
+                this.props.totalSideOneNativeHawaiian,
+                this.props.totalSideOneWhite,
+                this.props.totalSideOneHispanic],
             backgroundColor: [
               "#F7464A",
               "#46BFBD",
@@ -76,7 +76,7 @@ render() {
   }
 }
 
-SideOneAge.propTypes = {
+SideOneRace.propTypes = {
     logoutUser: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired
   };
@@ -88,4 +88,4 @@ SideOneAge.propTypes = {
   export default connect(
     mapStateToProps,
   
-  )(SideOneAge)
+  )(SideOneRace)

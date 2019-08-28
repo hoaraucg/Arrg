@@ -11,6 +11,11 @@ import { CardTitle } from "../components/Post";
 import  TotalVotes from "../components/charts/totalvote";
 import  TotalSex from "../components/charts/sexdemographic";
 import  SideOneAge from "../components/charts/sideoneage";
+import  SideTwoAge from "../components/charts/sidetwoage";
+import  SideOneRace from "../components/charts/sideonerace";
+import  SideTwoRace from "../components/charts/sidetworace";
+
+
 
 
 class Profile extends Component {
@@ -224,6 +229,34 @@ class Profile extends Component {
                totalSideOneThirtyThreeUp={this.state.currentArgument.sideOneVote.filter(user => user.ageRange === "33-40").length}
                totalSideOneFortyOneUp={this.state.currentArgument.sideOneVote.filter(user => user.ageRange === "41-50").length}
                totalSideOneFiftyUp={this.state.currentArgument.sideOneVote.filter(user => user.ageRange === "50 +").length} />
+                </p>
+                <p>
+                <SideTwoAge totalSideTwoUnderEighteen={this.state.currentArgument.sideTwoVote.filter(user => user.ageRange === "Under 18").length}
+               totalSideTwoEighteenUp={this.state.currentArgument.sideTwoVote.filter(user => user.ageRange === "18-24").length}
+               totalSideTwoTwentyFiveUp={this.state.currentArgument.sideTwoVote.filter(user => user.ageRange === "25-32").length}
+               totalSideTwoThirtyThreeUp={this.state.currentArgument.sideTwoVote.filter(user => user.ageRange === "33-40").length}
+               totalSideTwoFortyOneUp={this.state.currentArgument.sideTwoVote.filter(user => user.ageRange === "41-50").length}
+               totalSideTwoFiftyUp={this.state.currentArgument.sideTwoVote.filter(user => user.ageRange === "50 +").length} />
+                </p>
+              </MDBCardBody>
+            </MDBCollapse>
+            <MDBCollapse id='collapse4' isOpen={this.state.collapseID}>
+              <MDBCardBody class='pt-0'>
+                <p>
+                <SideOneRace totalSideOneAmericanIndian={this.state.currentArgument.sideOneVote.filter(user => user.race === "American Indian or Alaska Native").length}
+               totalSideOneAsian={this.state.currentArgument.sideOneVote.filter(user => user.race === "Asian").length}
+               totalSideOneAfricanAmerican={this.state.currentArgument.sideOneVote.filter(user => user.race === "Black or African American").length}
+               totalSideOneNativeHawaiian={this.state.currentArgument.sideOneVote.filter(user => user.race === "Native Hawaiian or Other Pacific Islander").length}
+               totalSideOneWhite={this.state.currentArgument.sideOneVote.filter(user => user.race === "White").length}
+               totalSideOneHispanic={this.state.currentArgument.sideOneVote.filter(user => user.race === "Hispanic or Latino").length} />
+                </p>
+                <p>
+                <SideTwoRace totalSideTwoAmericanIndian={this.state.currentArgument.sideTwoVote.filter(user => user.race === "American Indian or Alaska Native").length}
+               totalSideTwoAsian={this.state.currentArgument.sideTwoVote.filter(user => user.race === "Asian").length}
+               totalSideTwoAfricanAmerican={this.state.currentArgument.sideTwoVote.filter(user => user.race === "Black or African American").length}
+               totalSideTwoNativeHawaiian={this.state.currentArgument.sideTwoVote.filter(user => user.race === "Native Hawaiian or Other Pacific Islander").length}
+               totalSideTwoWhite={this.state.currentArgument.sideTwoVote.filter(user => user.race === "White").length}
+               totalSideTwoHispanic={this.state.currentArgument.sideTwoVote.filter(user => user.race === "Hispanic or Latino").length} />
                 </p>
               </MDBCardBody>
             </MDBCollapse>
