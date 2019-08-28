@@ -4,6 +4,7 @@ import { MDBRow, MDBCol, MDBCard, MDBJumbotron, MDBContainer, MDBCardBody } from
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../actions/authActions";
+import { CardTitle } from "../components/Post";
 
 class Profile extends Component {
     state = {
@@ -82,22 +83,40 @@ class Profile extends Component {
                         </MDBContainer>
                     </MDBJumbotron>
                 </MDBRow>
+                <CardTitle>
                 <MDBRow className="justify-content-center">
-                    {/* {this.state.arguments.map(argues => {
-                            return ( */}
-                    <MDBCard size="md-5">
-                        {console.log(this.state.argumentId)}
-                        {console.log(this.state.arguments)}
-                        <MDBCardBody>{this.state.arguments}</MDBCardBody>
-                    </MDBCard>
-                    {/* )})} */}
-                </MDBRow>
+                <h1>
+                      <div className="import" key={user}>
+                        {/* <a href={"/arguments/" + argue._id}> */}
+                        <span>
+                          <MDBRow className="d-flex justify-content-center">
+                            <MDBCol style={{ color: "white", fontSize: 40 }} size="md-10" >
+                              <MDBCardBody>
+                            {user.title}</MDBCardBody>
+                           
+                            </MDBCol>
+                            <MDBCol style={{ color: "white", fontSize: 18 }} size="md-10" ><p class="text-center">Total Votes: {user.totalVotes}</p></MDBCol>
+                            <br />
+                            <MDBCol style={{ color: "white", fontSize: 30}} size="md-10">{user.main}</MDBCol>
+                            <MDBCol style={{ color: "orange", fontSize: 20 }} size="md-5" id="one"> {user.sideone}</MDBCol>
+                            <MDBCol style={{ color: "orange", fontSize: 20 }} size="md-5" id="two"> {user.sidetwo}</MDBCol>
+                            
+                          </MDBRow>
 
+                        </span>
+                      </div>
+                    </h1>
+
+               
+                    
+                </MDBRow>
+                </CardTitle>
 
             </MDBCol>
         )
+        }
     }
-}
+
 
 Profile.propTypes = {
     logoutUser: PropTypes.func.isRequired,
@@ -113,3 +132,11 @@ export default connect(
     { logoutUser }
 )(Profile);
 
+{/* {this.state.arguments.map(argues => {
+                            return ( */}
+                    {/* <MDBCard size="md-5">
+                        {console.log(this.state.argumentId)}
+                        {console.log(this.state.arguments)}
+                        <MDBCardBody>{this.state.arguments}</MDBCardBody>
+                    </MDBCard> */}
+                    {/* )})} */}
