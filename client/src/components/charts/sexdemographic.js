@@ -13,7 +13,7 @@ class TotalSex extends React.Component {
       datasets: [
         {
           label: "% of Votes",
-          data: [this.props.sideOneTotal, this.props.sideTwoTotal],
+          data: [this.props.totalMalesSideOne, this.props.totalFemalesSideOne, this.props.totalMalesSideTwo, this.props.totalFemalesSideTwo],
           backgroundColor: [
             "rgba(255, 134,159,0.4)",
             "rgba(98,  182, 239,0.4)",
@@ -36,7 +36,7 @@ class TotalSex extends React.Component {
     },
     barChartOptions: {
       responsive: true,
-      maintainAspectRatio: false,
+      maintainAspectRatio: true,
       scales: {
         xAxes: [
           {
