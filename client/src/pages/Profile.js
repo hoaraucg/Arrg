@@ -153,7 +153,16 @@ class Profile extends Component {
               tag='h3'
               tagClassName='red-text d-flex justify-content-between align-items-center'
             >
-              This is where we should say the winner and expand for total votes 
+            
+
+
+               {(this.state.currentArgument.sideOneVote.length > this.state.currentArgument.sideTwoVote.length) ? (
+               "Side One Wins! View Total Votes" 
+               ):
+               ("Side Two Wins! View Total Votes")}
+
+                 
+                 
               <MDBIcon
                 icon={
                   this.state.collapseID === 'collapse1'
@@ -194,7 +203,8 @@ class Profile extends Component {
             <MDBCollapse id='collapse2' isOpen={this.state.collapseID}>
               <MDBCardBody class='pt-0'>
               <p>
-               <TotalSex totalMalesSideOne={this.state.currentArgument.sideOneVote.filter(user => user.sex === "Male").length}
+               <TotalSex                
+               totalMalesSideOne={this.state.currentArgument.sideOneVote.filter(user => user.sex === "Male").length}
                totalFemalesSideOne={this.state.currentArgument.sideOneVote.filter(user => user.sex === "Female").length}
                totalMalesSideTwo={this.state.currentArgument.sideTwoVote.filter(user => user.sex === "Male").length}
                totalFemalesSideTwo={this.state.currentArgument.sideTwoVote.filter(user => user.sex === "Female").length} />
@@ -245,10 +255,10 @@ class Profile extends Component {
             <MDBCard>
             <MDBCollapseHeader
               onClick={this.toggleCollapse('collapse4')}
-              tag='h4'
+              tag='h3'
               tagClassName='red-text d-flex justify-content-between align-items-center'
             >
-              Age demographic data!
+              Race demographic data!
               <MDBIcon
                 icon={
                   this.state.collapseID === 'collapse4'

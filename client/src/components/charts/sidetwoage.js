@@ -64,6 +64,20 @@ class SideTwoAge extends React.Component {
   .catch(err => console.log("this should be the error " + err));
 }
 
+componentWillReceiveProps(nextProps) {
+    if(this.props != nextProps) {
+        let newDataPie=this.state.dataPie;
+        newDataPie.datasets[0].data=[nextProps.totalSideTwoUnderEighteen,
+            nextProps.totalSideTwoEighteenUp,
+            nextProps.totalSideTwoTwentyFiveUp,
+            nextProps.totalSideTwoThirtyThreeUp,
+            nextProps.totalSideTwoFortyOneUp,
+            nextProps.totalSideTwoFiftyUp]
+      this.setState({
+        dataPie: newDataPie
+      });
+    }
+  }
 
 render() {
     console.log(this.props, "this is my sidetwoage props")
