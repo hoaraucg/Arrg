@@ -81,6 +81,17 @@ class TotalSex extends React.Component {
   .catch(err => console.log("this should be the error " + err));
 }
 
+componentWillReceiveProps(nextProps) {
+    if(this.props != nextProps) {
+        let newDataBar=this.state.dataBar;
+        newDataBar.datasets[0].data=[nextProps.totalMalesSideOne, nextProps.totalFemalesSideOne, nextProps.totalMalesSideTwo, nextProps.totalFemalesSideTwo]
+      this.setState({
+        dataBar: newDataBar
+      });
+    }
+  }
+
+
 
   render() {
     console.log(this.props)
