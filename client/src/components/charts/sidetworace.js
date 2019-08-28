@@ -7,19 +7,19 @@ import { connect } from "react-redux";
 
 
 
-class SideOneAge extends React.Component {
+class SideTwoRace extends React.Component {
   state = {
 
     dataPie: {
-        labels: ["Under 18", "18-24", "25-32", "33-40", "41-50", "50 +"],
+        labels: ["American Indian or Alaska Native", "Asian", "Black or African American", "Native Hawaiian or Other Pacific Islander", "White", "Hispanic or Latino"],
         datasets: [
           {
-            data: [this.props.totalSideOneUnderEighteen,
-                this.props.totalSideOneEighteenUp,
-                this.props.totalSideOneTwentyFiveUp,
-                this.props.totalSideOneThirtyThreeUp,
-                this.props.totalSideOneFortyOneUp,
-                this.props.totalSideOneFiftyUp],
+            data: [this.props.totalSideTwoAmericanIndian,
+                this.props.totalSideTwoAsian,
+                this.props.totalSideTwoAfricanAmerican,
+                this.props.totalSideTwoNativeHawaiian,
+                this.props.totalSideTwoWhite,
+                this.props.totalSideTwoHispanic],
             backgroundColor: [
               "#F7464A",
               "#46BFBD",
@@ -55,7 +55,7 @@ class SideOneAge extends React.Component {
       .then(res => {
         console.log(res);
         var data = {
-          sideOneVote: res.data.sideOneVote
+          sideTwoVote: res.data.sideTwoVote
         //   sideTwoVote: res.data.sideTwoVote,
         //   totalVotes: res.data.sideOneVote.length + res.data.sideTwoVote.length + 1,
         //   user: user.name
@@ -69,14 +69,14 @@ render() {
     console.log(this.props, "this is my sideoneage props")
     return (
       <MDBContainer>
-        <h3 className="mt-5">Side One Age Demographic</h3>
+        <h3 className="mt-5">Side Two Race Demographic</h3>
         <Pie data={this.state.dataPie} options={{ responsive: true }} />
       </MDBContainer>
     );
   }
 }
 
-SideOneAge.propTypes = {
+SideTwoRace.propTypes = {
     logoutUser: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired
   };
@@ -88,4 +88,4 @@ SideOneAge.propTypes = {
   export default connect(
     mapStateToProps,
   
-  )(SideOneAge)
+  )(SideTwoRace)

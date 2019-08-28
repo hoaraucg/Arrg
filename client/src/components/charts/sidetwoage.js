@@ -7,19 +7,19 @@ import { connect } from "react-redux";
 
 
 
-class SideOneAge extends React.Component {
+class SideTwoAge extends React.Component {
   state = {
 
     dataPie: {
         labels: ["Under 18", "18-24", "25-32", "33-40", "41-50", "50 +"],
         datasets: [
           {
-            data: [this.props.totalSideOneUnderEighteen,
-                this.props.totalSideOneEighteenUp,
-                this.props.totalSideOneTwentyFiveUp,
-                this.props.totalSideOneThirtyThreeUp,
-                this.props.totalSideOneFortyOneUp,
-                this.props.totalSideOneFiftyUp],
+            data: [this.props.totalSideTwoUnderEighteen,
+                this.props.totalSideTwoEighteenUp,
+                this.props.totalSideTwoTwentyFiveUp,
+                this.props.totalSideTwoThirtyThreeUp,
+                this.props.totalSideTwoFortyOneUp,
+                this.props.totalSideTwoFiftyUp],
             backgroundColor: [
               "#F7464A",
               "#46BFBD",
@@ -55,7 +55,7 @@ class SideOneAge extends React.Component {
       .then(res => {
         console.log(res);
         var data = {
-          sideOneVote: res.data.sideOneVote
+          sideTwoVote: res.data.sideTwoVote
         //   sideTwoVote: res.data.sideTwoVote,
         //   totalVotes: res.data.sideOneVote.length + res.data.sideTwoVote.length + 1,
         //   user: user.name
@@ -66,17 +66,17 @@ class SideOneAge extends React.Component {
 
 
 render() {
-    console.log(this.props, "this is my sideoneage props")
+    console.log(this.props, "this is my sidetwoage props")
     return (
       <MDBContainer>
-        <h3 className="mt-5">Side One Age Demographic</h3>
+        <h3 className="mt-5">Side Two Age Demographic</h3>
         <Pie data={this.state.dataPie} options={{ responsive: true }} />
       </MDBContainer>
     );
   }
 }
 
-SideOneAge.propTypes = {
+SideTwoAge.propTypes = {
     logoutUser: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired
   };
@@ -88,4 +88,4 @@ SideOneAge.propTypes = {
   export default connect(
     mapStateToProps,
   
-  )(SideOneAge)
+  )(SideTwoAge)
