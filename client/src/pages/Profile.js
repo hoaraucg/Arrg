@@ -8,7 +8,8 @@ import { logoutUser } from "../actions/authActions";
 class Profile extends Component {
     state = {
         argumentId: [],
-        argument: []
+        argument: [], 
+        currentArgument: {}
     };
 
     handleUserArguments = (id) => {
@@ -18,20 +19,12 @@ class Profile extends Component {
 
         API.getUserArgument(id)
         .then (res => {
-            const argument = res.data;
+            const data = res.data;
             const { user } = this.props.auth;
             const userName = user.name;
-
-            argument.map((a) => {
-                const userWroteArgument = a.userWroteArgument;
-
-                userWroteArgument.map ((u)=> {
-                if (u === userName) a.userWroteArgument = true;
-                })
-            }
-            )
-           
-        })
+            this.setState({ argument: res.data.arguments, currentArgument: res.data.arguments[0] })
+            console.log(data.arguments);
+    })
         .catch(err => console.log("this should be the error " + err));
     }
 
@@ -44,7 +37,7 @@ class Profile extends Component {
 
     //             arguments.map ((id) => {
     //             })
-    //             // this.setState({ argumentId: res.data.arguments })
+                // this.setState({ argumentId: res.data.arguments })
     //             // console.log(res)
     //             // console.log("This is the argumentID " + this.state.argumentId)
     //             // this.state.argumentId.map(ids => {

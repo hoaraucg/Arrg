@@ -47,8 +47,8 @@ class MinimalisticIntro extends Component {
                  
                   <MDBBtn className="white btn-light-blue btn-large sunny-morning-gradient" onClick={this.toggle}>Walk The Plank...</MDBBtn>
                   
-        <MDBModal isOpen={this.state.modal} toggle={this.toggle}    >
-          <MDBModalHeader toggle={this.toggle}>Login</MDBModalHeader>
+        <MDBModal isOpen={this.state.modal} toggle={this.toggle} background={false}    >
+          <MDBModalHeader toggle={this.toggle} background={false}>Login</MDBModalHeader>
           <MDBModalBody>
             <Login />
           </MDBModalBody>

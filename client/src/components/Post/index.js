@@ -10,8 +10,8 @@ export function CardTitle({ children }) {
             <MDBRow className = "d-flex justify-content-center">
                 <MDBCol md="11" className="mt-5">
                     <MDBCard
-                    style ={{opacity: 0.9}}
-                        className="card-image teal darken-4" 
+                    style ={{opacity: 1.0}}
+                        className="card-image elegant-color-dark" 
                         id= "argumentviews"
                         // style={{
                         //     backgroundColor: "gray"
