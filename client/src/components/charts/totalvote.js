@@ -36,7 +36,7 @@ class TotalVotes extends React.Component {
     },
     barChartOptions: {
       responsive: true,
-      maintainAspectRatio: false,
+      maintainAspectRatio: true,
       scales: {
         xAxes: [
           {
