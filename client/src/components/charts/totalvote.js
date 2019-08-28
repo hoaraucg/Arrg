@@ -5,7 +5,7 @@ import API from "../../utils/Api";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-class ChartsPage extends React.Component {
+class TotalVotes extends React.Component {
   state = {
 
     dataBar: {
@@ -13,7 +13,7 @@ class ChartsPage extends React.Component {
       datasets: [
         {
           label: "% of Votes",
-          data: [12, 19],
+          data: [this.props.sideOneTotal, this.props.sideTwoTotal],
           backgroundColor: [
             "rgba(255, 134,159,0.4)",
             "rgba(98,  182, 239,0.4)",
@@ -83,6 +83,7 @@ class ChartsPage extends React.Component {
 
 
   render() {
+    console.log(this.props)
     return (
       <MDBContainer>
         <h3 className="mt-5">Bar chart</h3>
@@ -92,7 +93,7 @@ class ChartsPage extends React.Component {
   }
 }
 
-ChartsPage.propTypes = {
+TotalVotes.propTypes = {
     logoutUser: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired
   };
@@ -104,4 +105,4 @@ ChartsPage.propTypes = {
   export default connect(
     mapStateToProps,
   
-  )(ChartsPage)
+  )(TotalVotes)
