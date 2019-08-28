@@ -103,7 +103,7 @@ class Profile extends Component {
                                     </MDBCardBody>
                                 </MDBCard>
                                 <MDBMask className="flex-center" overlay="stylish-strong">
-                                    <p className="white-text strong">See results for this Arrg-ument</p>
+                                    {/* <p className="white-text strong">See results for this Arrg-ument</p> */}
                                 </MDBMask>
                                 </MDBView>
                             </div>
