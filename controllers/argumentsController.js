@@ -46,10 +46,11 @@ module.exports = {
     //   .then(dbModel => res.json(dbModel))
     //   .catch(err => res.status(422).json(err));
     // console.log("side one vote controller ", req.body.sideOneVote)
+    console.log(req.body)
     if (req.body.sideOne) {
       db.Argument
         .findOneAndUpdate({ _id: req.params.id }, {
-          $push: {
+          $addToSet: {
             sideOneVote: req.body.user
           }, $set: { totalVotes: req.body.totalVotes }
         })
@@ -60,7 +61,7 @@ module.exports = {
     else {
       db.Argument
         .findOneAndUpdate({ _id: req.params.id }, {
-          $push: {
+          $addToSet: {
             sideTwoVote: req.body.user
           }, $set: { totalVotes: req.body.totalVotes }
         })

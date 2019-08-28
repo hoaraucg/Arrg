@@ -7,8 +7,10 @@ const argumentSchema = new Schema({
   main: { type: String, required: true },
   sideone: { type: String, required: true },
   sidetwo: { type: String, required: true },
-  sideOneVote: {type: [String]},
-  sideTwoVote: {type: [String]},
+  sideOneVote: [{type: Schema.Types.ObjectId,
+  ref: "User"}],
+  sideTwoVote: [{type: Schema.Types.ObjectId,
+    ref: "User"}],
   totalVotes: { type: Number },
   users: [
     {

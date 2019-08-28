@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import { logoutUser } from "../actions/authActions";
 import { CardTitle } from "../components/Post";
 import  TotalVotes from "../components/charts/totalvote";
+import  TotalSex from "../components/charts/sexdemographic";
 
 class Profile extends Component {
     state = {
@@ -122,7 +123,8 @@ class Profile extends Component {
                 </MDBRow>
                 <MDBRow>
                 <MDBContainer>
-       { (this.state.currentArgument.sideOneVote && this.state.currentArgument.sideOneVote.length >= 1) && (this.state.currentArgument.sideTwoVote.length) >= 1 ? (  <MDBContainer
+       { this.state.currentArgument.sideOneVote && this.state.currentArgument.sideTwoVote &&
+       (this.state.currentArgument.sideOneVote.length >= 1 || this.state.currentArgument.sideTwoVote.length >= 1) ? (  <MDBContainer
           className='accordion md-accordion accordion-3 z-depth-1-half'
         >
           <div className='d-flex justify-content-center pt-5'>
@@ -180,18 +182,11 @@ class Profile extends Component {
             </MDBCollapseHeader>
             <MDBCollapse id='collapse2' isOpen={this.state.collapseID}>
               <MDBCardBody class='pt-0'>
-                <p>
-                  Anim pariatur cliche reprehenderit, enim eiusmod high life
-                  accusamus terry richardson ad squid. 3 wolf moon officia aute,
-                  non cupidatat skateboard dolor brunch. Food truck quinoa
-                  nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt
-                  aliqua put a bird on it squid single-origin coffee nulla
-                  assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft
-                  beer labore wes anderson cred nesciunt sapiente ea proident.
-                  Ad vegan excepteur butcher vice lomo. Leggings occaecat craft
-                  beer farm-to-table, raw denim aesthetic synth nesciunt you
-                  probably haven't heard of them accusamus labore sustainable
-                  VHS.
+              <p>
+               <TotalSex totalMalesSideOne={this.state.currentArgument.sideOneVote.filter(user => user.sex === "Male").length}
+               totalFemalesSideOne={this.state.currentArgument.sideOneVote.filter(user => user.sex === "Female").length}
+               totalMalesSideTwo={this.state.currentArgument.sideTwoVote.filter(user => user.sex === "Male").length}
+               totalFemalesSideTwo={this.state.currentArgument.sideTwoVote.filter(user => user.sex === "Female").length} />
                 </p>
               </MDBCardBody>
             </MDBCollapse>

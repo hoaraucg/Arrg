@@ -28,7 +28,7 @@ console.log(argue)
           sideOneVote: res.data.sideOneVote,
           sideTwoVote: res.data.sideTwoVote,
           totalVotes: res.data.sideOneVote.length + res.data.sideTwoVote.length + 1,
-          user: user.name
+          user: user.id
         }
         API.updateVotes(id, data)
           .then(res => {
@@ -52,8 +52,9 @@ console.log(argue)
           sideOneVote: res.data.sideOneVote,
           sideTwoVote: res.data.sideTwoVote,
           totalVotes: res.data.sideOneVote.length + res.data.sideTwoVote.length + 1,
-          user: user.name
+          user: user.id
         }
+        console.log(user, "this is update data")
         API.updateVotes(id, data)
           .then(res => {
             this.getArgumentList()
@@ -101,7 +102,7 @@ console.log(argue)
         console.log("This is where the response should be " + res)
         const argument = res.data;
         const { user } = this.props.auth; //not getting the user here
-        const userName = user.name; 
+        const userName = user.id; 
         // get the users from sideOne and sideTwo
         // Loop through them and check whether any of them match our logged in user
         // if they do, we add a property to our argument so we can use it in the UI
