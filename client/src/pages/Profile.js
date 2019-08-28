@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import API from "../utils/Api";
-import { MDBRow, MDBCol, MDBCard, MDBCardTitle, MDBCardText, MDBMask, MDBView, MDBContainer, MDBCardBody, MDBCollapse, MDBCollapseHeader, MDBIcon } from "mdbreact";
+import { MDBRow, MDBCol, MDBCard, MDBCardTitle, MDBCardText, MDBMask, MDBView, MDBContainer, MDBCardBody, MDBCollapse, MDBCollapseHeader} from "mdbreact";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../actions/authActions";
-import { CardTitle } from "../components/Post";
 
 class Profile extends Component {
     state = {
@@ -22,17 +21,18 @@ class Profile extends Component {
     handleUserArguments = (id) => {
         const userWroteArgument = id.userWroteArgument;
         if (userWroteArgument) return;
-        const { user } = this.props.auth;
 
         API.getUserArgument(id)
             .then(res => {
                 const data = res.data;
-                const { user } = this.props.auth;
-                const userName = user.name;
                 this.setState({ argument: res.data.arguments, currentArgument: res.data.arguments[0] })
                 console.log(data.arguments);
             })
             .catch(err => console.log("this should be the error " + err));
+    }
+
+    argumentClick = () => {
+
     }
 
     // getArgumentList = (id) => {
@@ -136,11 +136,11 @@ export default connect(
     { logoutUser }
 )(Profile);
 
-{/* {this.state.arguments.map(argues => {
-                            return ( */}
-{/* <MDBCard size="md-5">
+/* {this.state.arguments.map(argues => {
+                            return ( */
+/* <MDBCard size="md-5">
                         {console.log(this.state.argumentId)}
                         {console.log(this.state.arguments)}
                         <MDBCardBody>{this.state.arguments}</MDBCardBody>
-                    </MDBCard> */}
-{/* )})} */ }
+                    </MDBCard> */
+/* )})} */ 

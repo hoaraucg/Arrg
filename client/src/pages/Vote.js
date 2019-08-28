@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 // import ProjectsPage from "../components/Post";
 import API from "../utils/Api";
-import { MDBRow, MDBCol, MDBContainer, MDBView, MDBMask, MDBCardBody, MDBIcon } from "mdbreact";
+import { MDBRow, MDBCol, MDBContainer, MDBView, MDBMask, MDBCardBody} from "mdbreact";
 import { CardTitle } from "../components/Post";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";

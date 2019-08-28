@@ -1,10 +1,10 @@
 // import React from "react";
-import React, { Component, Fragment } from "react";
-import { MDBInput, MDBRow, MDBCol, MDBContainer, MDBPopoverHeader, MDBPopoverBody, MDBSelect, MDBBtn, MDBIcon, MDBJumbotron, MDBFormInline, MDBPopover } from "mdbreact";
+import React, { Component} from "react";
+import { MDBInput, MDBRow, MDBCol, MDBContainer, MDBPopoverHeader, MDBPopoverBody, MDBSelect, MDBBtn, MDBJumbotron, MDBFormInline, MDBPopover } from "mdbreact";
 import API from "../utils/Api";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Z_FIXED } from "zlib";
+
 
 class Create extends Component {
 
