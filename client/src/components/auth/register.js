@@ -207,8 +207,8 @@ class Register extends Component {
                                         options={this.state.countries}
                                         getValue={e => this.onGetValue(e, 'country')}
                                         //getTextContent={e=>this.onGetValue(e,'country')} //or this
-                                        placeholder='Please select your Country of Origin'
-                                        label='Please select your Country of Origin'
+                                        selected='Please select your Country of Origin'
+                                        label='Country'
                                     />
                     
                                     <MDBSelect
