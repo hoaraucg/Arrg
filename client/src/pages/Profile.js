@@ -80,7 +80,7 @@ class Profile extends Component {
       let DIV;
       console.log(this.state.collapseID)
       if (this.state.currentArgument.sideOneVote && this.state.currentArgument.sideTwoVote &&
-       (this.state.currentArgument.sideOneVote.length >= 2 || this.state.currentArgument.sideTwoVote.length >= 2)) {
+       (this.state.currentArgument.sideOneVote.length >= 10 || this.state.currentArgument.sideTwoVote.length >= 10)) {
           
           DIV = (  <MDBContainer
           className='accordion md-accordion accordion-3 z-depth-1-half'
