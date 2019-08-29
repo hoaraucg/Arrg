@@ -551,7 +551,7 @@ class Profile extends Component {
                         </MDBCard>
                     </MDBRow>
                 </MDBCol>
-                <MDBRow className="justify-content-center">
+                <MDBRow className="justify-content-center align-items-center">
 
                 {this.state.argument.map(argue => {
                     return (

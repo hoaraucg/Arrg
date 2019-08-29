@@ -208,9 +208,9 @@ class Register extends Component {
                                         getValue={e => this.onGetValue(e, 'country')}
                                         //getTextContent={e=>this.onGetValue(e,'country')} //or this
                                         selected='Please select your Country of Origin'
-                                        label="Country"
+                                        label='Country'
                                     />
-
+                    
                                     <MDBSelect
                                         outline
                                         id='sex'
