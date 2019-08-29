@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 // import ProjectsPage from "../components/Post";
 import API from "../utils/Api";
-import { MDBRow, MDBCol, MDBContainer, MDBView, MDBMask, MDBCardBody} from "mdbreact";
+import { MDBRow, MDBCol, MDBContainer, MDBView, MDBMask, MDBCardBody, MDBFormInline, MDBInput} from "mdbreact";
 import { CardTitle } from "../components/Post";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -10,8 +10,17 @@ import { connect } from "react-redux";
 class Vote extends Component {
   state = {
     argument: [],
+    saveArgument: []
 
   };
+
+  onClick = type => () => {
+    let newArguments = this.state.saveArgument.filter(argue => argue.type[0] === type)
+    this.setState({
+      argument: newArguments
+    });
+  }
+
 
 
   handleSideOne = (argue) => {
@@ -143,7 +152,7 @@ console.log(argue)
         })
 
 
-        this.setState({ argument: res.data })
+        this.setState({ argument: res.data, saveArgument: res.data })
       })
       .catch(err => console.log("This should be the error " + err));
   }
@@ -161,6 +170,26 @@ console.log(argue)
     console.log(this.state);
     return (
       <MDBContainer fluid d-flex justify-content-center>
+        <MDBCol size="md-12"> 
+<MDBFormInline>
+              <MDBInput onClick={this.onClick("Relationship")} checked={this.state.radio === "Relationship" ? true : false}
+                value={this.state.type}
+                name="type"
+                onChange={this.handleInputChange}
+                label="Relationship"
+                type="radio"
+                id="radio1" />
+              <MDBInput onClick={this.onClick("Friendship")} checked={this.state.radio === "Friendship" ? true : false} label="Friendship"
+                type="radio" id="radio2" />
+              <MDBInput onClick={this.onClick("Family")} checked={this.state.radio === "Family" ? true : false} label="Family"
+                type="radio" id="radio3" />
+              <MDBInput onClick={this.onClick("Workplace")} checked={this.state.radio === "Workplace" ? true : false} label="Workplace"
+                type="radio" id="radio4" />
+              <MDBInput onClick={this.onClick("Politics")} checked={this.state.radio === "Politics" ? true : false} label="Politics"
+                type="radio" id="radio5" />
+              <MDBInput onClick={this.onClick("Other")} checked={this.state.radio === "Other" ? true : false} label="Other"
+                type="radio" id="radio6" />
+            </MDBFormInline></MDBCol>
         <MDBRow>
           <MDBCol size="md-12">
 
@@ -170,6 +199,7 @@ console.log(argue)
                 //ternary here 
                 return (((argue.sideTwoVote.length <= 10)) &&
                   ((argue.sideOneVote.length <= 10))) ?
+
 
 
 
