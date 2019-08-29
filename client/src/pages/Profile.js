@@ -35,14 +35,16 @@ class Profile extends Component {
         argumentId: [],
         argument: [],
         currentArgument: {},
-        collapseID: 'collapse1',
+        collapseID: '',
       	DIV: ''
     };
 
-    toggleCollapse = collapseID => () =>
-        this.setState(prevState => ({
-            collapseID: prevState.collapseID !== collapseID ? collapseID : ''
-        }));
+    toggleCollapse = collapseID => () => {
+      console.log(collapseID)
+      this.setState(prevState => ({
+          collapseID: prevState.collapseID !== collapseID ? collapseID : ''
+      }))
+    };
 
     handleUserArguments = (id) => {
         const userWroteArgument = id.userWroteArgument;
@@ -61,47 +63,22 @@ class Profile extends Component {
 
     }
 
-    // getArgumentList = (id) => {
-    //     API.getUserArgument(id)
-    //         .then(res => {
-    //             const arguments = res.data; 
-    //             const { user } = this.props.auth;
-    //             const userName = user.name;
+    componentDidUpdate(prevProps, prevState) {
+			console.log({
+				prevState,
+				state: this.state,
+				updated: prevState.collapseID !== this.state.collapseID
+			})
+			if(prevState.collapseID !== this.state.collapseID) {
+				const DIV = this.renderResults()
+				this.setState({DIV:DIV });
+			}
+		}
 
-    //             arguments.map ((id) => {
-    //             })
-    // this.setState({ argumentId: res.data.arguments })
-    //             // console.log(res)
-    //             // console.log("This is the argumentID " + this.state.argumentId)
-    //             // this.state.argumentId.map(ids => {
-    //                 // console.log(argue)
-    //                 // this.setState({ arguments: [ids]})
-    //                 // console.log(this.state.arguments)
-    //                 // return ids
-    //             })
-    // this.loadArguments(this.state.arguments)
-
-    // })
-    // .catch(err => console.log("This should be the error " + err));
-    // }
-
-    // loadArguments = (id) => {
-    //     API.getArgument(id)
-    //         .then(res => {
-    //             const arguments = res.data
-    //             // this.setState({ arguments: res.data.title })
-    //             console.log(arguments)
-    //             arguments.map((argue) => {
-    //                 const id = argue._id
-    //                 console.log(id)
-    //         })
-    //     })
-    // };
 
     renderResults = () => {
       let DIV;
-      
-      console.log('render');
+      console.log(this.state.collapseID)
       if (this.state.currentArgument.sideOneVote && this.state.currentArgument.sideTwoVote &&
        (this.state.currentArgument.sideOneVote.length >= 2 || this.state.currentArgument.sideTwoVote.length >= 2)) {
           
@@ -137,7 +114,7 @@ class Profile extends Component {
 
                  
                  
-              <MDBIcon
+               <MDBIcon
                 icon={
                   this.state.collapseID === 'collapse1'
                     ? 'angle-up'
@@ -541,6 +518,7 @@ class Profile extends Component {
         console.log(this.state);
         const { user } = this.props.auth;
       const { DIV } = this.state;
+      console.log(this.state);
         return (
             <MDBContainer>
                 <MDBCol size="md-12">

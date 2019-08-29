@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 // import ProjectsPage from "../components/Post";
 import API from "../utils/Api";
-import { MDBRow, MDBCol, MDBContainer, MDBView, MDBMask, MDBCardBody, MDBFormInline, MDBInput} from "mdbreact";
+import { MDBRow, MDBCol, MDBContainer, MDBView, MDBMask, MDBCardBody, MDBFormInline, MDBInput, MDBIcon} from "mdbreact";
 import { CardTitle } from "../components/Post";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -10,15 +10,23 @@ import { connect } from "react-redux";
 class Vote extends Component {
   state = {
     argument: [],
-    saveArgument: []
+    saveArgument: [],
+    radio: ""
 
   };
 
   onClick = type => () => {
+    if (type !== "Show All"){
     let newArguments = this.state.saveArgument.filter(argue => argue.type[0] === type)
     this.setState({
-      argument: newArguments
+      argument: newArguments,
+      radio: type
     });
+  }
+  else {this.setState({
+    argument: this.state.saveArgument,
+    radio: type
+  });}
   }
 
 
@@ -171,7 +179,8 @@ console.log(argue)
     return (
       <MDBContainer fluid d-flex justify-content-center>
         <MDBCol size="md-12"> 
-<MDBFormInline>
+<MDBFormInline className="d-flex justify-content-center">
+<MDBIcon icon="filter" />
               <MDBInput onClick={this.onClick("Relationship")} checked={this.state.radio === "Relationship" ? true : false}
                 value={this.state.type}
                 name="type"
@@ -189,7 +198,12 @@ console.log(argue)
                 type="radio" id="radio5" />
               <MDBInput onClick={this.onClick("Other")} checked={this.state.radio === "Other" ? true : false} label="Other"
                 type="radio" id="radio6" />
-            </MDBFormInline></MDBCol>
+                <MDBInput onClick={this.onClick("Show All")} checked={this.state.radio === "Show All" ? true : false} label="Show All"
+                type="radio" id="radio7" />
+
+            </MDBFormInline>
+
+            </MDBCol>
         <MDBRow>
           <MDBCol size="md-12">
 

@@ -110,7 +110,7 @@ class Create extends Component {
         <MDBRow className="d-flex justify-content-center">
           <MDBCol size="md-12">
 
-            <MDBCol size="md-12"> <MDBFormInline>
+            <MDBCol size="md-12"> <MDBFormInline className="d-flex justify-content-center">
               <MDBInput onClick={this.onClick("Relationship")} checked={this.state.radio === "Relationship" ? true : false}
                 value={this.state.type}
                 name="type"
