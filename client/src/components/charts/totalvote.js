@@ -12,24 +12,16 @@ class TotalVotes extends React.Component {
       labels: ["Side One", "Side Two"],
       datasets: [
         {
-          label: "% of Votes",
+          label: "# of Votes",
           data: [this.props.sideOneTotal, this.props.sideTwoTotal],
           backgroundColor: [
             "rgba(255, 134,159,0.4)",
-            "rgba(98,  182, 239,0.4)",
-            "rgba(255, 218, 128,0.4)",
-            "rgba(113, 205, 205,0.4)",
-            "rgba(170, 128, 252,0.4)",
-            "rgba(255, 177, 101,0.4)"
+            "rgba(98,  182, 239,0.4)"
           ],
           borderWidth: 2,
           borderColor: [
             "rgba(255, 134, 159, 1)",
-            "rgba(98,  182, 239, 1)",
-            "rgba(255, 218, 128, 1)",
-            "rgba(113, 205, 205, 1)",
-            "rgba(170, 128, 252, 1)",
-            "rgba(255, 177, 101, 1)"
+            "rgba(98,  182, 239, 1)"
           ]
         }
       ]
@@ -85,7 +77,7 @@ class TotalVotes extends React.Component {
     console.log(this.props)
     return (
       <MDBContainer>
-        <h3 className="mt-5">Bar chart</h3>
+        <h3 className="mt-5"></h3>
         <Bar data={this.state.dataBar} options={this.state.barChartOptions} />
       </MDBContainer>
     )

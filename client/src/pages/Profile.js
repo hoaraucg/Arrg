@@ -14,6 +14,18 @@ import  SideOneAge from "../components/charts/sideoneage";
 import  SideTwoAge from "../components/charts/sidetwoage";
 import  SideOneRace from "../components/charts/sideonerace";
 import  SideTwoRace from "../components/charts/sidetworace";
+import  SideOneCountry from "../components/charts/sideonecountry";
+import  SideTwoCountry from "../components/charts/sidetwocountry";
+import  SideOneRelationship from "../components/charts/sideonerelationship";
+import  SideTwoRelationship from "../components/charts/sidetworelationship";
+import  SideOneEducation from "../components/charts/sideoneeducation";
+import  SideTwoEducation from "../components/charts/sidetwoeducation";
+import  SideOneCareer from "../components/charts/sideonecareer";
+import  SideTwoCareer from "../components/charts/sidetwocareer";
+import  SideOneIncome from "../components/charts/sideoneincome";
+import  SideTwoIncome from "../components/charts/sidetwoincome";
+import  SideOnePolitical from "../components/charts/sideonepolitical";
+import  SideTwoPolitical from "../components/charts/sidetwopolitical";
 
 
 
@@ -23,7 +35,8 @@ class Profile extends Component {
         argumentId: [],
         argument: [],
         currentArgument: {},
-        collapseID: 'collapse1'
+        collapseID: 'collapse1',
+      	DIV: ''
     };
 
     toggleCollapse = collapseID => () =>
@@ -85,57 +98,14 @@ class Profile extends Component {
     //     })
     // };
 
-
-    componentDidMount() {
-        const { user } = this.props.auth;
-        this.handleUserArguments(user.id)
-    };
-
-    render() {
-        console.log(this.state);
-        const { user } = this.props.auth;
-        return (
-            <MDBContainer>
-                <MDBCol size="md-12">
-                    <MDBRow size="md-8" className="justify-content-center">
-                        <MDBCard text-center z-depth-5>
-                            <MDBCardBody style={{ marginTop: 4, fontSize: 32 }} justify-content-center text-center>Hey there, {user.name}</MDBCardBody>
-                            <MDBCardBody>Here, you can view any Arrg-uments you may have posted as well as any data that's been collected related to the user's that have voted one way or another.</MDBCardBody>
-                        </MDBCard>
-                    </MDBRow>
-                </MDBCol>
-                <MDBRow className="justify-content-center align-items-center">
-
-                {this.state.argument.map(argue => {
-                    return (
-
-                            <div className="import" key={argue._id} onClick = {() => this.setState({currentArgument:argue})}>
-
-                                <MDBView hover>
-                                    <MDBCard style={{ width: "22rem", marginLeft: 5, marginRight: 5, background: "#212121" }} className="shadow-box-example hoverable">
-                                        {/* <a href={"/arguments/" + argue._id}> */}
-                                        <MDBCardBody>
-                                            <MDBCardTitle style={{ color: "white", fontSize: 24 }} className="center">{argue.title}</MDBCardTitle>
-                                            <MDBCardText style={{ color: "white", fontSize: 14 }} className="center">Total Votes: {argue.totalVotes}</MDBCardText>
-                                            <br />
-                                            <MDBCardText style={{ color: "white", fontSize: 16 }} className="center">{argue.main}</MDBCardText>
-                                            {/* <MDBCardText style={{ color: "orange", fontSize: 20 }} id="one"> {argue.sideone}</MDBCardText>
-                                        <MDBCardText style={{ color: "orange", fontSize: 20 }} id="two"> {argue.sidetwo}</MDBCardText> */}
-                                        </MDBCardBody>
-                                    </MDBCard>
-                                    <MDBMask className="flex-center" overlay="stylish-strong">
-                                        {/* <p className="white-text strong">See results for this Arrg-ument</p> */}
-                                    </MDBMask>
-                                </MDBView>
-                            </div>
-                        )
-                    }
-                    )}
-                </MDBRow>
-                <MDBRow>
-                <MDBContainer>
-       { this.state.currentArgument.sideOneVote && this.state.currentArgument.sideTwoVote &&
-       (this.state.currentArgument.sideOneVote.length >= 1 || this.state.currentArgument.sideTwoVote.length >= 1) ? (  <MDBContainer
+    renderResults = () => {
+      let DIV;
+      
+      console.log('render');
+      if (this.state.currentArgument.sideOneVote && this.state.currentArgument.sideTwoVote &&
+       (this.state.currentArgument.sideOneVote.length >= 2 || this.state.currentArgument.sideTwoVote.length >= 2)) {
+          
+          DIV = (  <MDBContainer
           className='accordion md-accordion accordion-3 z-depth-1-half'
         >
           <div className='d-flex justify-content-center pt-5'>
@@ -143,6 +113,13 @@ class Profile extends Component {
           </div>
           <h2 class='text-center text-uppercase red-text py-4 px-3'>
             {this.state.currentArgument.title}
+            <br></br>
+            <h4>
+            {(this.state.currentArgument.sideOneVote.length > this.state.currentArgument.sideTwoVote.length) ? (
+               "Side One Wins!" 
+               ):
+               ("Side Two Wins!")}
+               </h4>
           </h2>
 
           <hr class='mb-0' />
@@ -156,10 +133,7 @@ class Profile extends Component {
             
 
 
-               {(this.state.currentArgument.sideOneVote.length > this.state.currentArgument.sideTwoVote.length) ? (
-               "Side One Wins! View Total Votes" 
-               ):
-               ("Side Two Wins! View Total Votes")}
+               Side One and Side Two Total Votes
 
                  
                  
@@ -189,7 +163,7 @@ class Profile extends Component {
               tag='h3'
               tagClassName='red-text d-flex justify-content-between align-items-center'
             >
-              Demographic Data!
+              Gender Demographic Data
               <MDBIcon
                 icon={
                   this.state.collapseID === 'collapse2'
@@ -219,7 +193,7 @@ class Profile extends Component {
               tag='h3'
               tagClassName='red-text d-flex justify-content-between align-items-center'
             >
-              Age demographic data!
+              Age Range Demographic Data
               <MDBIcon
                 icon={
                   this.state.collapseID === 'collapse3'
@@ -258,7 +232,7 @@ class Profile extends Component {
               tag='h3'
               tagClassName='red-text d-flex justify-content-between align-items-center'
             >
-              Race demographic data!
+              Race Demographic Data
               <MDBIcon
                 icon={
                   this.state.collapseID === 'collapse4'
@@ -290,15 +264,338 @@ class Profile extends Component {
               </MDBCardBody>
             </MDBCollapse>
           </MDBCard>
-       </MDBContainer>
-       ) : <div>
-         <p> "your results are still being collected" </p>
-       </div>}
+
+          <MDBCard>
+            <MDBCollapseHeader
+              onClick={this.toggleCollapse('collapse5')}
+              tag='h3'
+              tagClassName='red-text d-flex justify-content-between align-items-center'
+            >
+              Country Demographic Data
+              <MDBIcon
+                icon={
+                  this.state.collapseID === 'collapse5'
+                    ? 'angle-up'
+                    : 'angle-down'
+                }
+                className='red-text'
+                size='2x'
+              />
+            </MDBCollapseHeader>
+            <MDBCollapse id='collapse5' isOpen={this.state.collapseID}>
+              <MDBCardBody class='pt-0'>
+                <p>
+                <SideOneCountry totalSideOneCanada={this.state.currentArgument.sideOneVote.filter(user => user.country === "Canada").length}
+               totalSideOneUnitedStates={this.state.currentArgument.sideOneVote.filter(user => user.country === "United States").length}
+               totalSideOneUnitedKingdom={this.state.currentArgument.sideOneVote.filter(user => user.country === "United Kingdom").length}
+               totalSideOneOther={this.state.currentArgument.sideOneVote.filter(user => user.country === "Other").length}
+                />
+                </p>
+                <p>
+                <SideTwoCountry totalSideTwoCanada={this.state.currentArgument.sideTwoVote.filter(user => user.country === "Canada").length}
+               totalSideTwoUnitedStates={this.state.currentArgument.sideTwoVote.filter(user => user.country === "United States").length}
+               totalSideTwoUnitedKingdom={this.state.currentArgument.sideTwoVote.filter(user => user.country === "United Kingdom").length}
+               totalSideTwoOther={this.state.currentArgument.sideTwoVote.filter(user => user.country === "Other").length} />
+                </p>
+              </MDBCardBody>
+            </MDBCollapse>
+          </MDBCard>
+
+          <MDBCard>
+            <MDBCollapseHeader
+              onClick={this.toggleCollapse('collapse6')}
+              tag='h3'
+              tagClassName='red-text d-flex justify-content-between align-items-center'
+            >
+              Relationship Status Demographic Data
+              <MDBIcon
+                icon={
+                  this.state.collapseID === 'collapse6'
+                    ? 'angle-up'
+                    : 'angle-down'
+                }
+                className='red-text'
+                size='2x'
+              />
+            </MDBCollapseHeader>
+            <MDBCollapse id='collapse6' isOpen={this.state.collapseID}>
+              <MDBCardBody class='pt-0'>
+                <p>
+                <SideOneRelationship totalSideOneSingle={this.state.currentArgument.sideOneVote.filter(user => user.relationship === "Single").length}
+               totalSideOneSigOther={this.state.currentArgument.sideOneVote.filter(user => user.relationship === "Significant Other").length}
+               totalSideOneMarried={this.state.currentArgument.sideOneVote.filter(user => user.relationship === "Married").length}
+               totalSideOneDivorced={this.state.currentArgument.sideOneVote.filter(user => user.relationship === "Divorced").length}
+               totalSideOnePartnered={this.state.currentArgument.sideOneVote.filter(user => user.relationship === "Partnered (Same-Sex)").length}
+               totalSideOneDispartnered={this.state.currentArgument.sideOneVote.filter(user => user.relationship === "Dispartnered (Same-Sex)").length}
+               totalSideOneWidowed={this.state.currentArgument.sideOneVote.filter(user => user.relationship === "Widowed").length}
+               
+                />
+                </p>
+                <p>
+                <SideTwoRelationship totalSideTwoSingle={this.state.currentArgument.sideTwoVote.filter(user => user.relationship === "Single").length}
+               totalSideTwoSigOther={this.state.currentArgument.sideTwoVote.filter(user => user.relationship === "Significant Other").length}
+               totalSideTwoMarried={this.state.currentArgument.sideTwoVote.filter(user => user.relationship === "Married").length}
+               totalSideTwoDivorced={this.state.currentArgument.sideTwoVote.filter(user => user.relationship === "Divorced").length}
+               totalSideTwoPartnered={this.state.currentArgument.sideTwoVote.filter(user => user.relationship === "Partnered (Same-Sex)").length}
+               totalSideTwoDispartnered={this.state.currentArgument.sideTwoVote.filter(user => user.relationship === "Dispartnered (Same-Sex)").length}
+               totalSideTwoWidowed={this.state.currentArgument.sideTwoVote.filter(user => user.relationship === "Widowed").length} />
+                </p>
+              </MDBCardBody>
+            </MDBCollapse>
+          </MDBCard>
+
+
+          <MDBCard>
+            <MDBCollapseHeader
+              onClick={this.toggleCollapse('collapse7')}
+              tag='h3'
+              tagClassName='red-text d-flex justify-content-between align-items-center'
+            >
+              Education Demographic Data
+              <MDBIcon
+                icon={
+                  this.state.collapseID === 'collapse7'
+                    ? 'angle-up'
+                    : 'angle-down'
+                }
+                className='red-text'
+                size='2x'
+              />
+            </MDBCollapseHeader>
+            <MDBCollapse id='collapse7' isOpen={this.state.collapseID}>
+              <MDBCardBody class='pt-0'>
+                <p>
+                <SideOneEducation totalSideOneHighSchool={this.state.currentArgument.sideOneVote.filter(user => user.education === "High School").length}
+              totalSideOneSomeCollege={this.state.currentArgument.sideOneVote.filter(user => user.education === "Some College").length}
+              totalSideOneAssocDegree={this.state.currentArgument.sideOneVote.filter(user => user.education === "Associates Degree").length}
+              totalSideOneBachDegree={this.state.currentArgument.sideOneVote.filter(user => user.education === "Bachelors Degree").length}
+              totalSideOneMasterDegree={this.state.currentArgument.sideOneVote.filter(user => user.education === "Masters Degree").length}
+              totalSideOneCert={this.state.currentArgument.sideOneVote.filter(user => user.education === "Certification").length}
+               
+                />
+                </p>
+                <p>
+                <SideTwoEducation totalSideTwoHighSchool={this.state.currentArgument.sideTwoVote.filter(user => user.education === "High School").length}
+              totalSideTwoSomeCollege={this.state.currentArgument.sideTwoVote.filter(user => user.education === "Some College").length}
+              totalSideTwoAssocDegree={this.state.currentArgument.sideTwoVote.filter(user => user.education === "Associates Degree").length}
+              totalSideTwoBachDegree={this.state.currentArgument.sideTwoVote.filter(user => user.education === "Bachelors Degree").length}
+              totalSideTwoMasterDegree={this.state.currentArgument.sideTwoVote.filter(user => user.education === "Masters Degree").length}
+              totalSideTwoCert={this.state.currentArgument.sideTwoVote.filter(user => user.education === "Certification").length} />
+                </p>
+              </MDBCardBody>
+            </MDBCollapse>
+          </MDBCard>
+
+
+          <MDBCard>
+            <MDBCollapseHeader
+              onClick={this.toggleCollapse('collapse8')}
+              tag='h3'
+              tagClassName='red-text d-flex justify-content-between align-items-center'
+            >
+              Career Level Demographic Data
+              <MDBIcon
+                icon={
+                  this.state.collapseID === 'collapse8'
+                    ? 'angle-up'
+                    : 'angle-down'
+                }
+                className='red-text'
+                size='2x'
+              />
+            </MDBCollapseHeader>
+            <MDBCollapse id='collapse8' isOpen={this.state.collapseID}>
+              <MDBCardBody class='pt-0'>
+                <p>
+                <SideOneCareer totalSideOneEntry={this.state.currentArgument.sideOneVote.filter(user => user.career === "Entry Level").length}
+              totalSideOneSupervisor={this.state.currentArgument.sideOneVote.filter(user => user.career === "Supervisor").length}
+              totalSideOneManager={this.state.currentArgument.sideOneVote.filter(user => user.career === "Manager").length}
+              totalSideOneRegHead={this.state.currentArgument.sideOneVote.filter(user => user.career === "Regional Head").length}
+              totalSideOneCxo={this.state.currentArgument.sideOneVote.filter(user => user.career === "CXO").length}
+              
+               
+                />
+                </p>
+                <p>
+                <SideTwoCareer totalSideTwoEntry={this.state.currentArgument.sideTwoVote.filter(user => user.career === "Entry Level").length}
+              totalSideTwoSupervisor={this.state.currentArgument.sideTwoVote.filter(user => user.career === "Supervisor").length}
+              totalSideTwoManager={this.state.currentArgument.sideTwoVote.filter(user => user.career === "Manager").length}
+              totalSideTwoRegHead={this.state.currentArgument.sideTwoVote.filter(user => user.career === "Regional Head").length}
+              totalSideTwoCxo={this.state.currentArgument.sideTwoVote.filter(user => user.career === "CXO").length} />
+                </p>
+              </MDBCardBody>
+            </MDBCollapse>
+          </MDBCard>
+
+          <MDBCard>
+            <MDBCollapseHeader
+              onClick={this.toggleCollapse('collapse9')}
+              tag='h3'
+              tagClassName='red-text d-flex justify-content-between align-items-center'
+            >
+              Income Level Demographic Data
+              <MDBIcon
+                icon={
+                  this.state.collapseID === 'collapse9'
+                    ? 'angle-up'
+                    : 'angle-down'
+                }
+                className='red-text'
+                size='2x'
+              />
+            </MDBCollapseHeader>
+            <MDBCollapse id='collapse9' isOpen={this.state.collapseID}>
+              <MDBCardBody class='pt-0'>
+                <p>
+                <SideOneIncome totalSideOneTwenty={this.state.currentArgument.sideOneVote.filter(user => user.income === "Less than 20,000 Annually").length}
+              totalSideOneForty={this.state.currentArgument.sideOneVote.filter(user => user.income === "20,000 - 40,000").length}
+              totalSideOneSeventy={this.state.currentArgument.sideOneVote.filter(user => user.income === "40,000 - 70,000").length}
+              totalSideOneHundred={this.state.currentArgument.sideOneVote.filter(user => user.income === "70,000 - 100,000").length}
+              totalSideOneHundredFifty={this.state.currentArgument.sideOneVote.filter(user => user.income === "100,000 - 150,000").length}
+              totalSideOneAboveHundredFifty={this.state.currentArgument.sideOneVote.filter(user => user.income === "More than 150,000").length}
+                />
+                </p>
+                <p>
+                <SideTwoIncome totalSideTwoTwenty={this.state.currentArgument.sideTwoVote.filter(user => user.income === "Less than 20,000 Annually").length}
+              totalSideTwoForty={this.state.currentArgument.sideTwoVote.filter(user => user.income === "20,000 - 40,000").length}
+              totalSideTwoSeventy={this.state.currentArgument.sideTwoVote.filter(user => user.income === "40,000 - 70,000").length}
+              totalSideTwoHundred={this.state.currentArgument.sideTwoVote.filter(user => user.income === "70,000 - 100,000").length}
+              totalSideTwoHundredFifty={this.state.currentArgument.sideTwoVote.filter(user => user.income === "100,000 - 150,000").length}
+              totalSideTwoAboveHundredFifty={this.state.currentArgument.sideTwoVote.filter(user => user.income === "More than 150,000").length} />
+                </p>
+              </MDBCardBody>
+            </MDBCollapse>
+          </MDBCard>
+
+
+          <MDBCard>
+            <MDBCollapseHeader
+              onClick={this.toggleCollapse('collapse10')}
+              tag='h3'
+              tagClassName='red-text d-flex justify-content-between align-items-center'
+            >
+              Political Affiliation Demographic Data
+              <MDBIcon
+                icon={
+                  this.state.collapseID === 'collapse10'
+                    ? 'angle-up'
+                    : 'angle-down'
+                }
+                className='red-text'
+                size='2x'
+              />
+            </MDBCollapseHeader>
+            <MDBCollapse id='collapse10' isOpen={this.state.collapseID}>
+              <MDBCardBody class='pt-0'>
+                <p>
+                <SideOnePolitical totalSideOneRepub={this.state.currentArgument.sideOneVote.filter(user => user.political === "Republican").length}
+              totalSideOneDemo={this.state.currentArgument.sideOneVote.filter(user => user.political === "Democrat").length}
+              totalSideOneLib={this.state.currentArgument.sideOneVote.filter(user => user.political === "Libertarian").length}
+              totalSideOneGreen={this.state.currentArgument.sideOneVote.filter(user => user.political === "Green").length}
+              totalSideOneOther={this.state.currentArgument.sideOneVote.filter(user => user.political === "Other").length}
+                />
+                </p>
+                <p>
+                <SideTwoPolitical totalSideTwoRepub={this.state.currentArgument.sideTwoVote.filter(user => user.political === "Republican").length}
+              totalSideTwoDemo={this.state.currentArgument.sideTwoVote.filter(user => user.political === "Democrat").length}
+              totalSideTwoLib={this.state.currentArgument.sideTwoVote.filter(user => user.political === "Libertarian").length}
+              totalSideTwoGreen={this.state.currentArgument.sideTwoVote.filter(user => user.political === "Green").length}
+              totalSideTwoOther={this.state.currentArgument.sideTwoVote.filter(user => user.political === "Other").length} />
+                </p>
+              </MDBCardBody>
+            </MDBCollapse>
+          </MDBCard>
+
+       </MDBContainer>);
+		} else {
+       DIV = (
+       <MDBContainer>
+          
+       <div className="import" onClick = {() => this.setState({})}>
+          <div className='d-flex justify-content-center pt-5'>
+            <MDBIcon icon='anchor' className='red-text mx-3' size='2x' />
+          </div>
+          <h2 class='text-center text-uppercase red-text py-4 px-3'>
+            {this.state.currentArgument.title}
+            <br></br>
+            <h4>
+               Votes are still being collected.  Check back for your results soon! 
+               </h4>
+          </h2>
+          </div>
+                   
+          </MDBContainer>
+          );
+}	
+		return DIV;
+		
+      
+	}
+
+    componentDidMount() {
+        const { user } = this.props.auth;
+        this.handleUserArguments(user.id)
+    };
+
+    render() {
+        console.log(this.state);
+        const { user } = this.props.auth;
+      const { DIV } = this.state;
+        return (
+            <MDBContainer>
+                <MDBCol size="md-12">
+                    <MDBRow size="md-8" className="justify-content-center">
+                        <MDBCard text-center z-depth-5>
+                            <MDBCardBody style={{ marginTop: 4, fontSize: 32 }} justify-content-center text-center>Ahoy, {user.name}!</MDBCardBody>
+                            <MDBCardBody>Click on your Arrg-ument below to view results and demographic data collected from your voters.</MDBCardBody>
+                        </MDBCard>
+                    </MDBRow>
+                </MDBCol>
+                <MDBRow className="justify-content-center align-items-center">
+
+                {this.state.argument.map(argue => {
+                    return (
+
+                            <div className="import" key={argue._id} onClick = {() => {
+                              //const renderResults = this.state.renderResults;
+                              this.setState(
+                                {currentArgument:argue},
+                              	() => { this.setState({DIV:this.renderResults() }) }
+                              )
+                             
+                            }}>
+
+                                <MDBView hover>
+                                    <MDBCard style={{ width: "22rem", marginLeft: 5, marginRight: 5, background: "#212121" }} className="shadow-box-example hoverable">
+                                        {/* <a href={"/arguments/" + argue._id}> */}
+                                        <MDBCardBody>
+                                            <MDBCardTitle style={{ color: "white", fontSize: 30 }} className="center">{argue.title}</MDBCardTitle>
+                                            <MDBCardText style={{ color: "white", fontSize: 18 }} className="center">Total Votes: {argue.totalVotes}</MDBCardText>
+                                            <br />
+                                            <MDBCardText style={{ color: "white", fontSize: 14 }} className="center">{argue.main}</MDBCardText>
+                                            {/* <MDBCardText style={{ color: "orange", fontSize: 20 }} id="one"> {argue.sideone}</MDBCardText>
+                                        <MDBCardText style={{ color: "orange", fontSize: 20 }} id="two"> {argue.sidetwo}</MDBCardText> */}
+                                        </MDBCardBody>
+                                    </MDBCard>
+                                    <MDBMask className="flex-center" overlay="stylish-strong">
+                                        {/* <p className="white-text strong">See results for this Arrg-ument</p> */}
+                                    </MDBMask>
+                                </MDBView>
+                            </div>
+                        )
+                    }
+                    )}
+                </MDBRow>
+                <MDBRow>
+                <MDBContainer>
+                {DIV}
       </MDBContainer>
                 </MDBRow>
             </MDBContainer>
             
         )
+    
+      
     }
 }
 
