@@ -29,6 +29,7 @@ class Create extends Component {
 
 
   onClick = nr => () => {
+    console.log(nr)
     this.setState({
       radio: nr
     });
@@ -49,6 +50,7 @@ class Create extends Component {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
     this.setState({
+      type: "",
       title: "",
       main: "",
       sideone: "",
@@ -56,7 +58,7 @@ class Create extends Component {
     });
 
     var data = {
-      type: [],
+      type: this.state.radio,
       title: this.state.title,
       main: this.state.main,
       sideone: this.state.sideone,
@@ -109,22 +111,22 @@ class Create extends Component {
           <MDBCol size="md-12">
 
             <MDBCol size="md-12"> <MDBFormInline>
-              <MDBInput onClick={this.onClick(1)} checked={this.state.radio === 1 ? true : false}
+              <MDBInput onClick={this.onClick("Relationship")} checked={this.state.radio === "Relationship" ? true : false}
                 value={this.state.type}
                 name="type"
                 onChange={this.handleInputChange}
                 label="Relationship"
                 type="radio"
                 id="radio1" />
-              <MDBInput onClick={this.onClick(2)} checked={this.state.radio === 2 ? true : false} label="Friendship"
+              <MDBInput onClick={this.onClick("Friendship")} checked={this.state.radio === "Friendship" ? true : false} label="Friendship"
                 type="radio" id="radio2" />
-              <MDBInput onClick={this.onClick(3)} checked={this.state.radio === 3 ? true : false} label="Family"
+              <MDBInput onClick={this.onClick("Family")} checked={this.state.radio === "Family" ? true : false} label="Family"
                 type="radio" id="radio3" />
-              <MDBInput onClick={this.onClick(4)} checked={this.state.radio === 4 ? true : false} label="Workplace"
+              <MDBInput onClick={this.onClick("Workplace")} checked={this.state.radio === "Workplace" ? true : false} label="Workplace"
                 type="radio" id="radio4" />
-              <MDBInput onClick={this.onClick(5)} checked={this.state.radio === 5 ? true : false} label="Politics"
+              <MDBInput onClick={this.onClick("Politics")} checked={this.state.radio === "Politics" ? true : false} label="Politics"
                 type="radio" id="radio5" />
-              <MDBInput onClick={this.onClick(6)} checked={this.state.radio === 6 ? true : false} label="Other"
+              <MDBInput onClick={this.onClick("Other")} checked={this.state.radio === "Other" ? true : false} label="Other"
                 type="radio" id="radio6" />
             </MDBFormInline></MDBCol>
 
