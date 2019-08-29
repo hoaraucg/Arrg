@@ -104,7 +104,7 @@ class Profile extends Component {
                         </MDBCard>
                     </MDBRow>
                 </MDBCol>
-                <MDBRow className="justify-content-center">
+                <MDBRow className="justify-content-center align-items-center">
 
                 {this.state.argument.map(argue => {
                     return (
@@ -115,10 +115,10 @@ class Profile extends Component {
                                     <MDBCard style={{ width: "22rem", marginLeft: 5, marginRight: 5, background: "#212121" }} className="shadow-box-example hoverable">
                                         {/* <a href={"/arguments/" + argue._id}> */}
                                         <MDBCardBody>
-                                            <MDBCardTitle style={{ color: "white", fontSize: 30 }} className="center">{argue.title}</MDBCardTitle>
+                                            <MDBCardTitle style={{ color: "white", fontSize: 24 }} className="center">{argue.title}</MDBCardTitle>
                                             <MDBCardText style={{ color: "white", fontSize: 14 }} className="center">Total Votes: {argue.totalVotes}</MDBCardText>
                                             <br />
-                                            <MDBCardText style={{ color: "white", fontSize: 24 }} className="center">{argue.main}</MDBCardText>
+                                            <MDBCardText style={{ color: "white", fontSize: 16 }} className="center">{argue.main}</MDBCardText>
                                             {/* <MDBCardText style={{ color: "orange", fontSize: 20 }} id="one"> {argue.sideone}</MDBCardText>
                                         <MDBCardText style={{ color: "orange", fontSize: 20 }} id="two"> {argue.sidetwo}</MDBCardText> */}
                                         </MDBCardBody>
