@@ -12,7 +12,7 @@ class TotalSex extends React.Component {
       labels: ["Male Side One", "Female Side One", "Male Side Two", "Female Side Two"],
       datasets: [
         {
-          label: "% of Votes",
+          label: "# of Votes",
           data: [this.props.totalMalesSideOne, this.props.totalFemalesSideOne, this.props.totalMalesSideTwo, this.props.totalFemalesSideTwo],
           backgroundColor: [
             "rgba(255, 134,159,0.4)",
@@ -97,7 +97,7 @@ componentWillReceiveProps(nextProps) {
     console.log(this.props)
     return (
       <MDBContainer>
-        <h3 className="mt-5">Bar chart</h3>
+        <h3 className="mt-5"></h3>
         <Bar data={this.state.dataBar} options={this.state.barChartOptions} />
       </MDBContainer>
     )
