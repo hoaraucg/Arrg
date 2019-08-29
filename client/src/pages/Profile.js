@@ -35,7 +35,8 @@ class Profile extends Component {
         argumentId: [],
         argument: [],
         currentArgument: {},
-        collapseID: 'collapse1'
+        collapseID: 'collapse1',
+      	DIV: ''
     };
 
     toggleCollapse = collapseID => () =>
@@ -97,57 +98,14 @@ class Profile extends Component {
     //     })
     // };
 
-
-    componentDidMount() {
-        const { user } = this.props.auth;
-        this.handleUserArguments(user.id)
-    };
-
-    render() {
-        console.log(this.state);
-        const { user } = this.props.auth;
-        return (
-            <MDBContainer>
-                <MDBCol size="md-12">
-                    <MDBRow size="md-8" className="justify-content-center">
-                        <MDBCard text-center z-depth-5>
-                            <MDBCardBody style={{ marginTop: 4, fontSize: 32 }} justify-content-center text-center>Hey there, {user.name}</MDBCardBody>
-                            <MDBCardBody>Here, you can view any Arrg-uments you may have posted as well as any data that's been collected related to the user's that have voted one way or another.</MDBCardBody>
-                        </MDBCard>
-                    </MDBRow>
-                </MDBCol>
-                <MDBRow className="justify-content-center">
-
-                {this.state.argument.map(argue => {
-                    return (
-
-                            <div className="import" key={argue._id} onClick = {() => this.setState({currentArgument:argue})}>
-
-                                <MDBView hover>
-                                    <MDBCard style={{ width: "22rem", marginLeft: 5, marginRight: 5, background: "#212121" }} className="shadow-box-example hoverable">
-                                        {/* <a href={"/arguments/" + argue._id}> */}
-                                        <MDBCardBody>
-                                            <MDBCardTitle style={{ color: "white", fontSize: 30 }} className="center">{argue.title}</MDBCardTitle>
-                                            <MDBCardText style={{ color: "white", fontSize: 14 }} className="center">Total Votes: {argue.totalVotes}</MDBCardText>
-                                            <br />
-                                            <MDBCardText style={{ color: "white", fontSize: 24 }} className="center">{argue.main}</MDBCardText>
-                                            {/* <MDBCardText style={{ color: "orange", fontSize: 20 }} id="one"> {argue.sideone}</MDBCardText>
-                                        <MDBCardText style={{ color: "orange", fontSize: 20 }} id="two"> {argue.sidetwo}</MDBCardText> */}
-                                        </MDBCardBody>
-                                    </MDBCard>
-                                    <MDBMask className="flex-center" overlay="stylish-strong">
-                                        {/* <p className="white-text strong">See results for this Arrg-ument</p> */}
-                                    </MDBMask>
-                                </MDBView>
-                            </div>
-                        )
-                    }
-                    )}
-                </MDBRow>
-                <MDBRow>
-                <MDBContainer>
-       { this.state.currentArgument.sideOneVote && this.state.currentArgument.sideTwoVote &&
-       (this.state.currentArgument.sideOneVote.length >= 10 || this.state.currentArgument.sideTwoVote.length >= 10) ? (  <MDBContainer
+    renderResults = () => {
+      let DIV;
+      
+      console.log('render');
+      if (this.state.currentArgument.sideOneVote && this.state.currentArgument.sideTwoVote &&
+       (this.state.currentArgument.sideOneVote.length >= 2 || this.state.currentArgument.sideTwoVote.length >= 2)) {
+          
+          DIV = (  <MDBContainer
           className='accordion md-accordion accordion-3 z-depth-1-half'
         >
           <div className='d-flex justify-content-center pt-5'>
@@ -548,15 +506,96 @@ class Profile extends Component {
             </MDBCollapse>
           </MDBCard>
 
-       </MDBContainer>
-       ) : 
-       null
-      }
+       </MDBContainer>);
+		} else {
+       DIV = (
+       <MDBContainer>
+          
+       <div className="import" onClick = {() => this.setState({})}>
+          <div className='d-flex justify-content-center pt-5'>
+            <MDBIcon icon='anchor' className='red-text mx-3' size='2x' />
+          </div>
+          <h2 class='text-center text-uppercase red-text py-4 px-3'>
+            {this.state.currentArgument.title}
+            <br></br>
+            <h4>
+               Votes are still being collected.  Check back for your results soon! 
+               </h4>
+          </h2>
+          </div>
+                   
+          </MDBContainer>
+          );
+}	
+		return DIV;
+		
+      
+	}
+
+    componentDidMount() {
+        const { user } = this.props.auth;
+        this.handleUserArguments(user.id)
+    };
+
+    render() {
+        console.log(this.state);
+        const { user } = this.props.auth;
+      const { DIV } = this.state;
+        return (
+            <MDBContainer>
+                <MDBCol size="md-12">
+                    <MDBRow size="md-8" className="justify-content-center">
+                        <MDBCard text-center z-depth-5>
+                            <MDBCardBody style={{ marginTop: 4, fontSize: 32 }} justify-content-center text-center>Ahoy, {user.name}!</MDBCardBody>
+                            <MDBCardBody>Click on your Arrg-ument below to view results and demographic data collected from your voters.</MDBCardBody>
+                        </MDBCard>
+                    </MDBRow>
+                </MDBCol>
+                <MDBRow className="justify-content-center">
+
+                {this.state.argument.map(argue => {
+                    return (
+
+                            <div className="import" key={argue._id} onClick = {() => {
+                              //const renderResults = this.state.renderResults;
+                              this.setState(
+                                {currentArgument:argue},
+                              	() => { this.setState({DIV:this.renderResults() }) }
+                              )
+                             
+                            }}>
+
+                                <MDBView hover>
+                                    <MDBCard style={{ width: "22rem", marginLeft: 5, marginRight: 5, background: "#212121" }} className="shadow-box-example hoverable">
+                                        {/* <a href={"/arguments/" + argue._id}> */}
+                                        <MDBCardBody>
+                                            <MDBCardTitle style={{ color: "white", fontSize: 30 }} className="center">{argue.title}</MDBCardTitle>
+                                            <MDBCardText style={{ color: "white", fontSize: 18 }} className="center">Total Votes: {argue.totalVotes}</MDBCardText>
+                                            <br />
+                                            <MDBCardText style={{ color: "white", fontSize: 14 }} className="center">{argue.main}</MDBCardText>
+                                            {/* <MDBCardText style={{ color: "orange", fontSize: 20 }} id="one"> {argue.sideone}</MDBCardText>
+                                        <MDBCardText style={{ color: "orange", fontSize: 20 }} id="two"> {argue.sidetwo}</MDBCardText> */}
+                                        </MDBCardBody>
+                                    </MDBCard>
+                                    <MDBMask className="flex-center" overlay="stylish-strong">
+                                        {/* <p className="white-text strong">See results for this Arrg-ument</p> */}
+                                    </MDBMask>
+                                </MDBView>
+                            </div>
+                        )
+                    }
+                    )}
+                </MDBRow>
+                <MDBRow>
+                <MDBContainer>
+                {DIV}
       </MDBContainer>
                 </MDBRow>
             </MDBContainer>
             
         )
+    
+      
     }
 }
 
